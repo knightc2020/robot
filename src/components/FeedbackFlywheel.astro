@@ -1,0 +1,59 @@
+---
+/**
+ * Feedback Flywheel Component
+ * Embedded at the bottom of articles to encourage front-line engineer contributions.
+ */
+interface Props {
+  lang?: 'en' | 'cn';
+  articleSlug?: string;
+}
+
+const { lang = 'cn', articleSlug = '' } = Astro.props;
+
+const content = {
+  cn: {
+    heading: '数据纠错 & 行业反馈',
+    description: '如果你是一线工程师，发现数据有误、有内部视角想分享，或希望加入我们的私域社群，欢迎提交反馈。',
+    correction: '提交纠错',
+    insider: '分享行业洞察',
+    community: '加入社群',
+    note: '所有反馈将经过交叉验证后纳入数据库。贡献者可获得社群优先访问权。',
+  },
+  en: {
+    heading: 'Data Corrections & Industry Feedback',
+    description: 'If you\'re a front-line engineer and spot inaccuracies, have insider perspectives to share, or want to join our private community — we want to hear from you.',
+    correction: 'Submit Correction',
+    insider: 'Share Insider Data',
+    community: 'Join Community',
+    note: 'All submissions are cross-verified before integration. Contributors get priority community access.',
+  },
+};
+
+const t = content[lang];
+---
+
+<aside class="mt-16 border border-neutral-800 rounded-lg p-6 bg-neutral-900/50">
+  <h3 class="text-base font-semibold text-neutral-100 mb-2">{t.heading}</h3>
+  <p class="text-sm text-neutral-400 mb-4">{t.description}</p>
+  <div class="flex flex-wrap gap-3">
+    <a
+      href={`mailto:feedback@roboaudit.com?subject=Correction:${articleSlug}`}
+      class="inline-flex items-center px-3 py-1.5 text-xs font-medium border border-primary-700 text-primary-300 rounded hover:bg-primary-900/30 no-underline"
+    >
+      {t.correction}
+    </a>
+    <a
+      href={`mailto:feedback@roboaudit.com?subject=Insider:${articleSlug}`}
+      class="inline-flex items-center px-3 py-1.5 text-xs font-medium border border-neutral-700 text-neutral-300 rounded hover:bg-neutral-800 no-underline"
+    >
+      {t.insider}
+    </a>
+    <a
+      href={`/${lang}/community/`}
+      class="inline-flex items-center px-3 py-1.5 text-xs font-medium border border-neutral-700 text-neutral-300 rounded hover:bg-neutral-800 no-underline"
+    >
+      {t.community}
+    </a>
+  </div>
+  <p class="mt-4 text-xs text-neutral-600">{t.note}</p>
+</aside>

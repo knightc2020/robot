@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  lang?: 'en' | 'cn';
+  description?: string;
+}
+
+const { title, lang = 'cn', description = '' } = Astro.props;
+const otherLang = lang === 'cn' ? 'en' : 'cn';
+const langLabel = lang === 'cn' ? 'EN' : '中文';
+---
+
+<!doctype html>
+<html lang={lang === 'cn' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="border-b border-neutral-800 bg-neutral-950/80 backdrop-blur sticky top-0 z-50">
+      <nav class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+        <a href={`/${lang}/`} class="text-lg font-semibold text-neutral-50 tracking-tight no-underline">
+          RoboAudit
+        </a>
+        <div class="flex items-center gap-6 text-sm">
+          <a href={`/${lang}/research/`} class="text-neutral-400 hover:text-neutral-100">
+            {lang === 'cn' ? '尽调研究' : 'Research'}
+          </a>
+          <a href={`/${lang}/career/`} class="text-neutral-400 hover:text-neutral-100">
+            {lang === 'cn' ? '职业导航' : 'Career'}
+          </a>
+          <a
+            href={`/${otherLang}/`}
+            class="px-2 py-0.5 border border-neutral-700 rounded text-xs text-neutral-400 hover:text-neutral-100 hover:border-neutral-500 no-underline"
+          >
+            {langLabel}
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto px-4 py-10 w-full">
+      <slot />
+    </main>
+
+    <footer class="border-t border-neutral-800 py-8 text-center text-xs text-neutral-600">
+      <p>&copy; {new Date().getFullYear()} RoboAudit. Data-driven robotics intelligence.</p>
+    </footer>
+  </body>
+</html>

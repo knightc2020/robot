@@ -1,0 +1,64 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import FeedbackFlywheel from '../components/FeedbackFlywheel.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    date: string;
+    author?: string;
+    tags?: string[];
+    industry_sector?: string;
+    confidence_level?: string;
+    summary?: string;
+  };
+  lang?: 'en' | 'cn';
+  slug?: string;
+}
+
+const { frontmatter, lang = 'cn', slug = '' } = Astro.props;
+
+const confidenceBadge: Record<string, string> = {
+  verified: 'bg-green-900/40 text-green-400 border-green-800',
+  estimated: 'bg-yellow-900/40 text-yellow-400 border-yellow-800',
+  speculative: 'bg-red-900/40 text-red-400 border-red-800',
+};
+
+const badgeClass = confidenceBadge[frontmatter.confidence_level ?? 'estimated'];
+---
+
+<BaseLayout title={frontmatter.title} lang={lang}>
+  <article>
+    <header class="mb-8 pb-6 border-b border-neutral-800">
+      <h1 class="text-2xl md:text-3xl mb-3">{frontmatter.title}</h1>
+      <div class="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+        <time>{frontmatter.date}</time>
+        <span>&middot;</span>
+        <span>{frontmatter.author}</span>
+        {frontmatter.confidence_level && (
+          <span class={`px-1.5 py-0.5 border rounded text-[10px] uppercase tracking-wider ${badgeClass}`}>
+            {frontmatter.confidence_level}
+          </span>
+        )}
+      </div>
+      {frontmatter.tags && frontmatter.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mt-3">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="px-2 py-0.5 bg-neutral-800 text-neutral-400 text-[11px] rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+      {frontmatter.summary && (
+        <p class="mt-4 text-sm text-neutral-400 italic">{frontmatter.summary}</p>
+      )}
+    </header>
+
+    <div class="prose-data">
+      <slot />
+    </div>
+
+    <FeedbackFlywheel lang={lang} articleSlug={slug} />
+  </article>
+</BaseLayout>

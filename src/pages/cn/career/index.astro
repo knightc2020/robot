@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('cn/career'))
+  .filter((p) => p.data.status === 'published')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<BaseLayout title="职业导航 - RoboAudit" lang="cn">
+  <h1 class="text-2xl font-bold mb-2">职业导航</h1>
+  <p class="text-neutral-500 text-sm mb-8">技能图谱、行业地图、薪资洞察</p>
+
+  {posts.length === 0 && (
+    <p class="text-neutral-600 text-sm">暂无已发布的职业指南。</p>
+  )}
+
+  <div class="space-y-6">
+    {posts.map((post) => (
+      <a href={`/cn/career/${post.id.replace(/\.mdx?$/, '')}/`} class="block group no-underline">
+        <article class="p-4 border border-neutral-800 rounded-lg hover:border-neutral-700 transition-colors">
+          <h2 class="text-base font-medium text-neutral-100 group-hover:text-primary-400">{post.data.title}</h2>
+          <div class="flex items-center gap-3 mt-2 text-xs text-neutral-500">
+            <time>{post.data.date}</time>
+            {post.data.career_level && <span class="px-1.5 py-0.5 bg-neutral-800 rounded">{post.data.career_level}</span>}
+          </div>
+          {post.data.summary && <p class="mt-2 text-sm text-neutral-400">{post.data.summary}</p>}
+        </article>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
