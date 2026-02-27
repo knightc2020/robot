@@ -1,20 +1,142 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const latestResearch = (await getCollection('en/research'))
+  .filter((p) => p.data.status === 'published')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+
+const latestCareer = (await getCollection('en/career'))
+  .filter((p) => p.data.status === 'published')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
 ---
 
-<BaseLayout title="RoboAudit - Robotics Due Diligence & Career Intelligence" lang="en">
-  <section class="py-12">
-    <h1 class="text-3xl md:text-4xl font-bold mb-4">Robotics Industry Intelligence Platform</h1>
-    <p class="text-neutral-400 text-lg max-w-2xl mb-8">
-      Audit-grade rigor applied to robotics supply chains. Deep-dive due diligence reports, BOM teardowns, and career navigation for engineers.
-    </p>
-    <div class="flex gap-4">
-      <a href="/en/research/" class="px-4 py-2 bg-primary-700 text-white rounded text-sm hover:bg-primary-600">
-        Research Hub
+<BaseLayout title="RoboMatrix - Robotics Industry Research & Career Intelligence" lang="en" description="Audit-grade rigor applied to robotics supply chains. Deep-dive research reports, BOM teardowns, and career navigation for engineers.">
+
+  <!-- Hero -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="relative">
+      <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-neutral-800 rounded-full text-xs text-neutral-500">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+        Continuously updated · Covering 12+ industry segments
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+        <span class="text-neutral-50">Decode the Robotics</span><br />
+        <span class="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Supply Chain Matrix</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mb-10 leading-relaxed">
+        Audit-grade rigor applied to humanoid robots, industrial arms, AMR, and beyond.<br class="hidden md:block" />
+        Verifiable industry intelligence for investors, founders, and engineers.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="/en/research/" class="group inline-flex items-center gap-2 px-6 py-3 bg-primary-700 text-white rounded-lg text-sm font-medium hover:bg-primary-600 transition-all no-underline">
+          Industry Research
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+        <a href="/en/career/" class="inline-flex items-center gap-2 px-6 py-3 border border-neutral-700 text-neutral-300 rounded-lg text-sm font-medium hover:bg-neutral-900 hover:border-neutral-600 transition-all no-underline">
+          Career Hub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="border-y border-neutral-800 py-8 mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div class="text-2xl md:text-3xl font-bold text-neutral-50">12+</div>
+        <div class="text-xs text-neutral-500 mt-1">Industry Segments</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold text-neutral-50">340+</div>
+        <div class="text-xs text-neutral-500 mt-1">Engineer Respondents</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold text-neutral-50">50+</div>
+        <div class="text-xs text-neutral-500 mt-1">Supplier Interviews</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold text-neutral-50">3-Layer</div>
+        <div class="text-xs text-neutral-500 mt-1">Cross-Validation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two-column modules -->
+  <section class="grid md:grid-cols-2 gap-6 mb-16">
+    <div class="group border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-colors">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-primary-900/40 border border-primary-800/50 flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold text-neutral-100">Industry Research</h2>
+          <p class="text-xs text-neutral-500">Deep-Dive Reports & Data Matrices</p>
+        </div>
+      </div>
+      <p class="text-sm text-neutral-400 mb-5">Hardware BOM teardowns, supply chain cost matrices, competitive landscape analysis. Every data point sourced and confidence-rated.</p>
+      <div class="space-y-3">
+        {latestResearch.map((post) => (
+          <a href={`/en/research/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
+            <span class="text-sm text-neutral-300 group-hover/item:text-primary-400 transition-colors truncate mr-4">{post.data.title}</span>
+            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.slice(0, 10)}</span>
+          </a>
+        ))}
+      </div>
+      <a href="/en/research/" class="inline-flex items-center gap-1 mt-4 text-xs text-primary-400 hover:text-primary-300 no-underline">
+        View all research →
       </a>
-      <a href="/en/career/" class="px-4 py-2 border border-neutral-700 text-neutral-300 rounded text-sm hover:bg-neutral-800">
-        Career Hub
+    </div>
+
+    <div class="group border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-colors">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-emerald-900/40 border border-emerald-800/50 flex items-center justify-center">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        </div>
+        <div>
+          <h2 class="text-lg font-semibold text-neutral-100">Career Navigation</h2>
+          <p class="text-xs text-neutral-500">Skills, Salaries & Growth Paths</p>
+        </div>
+      </div>
+      <p class="text-sm text-neutral-400 mb-5">Wiki-style knowledge base for robotics engineers. Skills roadmaps, industry maps, salary benchmarks, and career trajectories.</p>
+      <div class="space-y-3">
+        {latestCareer.map((post) => (
+          <a href={`/en/career/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
+            <span class="text-sm text-neutral-300 group-hover/item:text-emerald-400 transition-colors truncate mr-4">{post.data.title}</span>
+            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.slice(0, 10)}</span>
+          </a>
+        ))}
+      </div>
+      <a href="/en/career/" class="inline-flex items-center gap-1 mt-4 text-xs text-emerald-400 hover:text-emerald-300 no-underline">
+        View all guides →
       </a>
     </div>
   </section>
+
+  <!-- Methodology -->
+  <section class="border border-neutral-800 rounded-xl p-8 mb-16 bg-neutral-900/30">
+    <h2 class="text-xl font-semibold mb-6 text-neutral-100">Our Methodology</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div>
+        <div class="text-sm font-medium text-primary-400 mb-2">01 · Primary Data Collection</div>
+        <p class="text-sm text-neutral-400">Direct supplier interviews, anonymous engineer surveys, on-site production line research. No second-hand data aggregation.</p>
+      </div>
+      <div>
+        <div class="text-sm font-medium text-primary-400 mb-2">02 · Triple Cross-Validation</div>
+        <p class="text-sm text-neutral-400">Supplier quotes x public tender data x listed company filings. Every data point tagged with a confidence level.</p>
+      </div>
+      <div>
+        <div class="text-sm font-medium text-primary-400 mb-2">03 · Community Feedback Loop</div>
+        <p class="text-sm text-neutral-400">Continuous corrections from front-line engineers. Not a static snapshot — a living, evolving industry knowledge graph.</p>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
