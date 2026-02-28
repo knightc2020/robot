@@ -52,15 +52,18 @@ export const POST: APIRoute = async ({ request }) => {
   // Filename-safe timestamp: 2026-02-28T07-30-00
   const tsForFile = isoDate.slice(0, 19).replace(/:/g, '-');
 
-  // Slug from title
-  const slug = (title as string)
+  // Slug from title — keep ASCII word chars only for filename safety
+  const asciiSlug = (title as string)
     .toLowerCase()
-    .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
+    .replace(/[^\w\s-]/g, '')   // strip non-ASCII (Chinese etc.)
     .replace(/[\s_]+/g, '-')
-    .slice(0, 60)
-    .replace(/^-+|-+$/g, '');
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 50);
 
-  const filename = `${tsForFile}-${slug}.md`;
+  // If title is all Chinese (asciiSlug too short), fall back to timestamp-only filename
+  const filename = asciiSlug.length >= 3
+    ? `${tsForFile}-${asciiSlug}.md`
+    : `${tsForFile}.md`;
 
   // --- Target directory ---
   const targetDir = join(process.cwd(), 'src', 'content', lang, 'research');

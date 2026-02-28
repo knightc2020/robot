@@ -1,26 +1,23 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
-export async function getStaticPaths() {
-  const [enPosts, cnPosts] = await Promise.all([
-    getCollection('en/research'),
-    getCollection('cn/research'),
-  ]);
+const { slug } = Astro.params;
+const segments = slug?.split('/') ?? [];
+const lang = segments[0] as 'en' | 'cn';
+const entryId = segments.slice(1).join('/');
 
-  return [
-    ...enPosts.map((post) => ({
-      params: { slug: `en/${post.id.replace(/\.mdx?$/, '')}` },
-      props: { post, lang: 'en' as const },
-    })),
-    ...cnPosts.map((post) => ({
-      params: { slug: `cn/${post.id.replace(/\.mdx?$/, '')}` },
-      props: { post, lang: 'cn' as const },
-    })),
-  ];
+if (!lang || !entryId || !['en', 'cn'].includes(lang)) {
+  return Astro.redirect('/404');
 }
 
-const { post, lang } = Astro.props;
+const collectionName = `${lang}/research` as 'en/research' | 'cn/research';
+const post = await getEntry(collectionName, entryId);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
 const { Content } = await render(post);
 ---
 
