@@ -11,6 +11,11 @@ const latestCareer = (await getCollection('cn/career'))
   .filter((p) => p.data.status === 'published')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
+
+// 前沿研究动态：只取中文 research，最新 6 篇
+const latestNews = (await getCollection('cn/research'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 6);
 ---
 
 <BaseLayout title="RoboMatrix - 机器人产业深度研究与职业导航" lang="cn" description="以审计级严谨度拆解机器人产业链，为从业者提供行业研究报告、BOM成本分析与职业发展导航。">
@@ -121,6 +126,54 @@ const latestCareer = (await getCollection('cn/career'))
         查看全部指南 →
       </a>
     </div>
+  </section>
+
+  <!-- 前沿研究动态 -->
+  <section class="mb-16">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <p class="text-xs font-mono text-violet-400 uppercase tracking-widest mb-1">Research Feed</p>
+        <h2 class="text-xl font-semibold text-neutral-100">前沿研究动态</h2>
+        <p class="text-xs text-neutral-500 mt-1">最新论文解读 · AI &amp; 机器人领域前沿进展</p>
+      </div>
+      <a href="/research-news/" class="text-xs text-violet-400 hover:text-violet-300 no-underline shrink-0">
+        查看全部 →
+      </a>
+    </div>
+
+    {latestNews.length === 0 ? (
+      <div class="border border-dashed border-neutral-800 rounded-xl py-12 text-center text-neutral-600 text-sm">
+        暂无内容 — 通过 API 发布第一篇论文解读
+      </div>
+    ) : (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {latestNews.map((post) => {
+          const slug = `cn/${post.id.replace(/\.mdx?$/, '')}`;
+          const date = new Date(post.data.date).toLocaleDateString('zh-CN', {
+            month: 'short', day: 'numeric',
+          });
+          return (
+            <a
+              href={`/research-news/${slug}/`}
+              class="group block no-underline rounded-xl border border-neutral-800 bg-neutral-900/40 hover:border-violet-800/60 hover:bg-violet-950/10 transition-all duration-200 p-4"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
+                  {post.data.industry_sector}
+                </span>
+                <time class="text-[11px] text-neutral-600">{date}</time>
+              </div>
+              <h3 class="text-sm font-medium text-neutral-200 group-hover:text-violet-300 transition-colors leading-snug mb-2 line-clamp-2">
+                {post.data.title}
+              </h3>
+              {post.data.summary && (
+                <p class="text-xs text-neutral-500 line-clamp-2">{post.data.summary}</p>
+              )}
+            </a>
+          );
+        })}
+      </div>
+    )}
   </section>
 
   <!-- Methodology -->

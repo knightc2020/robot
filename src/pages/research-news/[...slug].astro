@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const [enPosts, cnPosts] = await Promise.all([
+    getCollection('en/research'),
+    getCollection('cn/research'),
+  ]);
+
+  return [
+    ...enPosts.map((post) => ({
+      params: { slug: `en/${post.id.replace(/\.mdx?$/, '')}` },
+      props: { post, lang: 'en' as const },
+    })),
+    ...cnPosts.map((post) => ({
+      params: { slug: `cn/${post.id.replace(/\.mdx?$/, '')}` },
+      props: { post, lang: 'cn' as const },
+    })),
+  ];
+}
+
+const { post, lang } = Astro.props;
+const { Content } = await render(post);
+---
+
+<ArticleLayout frontmatter={post.data} lang={lang} slug={post.id}>
+  <Content />
+</ArticleLayout>

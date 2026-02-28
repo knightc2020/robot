@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const enPosts = await getCollection('en/research');
+const cnPosts = await getCollection('cn/research');
+
+type Post = (typeof enPosts)[number] & { _lang: 'en' | 'cn' };
+
+const allPosts = [
+  ...enPosts.map((p) => ({ ...p, _lang: 'en' as const })),
+  ...cnPosts.map((p) => ({ ...p, _lang: 'cn' as const })),
+].sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const confidenceColor: Record<string, string> = {
+  verified: 'text-green-400 bg-green-900/30 border-green-800',
+  estimated: 'text-yellow-400 bg-yellow-900/30 border-yellow-800',
+  speculative: 'text-red-400 bg-red-900/30 border-red-800',
+};
+
+const statusColor: Record<string, string> = {
+  published: 'text-sky-400 bg-sky-900/30 border-sky-800',
+  review: 'text-purple-400 bg-purple-900/30 border-purple-800',
+  draft: 'text-neutral-400 bg-neutral-800 border-neutral-700',
+};
+---
+
+<BaseLayout title="Research News — RoboMatrix" lang="cn">
+  <!-- Header -->
+  <div class="mb-10">
+    <p class="text-xs font-mono text-primary-400 uppercase tracking-widest mb-2">Research Feed</p>
+    <h1 class="text-3xl font-bold text-neutral-50 mb-3">行业研究动态</h1>
+    <p class="text-neutral-500 text-sm max-w-xl">
+      实时收录 EN / CN 双语研究报告，涵盖人形机器人、工业臂、AMR 等核心赛道。
+    </p>
+    <div class="mt-4 flex items-center gap-4 text-xs text-neutral-600">
+      <span>{allPosts.length} 篇文章</span>
+      <span>·</span>
+      <span>{enPosts.length} EN &nbsp;/&nbsp; {cnPosts.length} CN</span>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  {allPosts.length === 0 ? (
+    <div class="text-center py-24 text-neutral-600 text-sm">
+      暂无文章 — 通过 API 发布第一篇报告
+    </div>
+  ) : (
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {allPosts.map((post) => {
+        const slug = `${post._lang}/${post.id.replace(/\.mdx?$/, '')}`;
+        const date = new Date(post.data.date).toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+        return (
+          <a
+            href={`/research-news/${slug}/`}
+            class="group block no-underline rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-neutral-600 hover:bg-neutral-900 transition-all duration-200"
+          >
+            <div class="p-5 flex flex-col h-full">
+              <!-- Top meta row -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <!-- Lang badge -->
+                <span class={`text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border ${post._lang === 'en' ? 'text-sky-400 bg-sky-900/30 border-sky-800' : 'text-rose-400 bg-rose-900/30 border-rose-800'}`}>
+                  {post._lang}
+                </span>
+                <!-- Status badge -->
+                <span class={`text-[10px] uppercase px-1.5 py-0.5 rounded border ${statusColor[post.data.status] ?? statusColor.draft}`}>
+                  {post.data.status}
+                </span>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-sm font-semibold text-neutral-100 group-hover:text-primary-400 transition-colors leading-snug mb-2 flex-1">
+                {post.data.title}
+              </h2>
+
+              <!-- Summary -->
+              {post.data.summary && (
+                <p class="text-xs text-neutral-500 line-clamp-2 mb-4">
+                  {post.data.summary}
+                </p>
+              )}
+
+              <!-- Bottom meta row -->
+              <div class="flex items-center justify-between mt-auto pt-3 border-t border-neutral-800 text-[11px] text-neutral-600">
+                <time>{date}</time>
+                <div class="flex items-center gap-2">
+                  <span class="px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
+                    {post.data.industry_sector}
+                  </span>
+                  <span class={`px-1.5 py-0.5 border rounded ${confidenceColor[post.data.confidence_level ?? 'estimated']}`}>
+                    {post.data.confidence_level}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  )}
+</BaseLayout>

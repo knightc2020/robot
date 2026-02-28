@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 /**
  * Shared schema for automation-ready frontmatter.
@@ -59,7 +60,17 @@ const cnCareer = defineCollection({
   schema: careerSchema,
 });
 
+// --- Top-level stubs (suppress Astro v5 auto-generation warning) ---
+const en = defineCollection({
+  loader: glob({ pattern: '_stub.md', base: './src/content/en' }),
+});
+const cn = defineCollection({
+  loader: glob({ pattern: '_stub.md', base: './src/content/cn' }),
+});
+
 export const collections = {
+  en,
+  cn,
   'en/research': enResearch,
   'en/career': enCareer,
   'cn/research': cnResearch,
