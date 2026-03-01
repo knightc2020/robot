@@ -93,7 +93,7 @@ const latestNews = (await getCollection('cn/research'))
         {latestResearch.map((post) => (
           <a href={`/cn/research/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
             <span class="text-sm text-neutral-300 group-hover/item:text-primary-400 transition-colors truncate mr-4">{post.data.title}</span>
-            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.slice(0, 10)}</span>
+            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.toISOString().slice(0, 10)}</span>
           </a>
         ))}
       </div>
@@ -118,7 +118,7 @@ const latestNews = (await getCollection('cn/research'))
         {latestCareer.map((post) => (
           <a href={`/cn/career/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
             <span class="text-sm text-neutral-300 group-hover/item:text-emerald-400 transition-colors truncate mr-4">{post.data.title}</span>
-            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.slice(0, 10)}</span>
+            <span class="text-[10px] text-neutral-600 shrink-0">{post.data.date.toISOString().slice(0, 10)}</span>
           </a>
         ))}
       </div>

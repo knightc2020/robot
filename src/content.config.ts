@@ -7,8 +7,8 @@ import { glob } from 'astro/loaders';
  */
 const articleSchema = z.object({
   title: z.string(),
-  date: z.string().datetime({ offset: true }),
-  updated: z.string().datetime({ offset: true }).optional(),
+  date: z.coerce.date(),
+  updated: z.coerce.date().optional(),
   author: z.string().default('Editorial Team'),
   tags: z.array(z.string()).default([]),
   industry_sector: z.enum([

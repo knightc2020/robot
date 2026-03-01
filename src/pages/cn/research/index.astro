@@ -21,7 +21,7 @@ const posts = (await getCollection('cn/research'))
         <article class="p-4 border border-neutral-800 rounded-lg hover:border-neutral-700 transition-colors">
           <h2 class="text-base font-medium text-neutral-100 group-hover:text-primary-400">{post.data.title}</h2>
           <div class="flex items-center gap-3 mt-2 text-xs text-neutral-500">
-            <time>{post.data.date}</time>
+            <time>{post.data.date.toISOString().slice(0, 10)}</time>
             <span class="px-1.5 py-0.5 bg-neutral-800 rounded">{post.data.industry_sector}</span>
           </div>
           {post.data.summary && <p class="mt-2 text-sm text-neutral-400">{post.data.summary}</p>}
