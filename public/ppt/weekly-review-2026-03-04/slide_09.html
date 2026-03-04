@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>Q&A</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .font-serif-custom {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col justify-center items-center bg-black text-gray-600">
+        <!-- Main Content -->
+        <div class="relative z-10 flex flex-col items-center justify-center px-20 py-16">
+            <!-- Title Block -->
+            <div class="text-center relative">
+                <!-- Title -->
+                <h1 class="font-serif-custom text-white leading-none mb-6 tracking-tight text-[75px] leading-[1.1]">
+                    Q&A
+                </h1>
+                
+                <!-- Decorative Element: Accent Line (Blue) -->
+                <div class="w-32 h-[2px] mx-auto bg-[#0404AC]"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="absolute bottom-12 right-12 z-20 text-right">
+            <!-- Brand Badge -->
+            <p class="font-medium text-white leading-tight text-[18px] leading-[1.4]">机器人技术研究中心</p>
+            <!-- Subtitle -->
+            <p class="font-normal mt-1 text-[18px] leading-[1.4] text-gray-400">2026年3月第1周<br/>本周机器人研发回顾</p>
+        </div>
+    </div>
+</body>
+</html>
