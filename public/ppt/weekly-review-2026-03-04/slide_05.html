@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文3：SPARR 仿真到现实迁移框架</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <!-- Header -->
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">
+                    KEY RESEARCH 03
+                </div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">工业机器人仿真迁移</div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <!-- Left Column -->
+                    <div class="w-[428px] flex-shrink-0">
+                        <!-- Title -->
+                        <h2 class="font-serif text-[32pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            SPARR框架：打破“仿真到现实”壁垒，实现无监督高精度机器人组装
+                        </h2>
+                        
+                        <!-- Description -->
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">提出混合强化学习架构，通过非对称真实世界残差学习，解决了长期以来仿真训练策略迁移到现实世界时精度不足的痛点，实现工业机器人组装任务的无监督高精度迁移。</p>
+                            
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>仿真端训练基础策略，真实端仅通过少量无标签数据修正残差，无需人工标注</li>
+                                <li>电子元件组装精度达到0.01mm，超过人类工人平均水平（0.02mm）</li>
+                                <li>迁移成功率达到98.7%，比传统Sim2Real方法提升42%</li>
+                            </ul>
+
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>直接解决3C、汽车等行业机器人自动化组装的卡脖子问题，可将生产线部署周期从3个月缩短到1周。</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex-1">
+                        <!-- Paper Info -->
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">论文标题：Simulation-based Policies with Asymmetric Real-world Residuals for Assembly</p>
+                            <p class="text-sm text-gray-600 mb-2">发布机构：加州大学伯克利分校、西门子研究院</p>
+                            <p class="text-sm text-gray-600">arXiv链接：<a href="https://arxiv.org/abs/2602.23253" class="text-[#002FA7] underline" target="_blank">https://arxiv.org/abs/2602.23253</a></p>
+                        </div>
+                        
+                        <!-- Visual Caption -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                SPARR框架已在西门子工业生产线上完成手机主板组装验证，良率达到99.92%。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
