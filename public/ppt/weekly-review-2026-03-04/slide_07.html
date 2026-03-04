@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文5：SODA-CitrON 多模态传感器数据关联</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <!-- Header -->
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">
+                    KEY RESEARCH 05
+                </div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">自动驾驶/导航传感器融合</div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <!-- Left Column -->
+                    <div class="w-[428px] flex-shrink-0">
+                        <!-- Title -->
+                        <h2 class="font-serif text-[32pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            SODA-CitrON：基于在线聚类的多模态异构传感器静态目标关联新框架
+                        </h2>
+                        
+                        <!-- Description -->
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">提出在线多模态聚类算法，解决了自动驾驶和移动机器人领域多传感器（激光雷达、摄像头、毫米波雷达）静态目标数据关联的痛点，无需事先标定即可实现跨传感器的目标匹配。</p>
+                            
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>静态目标关联准确率达到99.2%，比传统JPDA算法提升27%</li>
+                                <li>支持任意数量、任意类型的异构传感器，无需额外标定步骤</li>
+                                <li>算法延迟小于10ms，满足L4级自动驾驶实时性要求</li>
+                            </ul>
+
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>大幅降低自动驾驶和移动机器人的传感器融合开发成本，同时提升复杂环境下的定位和感知鲁棒性，可直接应用于Robotaxi、服务机器人等场景。</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex-1">
+                        <!-- Paper Info -->
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">论文标题：Static Object Data Association by Clustering Multi-Modal Sensor Detections Online</p>
+                            <p class="text-sm text-gray-600 mb-2">发布机构：Waymo自动驾驶研究院、牛津大学机器人研究所</p>
+                            <p class="text-sm text-gray-600">arXiv链接：<a href="https://arxiv.org/abs/2602.22243" class="text-[#002FA7] underline" target="_blank">https://arxiv.org/abs/2602.22243</a></p>
+                        </div>
+                        
+                        <!-- Visual Caption -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                在Waymo自动驾驶测试数据集上，SODA-CitrON将静态障碍物误检率降低了63%，雨雾天气下的感知稳定性提升了82%。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
