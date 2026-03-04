@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文2：OmniTrack 通用运动追踪框架</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <!-- Header -->
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">
+                    KEY RESEARCH 02
+                </div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">人形机器人运动追踪</div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <!-- Left Column -->
+                    <div class="w-[428px] flex-shrink-0">
+                        <!-- Title -->
+                        <h2 class="font-serif text-[32pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            OmniTrack：基于物理一致性引导的人形机器人通用运动追踪框架
+                        </h2>
+                        
+                        <!-- Description -->
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">提出两阶段解耦架构，攻克了人形机器人在追踪人类动作时因形态差异和数据噪声导致的物理不一致问题，实现跨形态、跨设备的通用运动追踪。</p>
+                            
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>第一阶段语义对齐，第二阶段物理约束优化，避免动作扭曲和自碰撞</li>
+                                <li>在12种不同人形机器人平台上准确率达到94.2%，比SOTA提升31%</li>
+                                <li>支持普通RGB摄像头输入，无需动捕设备即可实现高精度追踪</li>
+                            </ul>
+
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>大幅降低人形机器人动作采集成本，为消费级人形机器人的远程操控和技能学习提供了通用解决方案。</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex-1">
+                        <!-- Paper Info -->
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">论文标题：OmniTrack: General Motion Tracking via Physics-Consistent Reference</p>
+                            <p class="text-sm text-gray-600 mb-2">发布机构：斯坦福大学机器人实验室</p>
+                            <p class="text-sm text-gray-600">arXiv链接：<a href="https://arxiv.org/abs/2602.23832" class="text-[#002FA7] underline" target="_blank">https://arxiv.org/abs/2602.23832</a></p>
+                        </div>
+                        
+                        <!-- Visual Caption -->
+                        <div class="flex items-center gap-2 mt-4">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                仅需普通家用摄像头，OmniTrack即可将人类动作实时映射到任意形态的人形机器人上，误差小于2cm。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
