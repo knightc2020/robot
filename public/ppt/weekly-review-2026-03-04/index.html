@@ -1,61 +1,134 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>本周机器人研发回顾 - 2026-03-04</title>
-    <style>
-        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; background: #f5f5f5; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        h1 { text-align: center; color: #002FA7; }
-        .slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-        .slide-card { background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .slide-card a { display: block; text-decoration: none; color: #002FA7; font-weight: bold; }
-        .slide-card iframe { width: 100%; height: 180px; border: 1px solid #ddd; margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>本周机器人研发回顾 - 2026-03-04</title>
+  <style>
+    :root { color-scheme: dark; --blue: #315efb; --panel: #151922; --line: #2b3240; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #090b10; color: #f5f7fb; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    button, a { font: inherit; }
+    .page { width: min(1440px, 100%); margin: 0 auto; padding: 20px clamp(14px, 3vw, 38px) 36px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    .eyebrow { margin: 0 0 4px; color: #96a0b5; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(20px, 3vw, 32px); line-height: 1.2; }
+    .meta { margin: 7px 0 0; color: #aeb6c5; font-size: 14px; }
+    .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 9px; background: #171c26; color: #f5f7fb; text-decoration: none; cursor: pointer; transition: .18s ease; }
+    .button:hover { border-color: #657089; background: #202735; }
+    .button.primary { border-color: var(--blue); background: var(--blue); }
+    .viewer { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #000; box-shadow: 0 22px 80px rgba(0,0,0,.4); }
+    .stage { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #111; }
+    .slide-frame { position: absolute; inset: 0 auto auto 0; width: 1280px; height: 720px; border: 0; transform-origin: 0 0; background: #fff; }
+    .controls { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px 14px; background: var(--panel); border-top: 1px solid var(--line); }
+    .nav { width: 44px; height: 40px; padding: 0; font-size: 22px; }
+    .status { min-width: 0; text-align: center; }
+    .status strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+    .status span { color: #8f99ab; font-size: 12px; }
+    .thumbs { display: grid; grid-template-columns: repeat(9, minmax(120px, 1fr)); gap: 10px; margin-top: 14px; overflow-x: auto; padding: 2px 2px 10px; scrollbar-color: #3b4558 transparent; }
+    .thumb { min-width: 130px; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: #121722; color: #dce2ee; cursor: pointer; text-align: left; }
+    .thumb:hover, .thumb[aria-current="true"] { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(49,94,251,.22); }
+    .thumb-preview { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #fff; pointer-events: none; }
+    .thumb iframe { position: absolute; inset: 0 auto auto 0; width: 1280px; height: 720px; border: 0; transform-origin: 0 0; pointer-events: none; }
+    .thumb-label { display: block; padding: 8px 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+    .hint { margin: 8px 2px 0; color: #778196; font-size: 12px; text-align: right; }
+    @media (max-width: 760px) {
+      .page { padding-top: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .controls { gap: 8px; padding: 9px; }
+      .nav { width: 40px; }
+      .hint { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
+  <main class="page">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">RoboMatrix · Weekly Research Review</p>
         <h1>本周机器人研发回顾</h1>
-        <p style="text-align: center; color: #666;">2026年3月第1周 | 共12篇论文</p>
-        <div class="slides">
-            <div class="slide-card">
-                <a href="slide_01.html" target="_blank">第1页：封面</a>
-                <iframe src="slide_01.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_02.html" target="_blank">第2页：概览</a>
-                <iframe src="slide_02.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_03.html" target="_blank">第3页：ZEST零样本动作迁移</a>
-                <iframe src="slide_03.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_04.html" target="_blank">第4页：OmniTrack运动追踪</a>
-                <iframe src="slide_04.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_05.html" target="_blank">第5页：SPARR仿真到现实</a>
-                <iframe src="slide_05.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_06.html" target="_blank">第6页：界面感知轨迹重构</a>
-                <iframe src="slide_06.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_07.html" target="_blank">第7页：SODA-CitrON传感器关联</a>
-                <iframe src="slide_07.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_08.html" target="_blank">第8页：趋势总结</a>
-                <iframe src="slide_08.html" scrolling="no"></iframe>
-            </div>
-            <div class="slide-card">
-                <a href="slide_09.html" target="_blank">第9页：Q&A</a>
-                <iframe src="slide_09.html" scrolling="no"></iframe>
-            </div>
+        <p class="meta">2026 年 3 月第 1 周 · 12 篇论文 · 9 页</p>
+      </div>
+      <div class="actions">
+        <a class="button" href="/cn/">返回网站</a>
+        <a class="button" href="../weekly-review-2026-03-04.pptx" download>下载 PPTX</a>
+        <button class="button primary" id="fullscreen" type="button">全屏演示</button>
+      </div>
+    </header>
+
+    <section class="viewer" id="viewer" aria-label="本周研发回顾演示文稿">
+      <div class="stage" id="stage">
+        <iframe class="slide-frame" id="slide" src="slide_01.html" title="第 1 页：封面"></iframe>
+      </div>
+      <div class="controls">
+        <button class="button nav" id="previous" type="button" aria-label="上一页">‹</button>
+        <div class="status" aria-live="polite">
+          <strong id="slide-title">封面</strong>
+          <span id="counter">1 / 9</span>
         </div>
-    </div>
+        <button class="button nav" id="next" type="button" aria-label="下一页">›</button>
+      </div>
+    </section>
+
+    <nav class="thumbs" id="thumbs" aria-label="幻灯片缩略图"></nav>
+    <p class="hint">可使用键盘 ← → 翻页，按 F 进入全屏，按 Esc 退出。</p>
+  </main>
+
+  <script>
+    const slides = [
+      '封面', '本周研究概览', 'ZEST 零样本动作迁移', 'OmniTrack 运动追踪',
+      'SPARR 仿真到现实', '界面感知轨迹重构', 'SODA-CitrON 传感器关联', '趋势总结', 'Q&A'
+    ];
+    const viewer = document.querySelector('#viewer');
+    const stage = document.querySelector('#stage');
+    const frame = document.querySelector('#slide');
+    const title = document.querySelector('#slide-title');
+    const counter = document.querySelector('#counter');
+    const thumbs = document.querySelector('#thumbs');
+    let current = 0;
+
+    function file(index) { return `slide_${String(index + 1).padStart(2, '0')}.html`; }
+    function scaleFrame(element, container) {
+      element.style.transform = `scale(${container.clientWidth / 1280})`;
+    }
+    function render(index) {
+      current = (index + slides.length) % slides.length;
+      frame.src = file(current);
+      frame.title = `第 ${current + 1} 页：${slides[current]}`;
+      title.textContent = slides[current];
+      counter.textContent = `${current + 1} / ${slides.length}`;
+      document.querySelectorAll('.thumb').forEach((item, i) => item.setAttribute('aria-current', i === current ? 'true' : 'false'));
+      document.querySelectorAll('.thumb')[current]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    }
+
+    slides.forEach((name, index) => {
+      const button = document.createElement('button');
+      button.className = 'thumb';
+      button.type = 'button';
+      button.setAttribute('aria-label', `打开第 ${index + 1} 页：${name}`);
+      button.innerHTML = `<span class="thumb-preview"><iframe loading="lazy" tabindex="-1" src="${file(index)}" title=""></iframe></span><span class="thumb-label">${index + 1}. ${name}</span>`;
+      button.addEventListener('click', () => render(index));
+      thumbs.appendChild(button);
+    });
+
+    function resizeAll() {
+      scaleFrame(frame, stage);
+      document.querySelectorAll('.thumb-preview').forEach(preview => scaleFrame(preview.querySelector('iframe'), preview));
+    }
+    new ResizeObserver(resizeAll).observe(stage);
+    window.addEventListener('load', resizeAll);
+    document.querySelector('#previous').addEventListener('click', () => render(current - 1));
+    document.querySelector('#next').addEventListener('click', () => render(current + 1));
+    document.querySelector('#fullscreen').addEventListener('click', () => viewer.requestFullscreen?.());
+    document.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') render(current - 1);
+      if (event.key === 'ArrowRight' || event.key === ' ') { event.preventDefault(); render(current + 1); }
+      if (event.key.toLowerCase() === 'f') viewer.requestFullscreen?.();
+    });
+    render(0);
+  </script>
 </body>
 </html>
