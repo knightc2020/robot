@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Status: logical baseline only. No career-intelligence database exists yet.
+Status: Phase 2 logical and physical schema implemented; no operational database or factual records exist.
 
 ## Current content frontmatter
 
@@ -57,9 +57,11 @@ Every collected record must carry:
 - `quality_status`: validation result.
 - `review_status`: pending/approved/rejected and reviewer metadata.
 
-## Future logical entities (Phase 2 draft)
+## Version 1 career-intelligence entities
 
-These names are required by the project plan but are not implemented in Phase 0.
+The logical contracts are versioned in
+`career-intelligence/schema/v1/entities.schema.json`; the physical mapping is in
+`docs/PHASE_2_DATA_MODEL.md` and migration `0001_initial.sql`.
 
 ### `companies`
 
@@ -75,7 +77,7 @@ Source-native job identity plus normalized title, description, company, location
 
 ### `skills`
 
-Canonical skill ID/name, aliases, category, definition, evidence expectations, lifecycle status, and version.
+Canonical skill ID/name, category, definition, evidence expectations, lifecycle status, review state, and taxonomy version. Aliases are normalized in `skill_aliases` and decoded into the logical `aliases` field.
 
 ### `job_skill_relations`
 
@@ -88,6 +90,17 @@ Append-only status/content change history: job, change type, old/new hash or fie
 ### `project_templates`
 
 Portfolio project template: target job families, skills demonstrated, deliverables, acceptance evidence, estimated effort, prerequisites, and safety/licensing notes.
+
+## Phase 2 operational tables
+
+- `schema_migrations`: ordered filename/checksum/application ledger.
+- `system_controls`: independently configurable collection and public-snapshot switches; both default disabled.
+- `pipeline_runs`: immutable-at-source execution metadata for later collection, parsing, validation, review, export, and migration commands.
+- `review_queue`: cross-entity manual-review items with priority, evidence, assignment, and resolution.
+- `project_template_job_families` and `project_template_skills`: normalized project target links.
+
+Phase 2 creates only the `system_controls` singleton and migration ledger. All domain,
+pipeline-run, and review-queue tables remain empty.
 
 ## Controlled vocabularies to define later
 

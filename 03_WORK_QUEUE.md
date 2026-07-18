@@ -47,15 +47,22 @@ Last updated: 2026-07-18 UTC
 - [x] Review final diff, create one scoped Phase 1 commit, and push only the refactor branch.
 - [x] Stop before Phase 2; do not merge, deploy, or alter Hermes.
 
-## Phase 2 — pending explicit authorization
+## Phase 2 closeout
 
-1. Evaluate staging, backup, concurrency, query, and export requirements before choosing storage.
-2. Define versioned schemas and migrations for the seven required career-intelligence entities.
-3. Keep collection and publication disabled; do not invent company or job records.
+- [x] Recover from the interrupted session and confirm the worktree contained no partial Phase 2 source changes.
+- [x] Evaluate staging isolation, backup/restore, concurrency, query, and snapshot requirements before storage selection.
+- [x] Select SQLite for the bounded single-host batch workload and record PostgreSQL re-evaluation gates.
+- [x] Define seven version 1 logical entity contracts and map them to every physical application table.
+- [x] Add checksummed migration 1 with all required entity, alias, pipeline, review, relation, control, and migration-ledger tables.
+- [x] Default collection and publication independently off while supporting explicit reasoned future changes.
+- [x] Add a non-overwriting validated backup flow and consistent public snapshot flow with validated immutable versions and atomic `current` replacement.
+- [x] Test WAL, two concurrent readers, reads during a write, busy timeout, waiting writers, migration write exclusion, consistent snapshot reads, append-only history, backup restore, and snapshot replacement.
+- [x] Run content governance tests and the Astro production build without changing public content.
+- [x] Keep all factual tables empty; add no collector, schedule, operational database, master change, Hermes change, or production deployment.
+- [x] Review the final diff, create one scoped Phase 2 commit, and push only `refactor/career-intelligence`.
 
 ## Later-phase backlog
 
-- Phase 2: logical/physical data model and migrations.
 - Phase 3: official career-source registry and three-company collector pilot.
 - Phase 4: JD parsing, deduplication, change history, and review queue.
 - Phase 5: eight job families and normalized skill dictionary.
@@ -72,5 +79,7 @@ Last updated: 2026-07-18 UTC
 - Vercel preview behavior for feature-branch pushes remains unverified.
 - Backup retention, rotation, encryption, and restore testing are not implemented.
 - The Phase 1 gate is not active in production until an authorized merge to `master`.
+- The Phase 2 schema/tooling is not connected to production; no operational database exists and both future controls default off.
+- Node 24 marks `node:sqlite` experimental, so Node upgrades require the Phase 2 regression suite before use.
 - Current Hermes research output does not yet emit the new structured source/review metadata and would be blocked by the gate.
 - Retained historical arXiv analyses remain pending human review even though their paper identities are sourced.

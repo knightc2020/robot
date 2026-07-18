@@ -10,9 +10,10 @@ Target relationship:
 
 ## Active stage
 
-- Active stage: Phase 0 — inventory, Git safety, and baseline establishment.
-- Phase 1 is not authorized in this baseline change.
-- Public content, production deployment, databases, collectors, and Hermes schedules must remain unchanged in Phase 0.
+- Active stage: Phase 2 — versioned career-intelligence schema and migrations.
+- Phase 0, Phase 0.5, and Phase 1 are complete on `refactor/career-intelligence`.
+- Phase 2 may add non-production schemas, migrations, tests, and data operations only.
+- Public content, production deployment, real data collection, `/root/robot`, and Hermes must remain unchanged.
 
 ## Non-negotiable controls
 

@@ -26,6 +26,12 @@
 | `scripts/content-check.test.mjs` | Temporary negative fixture test proving violations fail and cleanup recovers |
 | `scripts/verify-build.mjs` | Post-build route and withdrawn-content leakage verification |
 | `vercel.json` | Permanent redirects for withdrawn and duplicate legacy URLs; development branch only until authorized merge |
+| `career-intelligence/migrations/` | Checksummed SQLite migrations; Phase 2 contains the physical version 1 schema |
+| `career-intelligence/schema/v1/` | JSON Schema bundle for the seven logical entity contracts |
+| `career-intelligence/README.md` | Explicit-path database, safety-control, backup, and atomic-snapshot commands |
+| `scripts/lib/career-db.mjs` | SQLite migration, validate, controls, backup, consistent read, and atomic snapshot implementation |
+| `scripts/career-db.mjs` | Safe data-layer CLI; no implicit database/output paths |
+| `scripts/career-db.test.mjs` | Physical schema, constraint, WAL/concurrency, migration lock, backup/restore, and snapshot tests |
 
 ## Phase 0 controls
 
@@ -43,6 +49,8 @@
 | `docs/CAREER_INTELLIGENCE_REFACTOR_PLAN.md` | Goals, phases, execution rules, and target architecture |
 | `docs/CONTENT_PROVENANCE_REGISTER.md` | Phase 1 claim/evidence decisions and withdrawn URL policy |
 | `docs/DUPLICATE_CONTENT_REVIEW.md` | Seven arXiv duplicate groups, canonical choices, and redirect results |
+| `docs/PHASE_2_STORAGE_EVALUATION.md` | Staging, backup, concurrency, querying, export, restore evaluation and SQLite decision |
+| `docs/PHASE_2_DATA_MODEL.md` | Seven logical contracts mapped to every application database table |
 
 ## Phase 1 removed paths retained in Git history
 

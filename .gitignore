@@ -3,3 +3,7 @@ dist/
 .astro/
 .DS_Store
 *.log
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal

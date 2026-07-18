@@ -25,6 +25,7 @@ cd /root/robot-career-refactor
 npm test --if-present
 npm run content:check
 npm run content:test
+npm run career:db:test
 npm run build
 git status --short --branch
 git diff --stat
@@ -40,6 +41,36 @@ There is still no general lint/typecheck framework. Phase 1 adds a narrow determ
 A failing content gate blocks the build. Fix the reported source/metadata issue; do not bypass, auto-delete, or weaken the rule to publish.
 
 Phase 0.5 clean-install baseline: `npm ci` succeeded, but npm reported 13 dependency vulnerabilities (2 low, 4 moderate, 7 high). Do not run `npm audit fix` or `--force` as an unreviewed operational shortcut; assess and test dependency changes in a separately authorized phase.
+
+## Career database operations
+
+Phase 2 provides tooling but does not create an operational database. Every path is
+explicit, absolute, outside Git, and environment-specific. Do not substitute a path
+under `/root/robot`, this refactor worktree, `src/`, `public/`, or `dist/`.
+
+```bash
+cd /root/robot-career-refactor
+npm run career:db -- migrate --database /root/robot-data/staging/career.sqlite3
+npm run career:db -- verify --database /root/robot-data/staging/career.sqlite3
+npm run career:db -- controls --database /root/robot-data/staging/career.sqlite3 \
+  --collection enabled --reason "Explicit later-phase authorization reference"
+npm run career:db -- backup --database /root/robot-data/staging/career.sqlite3 \
+  --output /root/robot-backups/data/YYYY-MM-DD-career.sqlite3
+npm run career:db -- snapshot --database /root/robot-data/staging/career.sqlite3 \
+  --output /root/robot-data/staging/public-snapshot
+npm run career:db -- snapshot-validate --database /root/robot-data/staging/career.sqlite3 \
+  --output /root/robot-data/staging/public-snapshot
+```
+
+- Collection and publication default off and must be enabled independently with an
+  explicit value and reason. Phase 2 authorizes neither in a real environment.
+- Backup output is installed only after full validation and never overwrites an
+  existing path; choose a new dated destination.
+- Snapshot publication requires `publication enabled`, emits only approved rows,
+  and creates `current` only after validating a complete immutable version.
+- Updating an existing `current` requires `--replace`; the pointer swap is atomic
+  and older complete versions remain available for rollback.
+- Never copy a database or snapshot into Astro source as a publication shortcut.
 
 ## Preview
 
@@ -128,6 +159,16 @@ The active Hermes arXiv publisher does not yet emit the Phase 1 `sourceUrls`, `u
 - Before merge, abandon/revert only the scoped feature-branch commit; `/root/robot` and production are unaffected.
 - After a future authorized merge, use `git revert` of the Phase 1 commit through the reviewed production workflow. Do not reset shared history.
 - Redirect removal is part of the same revert, so verify old URL behavior during any rollback rehearsal.
+
+## Phase 2 rollback
+
+- Before any future operational database exists, revert the scoped Phase 2 Git
+  commit; production and `/root/robot` remain unaffected.
+- After migrations are used in a later environment, never downgrade by deleting or
+  editing migration-ledger rows. Stop writers, take a new non-overwriting backup,
+  validate restore, and use a reviewed forward migration or restore procedure.
+- Public snapshot rollback is an atomic `current` pointer switch to a previously
+  validated immutable version; no Phase 2 snapshot is connected to production.
 
 ## Logs and diagnostics
 

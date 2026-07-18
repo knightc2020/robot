@@ -268,3 +268,55 @@ Implemented on 2026-07-18 UTC only in `/root/robot-career-refactor` on `refactor
 - A future legacy Hermes article that lacks structured sources/review metadata will make the Vercel build fail. The Hermes workflow was deliberately not changed in this phase.
 - Retained arXiv summaries have source identity but have not been manually fact-checked; `pending_review` is intentionally visible.
 - npm still reports the Phase 0.5 dependency vulnerabilities; no dependency fix or upgrade was attempted.
+
+## 14. Phase 2 career-intelligence data baseline
+
+Phase 2 adds a non-production SQLite data layer only on
+`refactor/career-intelligence`. No operational database was provisioned, no factual
+company/job/skill/project data was added, no collector or schedule was enabled, and
+the Astro site has no database runtime dependency.
+
+### Storage and isolation
+
+- SQLite was selected after explicit staging, backup, concurrency, query, snapshot,
+  and restore evaluation in `docs/PHASE_2_STORAGE_EVALUATION.md`.
+- Every CLI database/output path must be absolute and outside the Git worktree;
+  there is no default database path.
+- Managed connections enable foreign keys, WAL, full synchronous writes, and a
+  5-second busy timeout. PostgreSQL is deferred behind documented multi-host/HA
+  re-evaluation conditions.
+
+### Schema and controls
+
+- Migration 1 creates all seven required physical entity tables plus normalized
+  aliases/project links, `pipeline_runs`, `review_queue`, and `system_controls`.
+  The migrator separately maintains checksummed `schema_migrations`.
+- The complete logical-contract/physical-table mapping is documented in
+  `docs/PHASE_2_DATA_MODEL.md`.
+- Collection and public snapshot publication are independent, reasoned controls;
+  both default off. Tests exercise explicit changes only in disposable databases.
+- No real environment was enabled and no operational database file exists in the
+  repository or recommended data paths.
+
+### Backup, snapshot, and concurrency behavior
+
+- Backup writes to a temporary file, validates the restored schema/integrity and
+  migration checksums, then uses an atomic non-overwriting link. Existing backup
+  destinations are rejected.
+- A public snapshot requires the publication switch, uses one consistent read
+  transaction, includes only approved/public rows, validates per-file checksums and
+  record counts, and atomically switches a `current` symlink. Updating an existing
+  current snapshot requires explicit `--replace`.
+- Tests cover two simultaneous readers, reads during a write transaction, WAL,
+  busy timeout and a waiting second writer, migration write exclusion, snapshot
+  consistency across a concurrent update, append-only change history, backup
+  restore/validation, and removal of temporary artifacts.
+
+### Residual Phase 2 constraints
+
+- Node 24 still labels the dependency-free `node:sqlite` API experimental; the
+  adapter is isolated and must remain regression-tested during Node upgrades.
+- No source registry entry is enabled, no real raw snapshot exists, and no data may
+  be published until a later phase separately authorizes collection and publication.
+- Backup retention, pruning, encryption, off-host copying, and production restore
+  rehearsal remain later operational work.

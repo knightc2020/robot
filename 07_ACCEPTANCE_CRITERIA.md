@@ -33,6 +33,22 @@
 - [x] No dependency upgrade, audit fix, Hermes change, production merge, or deployment occurred.
 - [x] One scoped Phase 1 commit is pushed to `origin/refactor/career-intelligence`.
 
+## Phase 2 acceptance
+
+- [x] Storage selection follows documented staging, backup/restore, concurrency, query, and snapshot evaluation.
+- [x] SQLite WAL is limited to the current single-host serialized-writer workload, with explicit PostgreSQL re-evaluation gates.
+- [x] Seven version 1 JSON entity contracts exist and are mapped to physical tables rather than replacing them.
+- [x] Physical tables include `schema_migrations`, `companies`, `career_sources`, `job_postings`, `skills`, `skill_aliases`, `job_skill_relations`, `job_changes`, `project_templates`, `pipeline_runs`, and `review_queue`, plus documented controls/relations.
+- [x] Migration filenames/order/checksums are verified and migration transactions exclude concurrent writers.
+- [x] Collection and public snapshot controls default off and can be enabled independently only through an explicit reasoned command.
+- [x] Backup refuses existing destinations, validates a temporary copy, and installs without overwrite.
+- [x] Public snapshot generation requires publication enablement, reads a consistent transaction, includes approved rows only, validates complete output, and atomically switches `current`; replacement is explicit.
+- [x] Tests cover two readers, read-during-write behavior, WAL, busy timeout, waiting writers, migration write exclusion, snapshot consistency, backup restore/validate, foreign keys, and append-only job changes.
+- [x] No factual company, source, job, skill, relation, change, project, pipeline-run, or review-queue seed record exists.
+- [x] Content tests and the production build pass with only documented baseline warnings.
+- [x] No collector, Hermes change, operational database, public-content change, `master` change, or production deployment is included.
+- [x] One scoped Phase 2 commit is pushed to `origin/refactor/career-intelligence`.
+
 ## Initial product targets
 
 - 20 verified companies in the source registry.

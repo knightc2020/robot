@@ -130,3 +130,39 @@
 - Status: accepted and implemented in Phase 1
 - Decision: `npm run build` must run the provenance/status/duplicate gate before Astro and verify the generated output afterward. Checks must not use external networks, AI APIs, auto-delete, or modify source content.
 - Consequence: non-compliant content fails local and Vercel builds once this change reaches the production branch.
+
+## D-020 — Select SQLite for the single-host batch data layer
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2
+- Decision: use a versioned SQLite database in WAL mode with foreign keys, full synchronous writes, and a 5-second busy timeout. Keep operational database paths explicit, absolute, outside Git, and isolated by environment.
+- Rationale: the initial 20-company/200–300-job target uses one orchestrated VPS writer and static-site consumers; it does not require an online multi-host database service.
+- Re-evaluation gate: reassess PostgreSQL before collection if writers span hosts, bounded lock waits are insufficient, direct online queries are required, or HA/replication becomes necessary.
+
+## D-021 — Keep seven logical contracts and a complete normalized physical schema
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2
+- Decision: version the seven required entity contracts as JSON Schema and implement them as physical tables plus `skill_aliases`, project relation tables, `pipeline_runs`, `review_queue`, `system_controls`, and `schema_migrations`.
+- Consequence: contracts do not substitute for storage; every application table is mapped in `docs/PHASE_2_DATA_MODEL.md`, while no factual seed rows are created.
+
+## D-022 — Make collection and snapshot publication independent fail-closed controls
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2
+- Decision: both switches default off but may be changed independently by an explicit CLI command that records actor and reason. No real Phase 2 environment is enabled.
+- Consequence: future collectors and public snapshot publication can be authorized separately without changing the schema, while a disabled publication switch blocks snapshot generation.
+
+## D-023 — Publish snapshots through validated immutable versions and an atomic pointer
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2
+- Decision: a public snapshot reads one database transaction, selects only approved/published rows, writes an immutable temporary version directory, verifies checksums/counts, renames it into `versions/`, then atomically switches `current`. Existing `current` requires explicit `--replace`.
+- Consequence: consumers never observe a partially written snapshot; old complete versions remain available for controlled rollback. Database backup remains non-overwriting and is validated before atomic installation.
+
+## D-024 — Serialize migrations and retain append-only job history
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2
+- Decision: apply each checksummed migration under `BEGIN IMMEDIATE`, which excludes concurrent writers while allowing WAL readers. Prevent update/delete of `job_changes` through database triggers.
+- Consequence: schema transitions cannot interleave with collectors, and source observation history cannot be silently rewritten.
