@@ -1,0 +1,1396 @@
+---
+import '../../styles/global.css';
+
+const companies = [
+  { name: 'Nuro', count: 95, color: 'blue' },
+  { name: 'Zipline', count: 131, color: 'cyan' },
+  { name: 'Agility Robotics', count: 54, color: 'lime' },
+];
+
+const jobs = [
+  {
+    company: 'Nuro',
+    title: 'Software Engineer, Offboard Infrastructure',
+    location: 'Mountain View, California (HQ)',
+    department: 'Offboard Infrastructure',
+    kind: '软件',
+  },
+  {
+    company: 'Nuro',
+    title: 'Mechanical Engineer, Autonomous Vehicle',
+    location: 'Mountain View, California (HQ)',
+    department: 'AV Hardware Engineering',
+    kind: '机械',
+  },
+  {
+    company: 'Zipline',
+    title: 'Forward Deployed AI Engineer, Operations',
+    location: 'South San Francisco, California, USA',
+    department: 'Engineering',
+    kind: 'AI',
+  },
+  {
+    company: 'Zipline',
+    title: 'Hardware Test Engineer, Droid',
+    location: 'South San Francisco, California, USA',
+    department: 'Hardware',
+    kind: '硬件',
+  },
+  {
+    company: 'Agility Robotics',
+    title: 'Robotics Software Engineer II',
+    location: 'Hybrid- Pittsburgh, PA or Salem, OR',
+    department: 'Software Engineering',
+    kind: '机器人',
+  },
+  {
+    company: 'Agility Robotics',
+    title: 'Senior Systems Engineer',
+    location: 'Hybrid- Fremont, CA',
+    department: 'Hardware',
+    kind: '系统',
+  },
+];
+
+const workflow = [
+  { number: '01', title: '企业官方招聘网站', note: '锁定可信的一手来源', status: '已完成', phase: 'done' },
+  { number: '02', title: '获取真实岗位与 JD', note: '建立可持续更新的岗位基线', status: '已完成', phase: 'done' },
+  { number: '03', title: '识别新增、变化和下架', note: '持续观察企业需求如何变化', status: '正在运行', phase: 'running' },
+  { number: '04', title: '分析真实技能需求', note: '从 JD 提取技能与经验要求', status: '下一阶段', phase: 'next' },
+  { number: '05', title: '连接作品、学习与行动', note: '把岗位要求变成可执行路径', status: '下一阶段', phase: 'next' },
+];
+
+const collaboration = [
+  {
+    index: '01',
+    label: 'ChatGPT 项目',
+    lead: '想清楚要做什么',
+    items: ['澄清需求', '设计产品方向', '审核开发方案', '管理长期上下文'],
+    tone: 'blue',
+  },
+  {
+    index: '02',
+    label: 'Codex',
+    lead: '把想法做成真实作品',
+    items: ['进入代码仓库', '开发功能', '运行测试', '发现问题并修改', '完成交付'],
+    tone: 'cyan',
+  },
+  {
+    index: '03',
+    label: '本地文件与 Git',
+    lead: '让作品可以持续生长',
+    items: ['保存项目状态', '记录关键决策', '沉淀可复用资产', '形成持续迭代的作品'],
+    tone: 'lime',
+  },
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="机器人职业情报与能力发展系统线下课程展示：从企业真实招聘岗位，反向连接技能、作品与职业行动。"
+    />
+    <title>机器人职业情报与能力发展系统</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar content-width">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>ROBOT CAREER INTELLIGENCE</span>
+        </div>
+        <div class="snapshot">真实岗位快照 · 2026.07.18</div>
+      </header>
+
+      <main>
+        <section class="hero section content-width" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span>LIVE PROJECT</span> 从真实问题出发的 AI 协作作品</p>
+            <h1 id="page-title">机器人职业情报<br />与能力发展系统</h1>
+            <p class="subtitle">从企业真实招聘岗位，反向连接技能、作品与职业行动</p>
+            <div class="hero-proof">
+              <span class="proof-dot" aria-hidden="true"></span>
+              今天，第一份真实岗位基线已经建立
+            </div>
+          </div>
+
+          <div class="hero-dashboard" aria-label="今日成果概览">
+            <div class="radar" aria-hidden="true">
+              <span class="radar-ring ring-one"></span>
+              <span class="radar-ring ring-two"></span>
+              <span class="radar-ring ring-three"></span>
+              <span class="radar-line horizontal"></span>
+              <span class="radar-line vertical"></span>
+              <span class="radar-pulse pulse-one"></span>
+              <span class="radar-pulse pulse-two"></span>
+              <span class="radar-pulse pulse-three"></span>
+              <span class="radar-core">280</span>
+            </div>
+            <div class="dashboard-meta">
+              <div><strong>3</strong><span>家机器人公司</span></div>
+              <div><strong>5</strong><span>种岗位变化状态</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section content-width why-section" aria-labelledby="why-title">
+          <div class="section-heading">
+            <p class="section-index">01 · WHY</p>
+            <h2 id="why-title">为什么做这个系统？</h2>
+            <p>不是再做一份泛泛的职业指南，而是先看企业此刻真正需要什么。</p>
+          </div>
+          <div class="why-grid">
+            <article>
+              <span class="card-number">01</span>
+              <h3>行业变化太快</h3>
+              <p>机器人、AI 与自动驾驶不断出现新方向，旧经验很快失效。</p>
+            </article>
+            <article>
+              <span class="card-number">02</span>
+              <h3>真实需求不透明</h3>
+              <p>青年人很难知道，企业现在究竟在招什么人、重视什么能力。</p>
+            </article>
+            <article>
+              <span class="card-number">03</span>
+              <h3>学习与岗位脱节</h3>
+              <p>课程、作品和真实岗位之间缺少一条可以持续验证的连接。</p>
+            </article>
+            <article class="why-answer">
+              <span class="card-number">04</span>
+              <h3>让建议更可靠</h3>
+              <p>持续跟踪企业官方招聘信息，再把岗位变化转化为职业行动。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section results-section" aria-labelledby="results-title">
+          <div class="content-width">
+            <div class="section-heading split-heading">
+              <div>
+                <p class="section-index">02 · TODAY</p>
+                <h2 id="results-title">今天已经完成的成果</h2>
+              </div>
+              <p>从“能不能做”，走到“真实数据已经开始持续运行”。</p>
+            </div>
+
+            <div class="results-lead">
+              <div class="big-number">
+                <strong>280</strong>
+                <span>个官方在招岗位</span>
+              </div>
+              <div class="result-summary">
+                <div><strong>3</strong><span>家公司</span></div>
+                <div><strong>3/3</strong><span>官方来源已验证</span></div>
+                <div><strong>1</strong><span>份真实岗位基线</span></div>
+              </div>
+            </div>
+
+            <div class="company-grid">
+              {companies.map((company) => (
+                <article class={`company-card ${company.color}`}>
+                  <div class="company-name">{company.name}</div>
+                  <div class="company-count"><strong>{company.count}</strong><span>个岗位</span></div>
+                  <div class="company-bar" aria-hidden="true"><span style={`width: ${(company.count / 131) * 100}%`}></span></div>
+                  <p>官方招聘来源已验证</p>
+                </article>
+              ))}
+            </div>
+
+            <div class="capability-row">
+              <p>系统已经能够识别</p>
+              <div class="capability-tags" aria-label="岗位变化识别能力">
+                <span>新增</span><span>更新</span><span>缺失</span><span>关闭</span><span>重新开放</span>
+              </div>
+              <div class="observation"><span aria-hidden="true"></span>正在进入 7—14 天连续观察</div>
+            </div>
+
+            <blockquote>“这些不是演示数据，而是来自企业官方招聘系统的真实岗位。”</blockquote>
+          </div>
+        </section>
+
+        <section class="section workflow-section content-width" aria-labelledby="workflow-title">
+          <div class="section-heading">
+            <p class="section-index">03 · HOW IT WORKS</p>
+            <h2 id="workflow-title">系统怎样把岗位变成行动？</h2>
+            <p>从可信的一手信息出发，一步步走向个性化的学习与作品建议。</p>
+          </div>
+          <div class="workflow">
+            {workflow.map((step, index) => (
+              <>
+                <article class={`workflow-step ${step.phase}`}>
+                  <div class="step-top">
+                    <span class="step-number">{step.number}</span>
+                    <span class="step-status">{step.status}</span>
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.note}</p>
+                </article>
+                {index < workflow.length - 1 && <div class="workflow-arrow" aria-hidden="true">→</div>}
+              </>
+            ))}
+          </div>
+          <div class="workflow-legend">
+            <span class="legend-line active"></span><span>已经完成或正在运行</span>
+            <span class="legend-line future"></span><span>下一阶段</span>
+          </div>
+        </section>
+
+        <section class="section jobs-section" aria-labelledby="jobs-title">
+          <div class="content-width">
+            <div class="section-heading split-heading">
+              <div>
+                <p class="section-index">04 · REAL JOBS</p>
+                <h2 id="jobs-title">280 个岗位里，有哪些真实机会？</h2>
+              </div>
+              <p>以下 6 个岗位直接选自今天的真实基线快照。</p>
+            </div>
+            <div class="jobs-grid">
+              {jobs.map((job) => (
+                <article class="job-card">
+                  <div class="job-head">
+                    <span class="job-company">{job.company}</span>
+                    <span class="job-kind">{job.kind}</span>
+                  </div>
+                  <h3>{job.title}</h3>
+                  <dl>
+                    <div>
+                      <dt>地点</dt>
+                      <dd>{job.location}</dd>
+                    </div>
+                    <div>
+                      <dt>部门</dt>
+                      <dd>{job.department}</dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+            <p class="snapshot-note">静态快照 · 岗位名称、地点与部门均以 2026 年 7 月 18 日的企业官方招聘信息为准</p>
+          </div>
+        </section>
+
+        <section class="section collaboration-section content-width" aria-labelledby="collaboration-title">
+          <div class="section-heading">
+            <p class="section-index">05 · AI COLLABORATION</p>
+            <h2 id="collaboration-title">ChatGPT 和 Codex，如何协作完成真实作品？</h2>
+            <p>AI 不只负责“回答”，而是在清晰分工和持续记录中参与完整项目。</p>
+          </div>
+          <div class="collaboration-grid">
+            {collaboration.map((module) => (
+              <article class={`collaboration-card ${module.tone}`}>
+                <div class="collaboration-index">{module.index}</div>
+                <p class="collaboration-label">{module.label}</p>
+                <h3>{module.lead}</h3>
+                <ul>
+                  {module.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div class="collaboration-equation" aria-label="协作关系">
+            <span>方向与判断</span><b>+</b><span>开发与验证</span><b>+</b><span>状态与资产</span><b>=</b><strong>可持续迭代的真实作品</strong>
+          </div>
+        </section>
+
+        <section class="section iteration-section" aria-labelledby="iteration-title">
+          <div class="content-width iteration-wrap">
+            <div class="section-heading">
+              <p class="section-index">06 · ITERATION</p>
+              <h2 id="iteration-title">真实运行，才会暴露真实问题</h2>
+            </div>
+            <div class="cases">
+              <article>
+                <div class="case-label">案例一 · 正文清洗</div>
+                <h3>页面“看起来能读”，数据里却残留 HTML 标签</h3>
+                <p>真实运行发现后，Codex 修改清洗逻辑，并补充测试，确保岗位正文真正可用。</p>
+                <div class="case-path"><span>发现问题</span><i>→</i><span>修改逻辑</span><i>→</i><span>补充测试</span></div>
+              </article>
+              <article>
+                <div class="case-label">案例二 · 登录误报</div>
+                <h3>正常岗位正文里的 “sign in / log in” 被当成拦截</h3>
+                <p>Codex 缩小检测范围，修复 Agility Robotics 的误报，并完成回归验证。</p>
+                <div class="case-path"><span>真实反馈</span><i>→</i><span>定位原因</span><i>→</i><span>回归验证</span></div>
+              </article>
+            </div>
+            <blockquote>“真实作品不是一次生成，而是在真实反馈中不断修正。”</blockquote>
+          </div>
+        </section>
+
+        <section class="section next-section content-width" aria-labelledby="next-title">
+          <div class="section-heading centered-heading">
+            <p class="section-index">07 · WHAT'S NEXT</p>
+            <h2 id="next-title">下一步，让岗位数据真正帮助一个人行动</h2>
+          </div>
+          <div class="next-steps">
+            <article>
+              <span>01</span>
+              <h3>观察变化</h3>
+              <p>连续观察 7—14 天，确认真实岗位的新增、变化与下架。</p>
+            </article>
+            <div class="next-link" aria-hidden="true"></div>
+            <article>
+              <span>02</span>
+              <h3>提取能力</h3>
+              <p>从岗位 JD 中提取技能、工具、经验和问题场景。</p>
+            </article>
+            <div class="next-link" aria-hidden="true"></div>
+            <article>
+              <span>03</span>
+              <h3>形成行动</h3>
+              <p>建立岗位—技能—作品—28 天行动计划的映射。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="closing content-width" aria-label="结束语">
+          <p>从一个真实问题开始，<br />让 AI 帮助我们持续观察、学习与创造。</p>
+          <h2>Keep curious, keep learning,<br />and keep <span>Building.</span></h2>
+          <div class="closing-line" aria-hidden="true"></div>
+        </section>
+      </main>
+
+      <footer class="content-width">
+        <span>机器人职业情报与能力发展系统</span>
+        <span>COURSE DEMO · 2026</span>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    background: #060b14;
+    scroll-behavior: smooth;
+  }
+
+  :global(body) {
+    margin: 0;
+    background:
+      radial-gradient(circle at 82% 6%, rgba(48, 116, 255, 0.16), transparent 30rem),
+      #060b14;
+    color: #eaf0f8;
+    font-family: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    line-height: 1.65;
+  }
+
+  .page-shell {
+    overflow: hidden;
+  }
+
+  .content-width {
+    width: min(1440px, calc(100% - 112px));
+    margin-inline: auto;
+  }
+
+  .topbar {
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(148, 169, 201, 0.18);
+    color: #91a1b9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .brand-mark {
+    width: 17px;
+    height: 17px;
+    border: 2px solid #56d9ff;
+    border-radius: 4px;
+    box-shadow: inset 6px -6px 0 rgba(104, 241, 181, 0.9);
+    transform: rotate(45deg);
+  }
+
+  .snapshot {
+    color: #6c7a91;
+  }
+
+  .section {
+    padding-block: 120px;
+  }
+
+  .hero {
+    min-height: 790px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.24fr) minmax(420px, 0.76fr);
+    align-items: center;
+    gap: 72px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 4% -10vw 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(rgba(148, 169, 201, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 169, 201, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 70%, transparent);
+  }
+
+  .eyebrow,
+  .section-index {
+    margin: 0 0 24px;
+    color: #76dfff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .eyebrow span {
+    margin-right: 12px;
+    padding: 7px 10px;
+    border: 1px solid rgba(86, 217, 255, 0.4);
+    border-radius: 99px;
+    background: rgba(86, 217, 255, 0.08);
+    font-size: 11px;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 880px;
+    margin-bottom: 30px;
+    color: #f7faff;
+    font-size: clamp(54px, 5.25vw, 88px);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    max-width: 720px;
+    margin-bottom: 42px;
+    color: #abb9cd;
+    font-size: clamp(21px, 1.7vw, 28px);
+    line-height: 1.6;
+  }
+
+  .hero-proof {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px 17px;
+    border: 1px solid rgba(104, 241, 181, 0.3);
+    border-radius: 10px;
+    background: rgba(104, 241, 181, 0.07);
+    color: #c1f9dc;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .proof-dot,
+  .observation > span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #68f1b5;
+    box-shadow: 0 0 0 5px rgba(104, 241, 181, 0.12);
+  }
+
+  .hero-dashboard {
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(122, 157, 205, 0.2);
+    border-radius: 36px;
+    background: linear-gradient(145deg, rgba(18, 33, 57, 0.88), rgba(8, 15, 27, 0.8));
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.28);
+  }
+
+  .radar {
+    width: 330px;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(57, 123, 255, 0.12), transparent 66%);
+  }
+
+  .radar-ring,
+  .radar-line,
+  .radar-pulse,
+  .radar-core {
+    position: absolute;
+  }
+
+  .radar-ring {
+    inset: 0;
+    margin: auto;
+    border: 1px solid rgba(95, 180, 255, 0.23);
+    border-radius: 50%;
+  }
+
+  .ring-one { width: 100%; height: 100%; }
+  .ring-two { width: 68%; height: 68%; }
+  .ring-three { width: 36%; height: 36%; }
+  .radar-line.horizontal { top: 50%; width: 100%; height: 1px; background: rgba(95, 180, 255, 0.14); }
+  .radar-line.vertical { left: 50%; width: 1px; height: 100%; background: rgba(95, 180, 255, 0.14); }
+
+  .radar-pulse {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #68f1b5;
+    box-shadow: 0 0 20px rgba(104, 241, 181, 0.8);
+  }
+
+  .pulse-one { top: 23%; left: 61%; }
+  .pulse-two { top: 58%; left: 22%; background: #56d9ff; box-shadow: 0 0 20px rgba(86, 217, 255, 0.8); }
+  .pulse-three { top: 69%; left: 72%; background: #7c9cff; box-shadow: 0 0 20px rgba(124, 156, 255, 0.8); }
+
+  .radar-core {
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #f7faff;
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+  }
+
+  .dashboard-meta {
+    position: absolute;
+    right: 24px;
+    bottom: 22px;
+    left: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .dashboard-meta div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 13px 15px;
+    border-radius: 12px;
+    background: rgba(4, 10, 20, 0.62);
+  }
+
+  .dashboard-meta strong {
+    color: #f7faff;
+    font-size: 24px;
+  }
+
+  .dashboard-meta span {
+    color: #8493aa;
+    font-size: 12px;
+  }
+
+  .section-heading {
+    max-width: 930px;
+    margin-bottom: 58px;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 18px;
+    color: #f7faff;
+    font-size: clamp(38px, 3.2vw, 56px);
+    line-height: 1.18;
+    letter-spacing: -0.04em;
+  }
+
+  .section-heading > p:last-child,
+  .split-heading > p {
+    margin-bottom: 0;
+    color: #93a2b7;
+    font-size: 20px;
+  }
+
+  .split-heading {
+    max-width: none;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .split-heading > p {
+    max-width: 430px;
+    padding-bottom: 8px;
+    text-align: right;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .why-grid article {
+    min-height: 280px;
+    padding: 30px 28px;
+    border: 1px solid rgba(133, 158, 194, 0.19);
+    border-radius: 20px;
+    background: rgba(13, 23, 39, 0.66);
+  }
+
+  .why-grid .why-answer {
+    border-color: rgba(104, 241, 181, 0.3);
+    background: linear-gradient(145deg, rgba(15, 58, 49, 0.6), rgba(12, 27, 38, 0.8));
+  }
+
+  .card-number {
+    display: block;
+    margin-bottom: 47px;
+    color: #52637c;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .why-answer .card-number {
+    color: #68f1b5;
+  }
+
+  .why-grid h3 {
+    margin-bottom: 14px;
+    color: #f3f7fc;
+    font-size: 23px;
+  }
+
+  .why-grid p {
+    margin-bottom: 0;
+    color: #91a0b4;
+    font-size: 16px;
+  }
+
+  .results-section,
+  .jobs-section,
+  .iteration-section {
+    border-block: 1px solid rgba(133, 158, 194, 0.14);
+    background: rgba(11, 20, 34, 0.72);
+  }
+
+  .results-lead {
+    display: grid;
+    grid-template-columns: 1.1fr 1.9fr;
+    align-items: stretch;
+    margin-bottom: 24px;
+    border: 1px solid rgba(95, 180, 255, 0.22);
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(120deg, rgba(30, 75, 151, 0.3), rgba(12, 23, 40, 0.54));
+  }
+
+  .big-number {
+    padding: 34px 42px 38px;
+    border-right: 1px solid rgba(95, 180, 255, 0.18);
+  }
+
+  .big-number strong {
+    display: block;
+    color: #f7faff;
+    font-size: clamp(86px, 9vw, 138px);
+    line-height: 0.96;
+    letter-spacing: -0.07em;
+  }
+
+  .big-number span {
+    color: #76dfff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .result-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+
+  .result-summary div {
+    padding: 30px;
+    text-align: center;
+  }
+
+  .result-summary div + div {
+    border-left: 1px solid rgba(133, 158, 194, 0.15);
+  }
+
+  .result-summary strong,
+  .result-summary span {
+    display: block;
+  }
+
+  .result-summary strong {
+    color: #f3f7fc;
+    font-size: 46px;
+    line-height: 1.2;
+  }
+
+  .result-summary span {
+    margin-top: 10px;
+    color: #8fa0b8;
+    font-size: 14px;
+  }
+
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .company-card {
+    padding: 28px 30px;
+    border: 1px solid rgba(133, 158, 194, 0.18);
+    border-radius: 18px;
+    background: rgba(7, 14, 25, 0.72);
+  }
+
+  .company-name {
+    margin-bottom: 26px;
+    color: #96a6ba;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .company-count {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .company-count strong {
+    color: #f7faff;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+
+  .company-count span,
+  .company-card p {
+    color: #8797ae;
+    font-size: 14px;
+  }
+
+  .company-bar {
+    height: 3px;
+    margin: 23px 0 17px;
+    border-radius: 99px;
+    background: #17243a;
+    overflow: hidden;
+  }
+
+  .company-bar span {
+    display: block;
+    height: 100%;
+    background: #7198ff;
+  }
+
+  .company-card.cyan .company-bar span { background: #56d9ff; }
+  .company-card.lime .company-bar span { background: #68f1b5; }
+  .company-card p { margin-bottom: 0; }
+
+  .capability-row {
+    margin-top: 24px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    border: 1px solid rgba(133, 158, 194, 0.15);
+    border-radius: 16px;
+  }
+
+  .capability-row > p {
+    margin: 0;
+    color: #a9b5c6;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .capability-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .capability-tags span {
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: #17263d;
+    color: #b9c9dc;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .observation {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a9f2d0;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .results-section blockquote,
+  .iteration-section blockquote {
+    margin: 44px auto 0;
+    color: #f1f6fc;
+    font-size: clamp(25px, 2.25vw, 36px);
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+
+  .workflow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+  }
+
+  .workflow-step {
+    min-width: 0;
+    min-height: 264px;
+    padding: 24px 22px;
+    border: 1px solid rgba(86, 217, 255, 0.26);
+    border-radius: 17px;
+    background: rgba(13, 31, 50, 0.64);
+  }
+
+  .workflow-step.running {
+    border-color: rgba(104, 241, 181, 0.42);
+    background: rgba(11, 50, 41, 0.55);
+  }
+
+  .workflow-step.next {
+    border-style: dashed;
+    border-color: rgba(133, 158, 194, 0.3);
+    background: rgba(13, 22, 36, 0.46);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+
+  .step-number {
+    color: #566c89;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .step-status {
+    padding: 4px 7px;
+    border-radius: 6px;
+    background: rgba(86, 217, 255, 0.11);
+    color: #76dfff;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .running .step-status { background: rgba(104, 241, 181, 0.12); color: #9af6cf; }
+  .next .step-status { background: #1b2638; color: #7e8da3; }
+
+  .workflow-step h3 {
+    margin-bottom: 13px;
+    color: #f2f6fb;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .workflow-step p {
+    margin-bottom: 0;
+    color: #8495aa;
+    font-size: 14px;
+  }
+
+  .workflow-arrow {
+    width: 28px;
+    display: grid;
+    place-items: center;
+    color: #42536c;
+    font-size: 20px;
+  }
+
+  .workflow-legend {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    color: #718198;
+    font-size: 12px;
+  }
+
+  .legend-line {
+    width: 28px;
+    height: 2px;
+    margin-left: 18px;
+  }
+
+  .legend-line.active { background: #56d9ff; }
+  .legend-line.future { border-top: 2px dashed #56657a; }
+
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .job-card {
+    min-height: 300px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(133, 158, 194, 0.18);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(14, 26, 45, 0.94), rgba(7, 14, 25, 0.86));
+  }
+
+  .job-card:nth-child(3n + 2) { border-top-color: rgba(86, 217, 255, 0.5); }
+  .job-card:nth-child(3n + 1) { border-top-color: rgba(113, 152, 255, 0.5); }
+  .job-card:nth-child(3n) { border-top-color: rgba(104, 241, 181, 0.5); }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 27px;
+  }
+
+  .job-company {
+    color: #7e93b1;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .job-kind {
+    padding: 4px 9px;
+    border-radius: 99px;
+    background: #18283f;
+    color: #a8bad1;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .job-card h3 {
+    margin-bottom: 30px;
+    color: #f3f7fc;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .job-card dl {
+    margin: auto 0 0;
+  }
+
+  .job-card dl > div {
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    gap: 10px;
+    padding-top: 11px;
+    border-top: 1px solid rgba(133, 158, 194, 0.11);
+  }
+
+  .job-card dl > div + div {
+    margin-top: 10px;
+  }
+
+  .job-card dt,
+  .job-card dd {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .job-card dt { color: #586a82; }
+  .job-card dd { color: #9aabc0; }
+
+  .snapshot-note {
+    margin: 28px 0 0;
+    color: #64758c;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .collaboration-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .collaboration-card {
+    min-height: 390px;
+    padding: 30px;
+    position: relative;
+    border: 1px solid rgba(113, 152, 255, 0.26);
+    border-radius: 22px;
+    background: linear-gradient(160deg, rgba(31, 54, 94, 0.42), rgba(10, 19, 33, 0.8));
+  }
+
+  .collaboration-card.cyan {
+    border-color: rgba(86, 217, 255, 0.28);
+    background: linear-gradient(160deg, rgba(16, 70, 88, 0.38), rgba(10, 19, 33, 0.8));
+  }
+
+  .collaboration-card.lime {
+    border-color: rgba(104, 241, 181, 0.25);
+    background: linear-gradient(160deg, rgba(14, 70, 58, 0.34), rgba(10, 19, 33, 0.8));
+  }
+
+  .collaboration-index {
+    position: absolute;
+    top: 24px;
+    right: 27px;
+    color: rgba(137, 160, 193, 0.3);
+    font-size: 44px;
+    font-weight: 800;
+  }
+
+  .collaboration-label {
+    margin-bottom: 26px;
+    color: #8ba9ff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .collaboration-card.cyan .collaboration-label { color: #76dfff; }
+  .collaboration-card.lime .collaboration-label { color: #82ecc0; }
+
+  .collaboration-card h3 {
+    max-width: 290px;
+    margin-bottom: 31px;
+    color: #f3f7fc;
+    font-size: 27px;
+    line-height: 1.35;
+  }
+
+  .collaboration-card ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+  }
+
+  .collaboration-card li {
+    padding-left: 15px;
+    position: relative;
+    color: #9aaabe;
+    font-size: 14px;
+  }
+
+  .collaboration-card li::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    border-radius: 50%;
+    background: #7198ff;
+  }
+
+  .collaboration-card.cyan li::before { background: #56d9ff; }
+  .collaboration-card.lime li::before { background: #68f1b5; }
+
+  .collaboration-equation {
+    margin-top: 24px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 16px;
+    background: #0e1a2c;
+    color: #9caabd;
+    font-size: 15px;
+  }
+
+  .collaboration-equation b {
+    color: #52637b;
+    font-size: 20px;
+  }
+
+  .collaboration-equation strong {
+    color: #b9f6d9;
+  }
+
+  .iteration-wrap {
+    display: grid;
+    grid-template-columns: 0.75fr 2fr;
+    gap: 80px;
+  }
+
+  .iteration-wrap .section-heading {
+    margin: 0;
+  }
+
+  .cases {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .cases article {
+    padding: 30px;
+    border: 1px solid rgba(133, 158, 194, 0.18);
+    border-radius: 19px;
+    background: #0b1627;
+  }
+
+  .case-label {
+    margin-bottom: 24px;
+    color: #76dfff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .cases h3 {
+    margin-bottom: 17px;
+    color: #eef4fb;
+    font-size: 23px;
+    line-height: 1.45;
+  }
+
+  .cases p {
+    margin-bottom: 25px;
+    color: #91a0b5;
+    font-size: 15px;
+  }
+
+  .case-path {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #9aabc1;
+    font-size: 12px;
+  }
+
+  .case-path span {
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #17253a;
+  }
+
+  .case-path i {
+    color: #4b5e77;
+    font-style: normal;
+  }
+
+  .iteration-section blockquote {
+    grid-column: 1 / -1;
+    padding-top: 38px;
+    border-top: 1px solid rgba(133, 158, 194, 0.14);
+  }
+
+  .centered-heading {
+    max-width: 900px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .next-steps {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr 90px 1fr;
+    align-items: center;
+  }
+
+  .next-steps article {
+    min-height: 260px;
+    padding: 30px;
+    border: 1px solid rgba(133, 158, 194, 0.2);
+    border-radius: 22px;
+    background: rgba(12, 23, 40, 0.68);
+  }
+
+  .next-steps article > span {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 34px;
+    place-items: center;
+    border-radius: 50%;
+    background: #162b48;
+    color: #76dfff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .next-steps h3 {
+    margin-bottom: 12px;
+    color: #f3f7fc;
+    font-size: 26px;
+  }
+
+  .next-steps p {
+    margin-bottom: 0;
+    color: #91a1b6;
+    font-size: 16px;
+  }
+
+  .next-link {
+    height: 1px;
+    position: relative;
+    background: linear-gradient(to right, rgba(86, 217, 255, 0.18), rgba(104, 241, 181, 0.6));
+  }
+
+  .next-link::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: -3px;
+    right: 0;
+    border-top: 1px solid #68f1b5;
+    border-right: 1px solid #68f1b5;
+    transform: rotate(45deg);
+  }
+
+  .closing {
+    min-height: 650px;
+    padding-block: 140px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+  }
+
+  .closing::before {
+    content: "";
+    width: 640px;
+    height: 390px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(44, 112, 234, 0.19), transparent 66%);
+    transform: translate(-50%, -50%);
+  }
+
+  .closing p {
+    margin-bottom: 30px;
+    color: #8393aa;
+    font-size: 19px;
+  }
+
+  .closing h2 {
+    margin: 0;
+    color: #f7faff;
+    font-size: clamp(46px, 5vw, 78px);
+    line-height: 1.22;
+    letter-spacing: -0.05em;
+  }
+
+  .closing h2 span {
+    color: #68f1b5;
+  }
+
+  .closing-line {
+    width: 110px;
+    height: 3px;
+    margin: 50px auto 0;
+    background: linear-gradient(to right, #7198ff, #56d9ff, #68f1b5);
+  }
+
+  footer {
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(133, 158, 194, 0.16);
+    color: #52637a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  @media (max-width: 1180px) {
+    .content-width { width: min(100% - 64px, 1120px); }
+    .hero { grid-template-columns: 1fr 390px; gap: 44px; }
+    .hero-dashboard { min-height: 440px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .workflow { grid-template-columns: 1fr 22px 1fr 22px 1fr; row-gap: 22px; }
+    .workflow-step:nth-of-type(4), .workflow-step:nth-of-type(5) { grid-row: 2; }
+    .workflow-arrow { width: 22px; }
+    .workflow-arrow:nth-of-type(4) { display: none; }
+    .jobs-grid { grid-template-columns: repeat(2, 1fr); }
+    .iteration-wrap { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 840px) {
+    .content-width { width: min(100% - 36px, 720px); }
+    .section { padding-block: 80px; }
+    .topbar { height: 68px; }
+    .snapshot { display: none; }
+    .hero { min-height: auto; grid-template-columns: 1fr; padding-top: 92px; }
+    .hero-dashboard { min-height: 430px; }
+    .split-heading { display: block; }
+    .split-heading > p { max-width: none; text-align: left; }
+    .results-lead { grid-template-columns: 1fr; }
+    .big-number { border-right: 0; border-bottom: 1px solid rgba(95, 180, 255, 0.18); }
+    .company-grid, .collaboration-grid { grid-template-columns: 1fr; }
+    .capability-row { align-items: flex-start; flex-wrap: wrap; }
+    .observation { width: 100%; margin-left: 0; }
+    .workflow { grid-template-columns: 1fr; }
+    .workflow-arrow { width: auto; height: 24px; transform: rotate(90deg); }
+    .workflow-step:nth-of-type(4), .workflow-step:nth-of-type(5) { grid-row: auto; }
+    .workflow-arrow:nth-of-type(4) { display: grid; }
+    .jobs-grid, .cases { grid-template-columns: 1fr; }
+    .collaboration-equation { flex-wrap: wrap; }
+    .next-steps { grid-template-columns: 1fr; gap: 14px; }
+    .next-link { width: 1px; height: 34px; margin-inline: auto; }
+    .next-link::after { top: auto; right: -3px; bottom: 0; transform: rotate(135deg); }
+  }
+
+  @media (max-width: 560px) {
+    .content-width { width: calc(100% - 28px); }
+    .eyebrow { line-height: 2.6; }
+    h1 { font-size: 46px; }
+    .hero-dashboard { min-height: 350px; }
+    .radar { width: 250px; }
+    .radar-core { font-size: 52px; }
+    .dashboard-meta { position: static; padding: 18px; grid-template-columns: 1fr; }
+    .hero-dashboard { flex-direction: column; }
+    .why-grid, .result-summary { grid-template-columns: 1fr; }
+    .result-summary div + div { border-left: 0; border-top: 1px solid rgba(133, 158, 194, 0.15); }
+    .section-heading h2 { font-size: 36px; }
+    .collaboration-card ul { grid-template-columns: 1fr; }
+    .collaboration-equation { display: grid; text-align: center; }
+    .collaboration-equation b { line-height: 1; }
+    footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+  }
+</style>
