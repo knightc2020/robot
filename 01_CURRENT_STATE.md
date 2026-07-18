@@ -2,7 +2,9 @@
 
 Baseline date: 2026-07-18 UTC
 
-Repository: `/root/robot`
+Production worktree: `/root/robot`
+
+Refactor development worktree: `/root/robot-career-refactor`
 
 Assessment scope: inventory only; no public-content or production change.
 
@@ -26,7 +28,7 @@ Assessment scope: inventory only; no public-content or production change.
 - Pre-refactor annotated tag created on the untouched baseline: `pre-career-intelligence-refactor-2026-07-18`.
 - No checkpoint commit was needed because the starting worktree was clean.
 - Phase 0 is limited to the project-control documentation listed in `04_PROJECT_INDEX.md`.
-- Remote branch/tag push is part of the Phase 0 closeout and must not be reported successful until verified.
+- Phase 0 commit `71255d4`, the refactor branch, and the pre-refactor tag were pushed and verified.
 
 ## 3. Current architecture
 
@@ -123,12 +125,13 @@ Confirmed same-source duplicate groups in Chinese research content:
 
 Do not migrate production in Phase 0. Before collection work begins:
 
-1. Keep `/root/robot` as a controlled development worktree on the refactor branch.
-2. Give each Hermes publisher its own clean worktree or GitHub-API-only flow pinned to an explicit branch.
-3. Use a separate preview branch/project environment; keep `master` production-only.
-4. Store career collection raw data and normalized data outside `src/content`; publish only reviewed exports.
-5. Use separate staging and production database files/services, credentials, logs, and backup paths when a database is introduced.
-6. Add a pre-publication command that validates schema, provenance, duplicates, and status transitions before any commit targeting `master`.
+1. Keep `/root/robot` as the clean production/automation worktree on `master`; never use it for Codex refactor development.
+2. Use `/root/robot-career-refactor` for Codex development on `refactor/career-intelligence`.
+3. Give each future Hermes publisher its own clean worktree or GitHub-API-only flow pinned to an explicit branch.
+4. Use a separate preview branch/project environment; keep `master` production-only.
+5. Store career collection raw data and normalized data outside `src/content`; publish only reviewed exports.
+6. Use separate staging and production database files/services, credentials, logs, and backup paths when a database is introduced.
+7. Add a pre-publication command that validates schema, provenance, duplicates, and status transitions before any commit targeting `master`.
 
 ## 10. Recommended Phase 1 plan
 
@@ -167,3 +170,54 @@ Expected Phase 1 file range:
   - the `_stub.md` glob loaders for `src/content/en` and `src/content/cn` found no matching files.
 
 - These warnings were not fixed in Phase 0 because that would change application configuration outside the documentation-only scope.
+
+## 12. Phase 0.5 isolation and runtime baseline
+
+Recorded on 2026-07-18 UTC without changing public content, production business files, or Hermes configuration.
+
+### Final worktree layout
+
+| Path | Branch/purpose | Baseline state |
+|---|---|---|
+| `/root/robot` | `master`; production/legacy Hermes worktree | Clean and synchronized with `origin/master` at isolation time |
+| `/root/robot-career-refactor` | `refactor/career-intelligence`; Codex development | Clean before Phase 0.5 documentation changes |
+| `/root/hermes-workspace` | Hermes arXiv task workspace | Preserved; not a Git worktree and not migrated |
+| `/root/robot-backups` | Local restricted backups | Created empty with root ownership and mode `0700` |
+
+No Hermes path references `/root/robot-career-refactor`.
+
+### Hermes write paths
+
+- `Fetch arXiv Papers` runs with workdir `/root/hermes-workspace`. It generates matching Chinese and English Markdown and writes them directly to GitHub repository `master` through the GitHub REST API. It does not use the local `/root/robot` Git checkout.
+- `Weekly Robotics Research Review` runs in `/root/robot`. It reads committed research Markdown/MDX, generates/overwrites dated HTML under `public/ppt/`, updates `src/pages/cn/index.astro`, runs `npm run build`, commits, and pushes `master`.
+- The weekly task is the only current task found that operates directly in `/root/robot`. It may run concurrently with Codex, but the separate development worktree prevents working-tree collisions.
+- Direct remote writes to `master` remain a production and branch-divergence risk; worktree isolation does not create a publication quality gate.
+
+### Hermes health conclusion
+
+- The system service runs PID `2161712` with `HERMES_HOME=/root/.hermes`.
+- The built-in cron scheduler is a 60-second ticker thread inside the gateway process; it is not a separate daemon.
+- Host-level `hermes cron status` reports the gateway and ticker healthy, and the heartbeat/last-success files update every minute.
+- The earlier false “gateway is not running” result occurred only inside the Codex PID-isolated sandbox, which cannot see the host gateway PID. It was not caused by a different configuration path, a separate cron component, or a broken production process.
+- No restart or repair was performed.
+
+### Time baseline
+
+- VPS timezone: `Etc/UTC`.
+- System clock synchronized: yes; NTP service active; RTC stored in UTC.
+- Example observation: `2026-07-18T03:49:38+00:00` equals `2026-07-18T11:49:38+08:00` in `Asia/Singapore` (also UTC+8 for `Asia/Shanghai`).
+- UTC on the server is normal and should remain the storage/logging baseline. Reports should render explicit `Asia/Singapore` or `Asia/Shanghai` times.
+- The tag `pre-career-intelligence-refactor-2026-07-18` used the UTC baseline date. Singapore was also already on 2026-07-18, so the date is unambiguous.
+
+### Backup baseline
+
+- `/root/robot-backups/config`, `/root/robot-backups/data`, and `/root/robot-backups/logs` exist.
+- Parent and child directories are `root:root` with mode `0700`.
+- They were intentionally left empty in Phase 0.5. No environment file, token, key, or secret-bearing Hermes configuration was copied.
+
+### Phase 0.5 dependency/build baseline
+
+- A clean `npm ci` in `/root/robot-career-refactor` installed 347 packages successfully.
+- npm reported 13 dependency vulnerabilities: 2 low, 4 moderate, and 7 high. No automated audit fix was run because dependency upgrades are outside Phase 0.5 and may introduce breaking changes.
+- `npm run build` passed and generated 59 static pages.
+- The same pre-existing collection schema and missing `_stub.md` warnings recorded in Phase 0 remained. They were not changed in this safety-only phase.

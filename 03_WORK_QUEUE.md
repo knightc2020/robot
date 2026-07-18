@@ -13,9 +13,25 @@ Last updated: 2026-07-18 UTC
 - [x] Document minimum staging/production isolation.
 - [x] Run final build/test checks; build passed with documented baseline warnings and no test script exists.
 - [x] Review the final staged Git diff; it contains only Phase 0 control documentation.
-- [ ] Commit only Phase 0 control documentation.
-- [ ] Push branch and pre-refactor tag; verify remote state.
-- [ ] Stop after Phase 0 report.
+- [x] Commit only Phase 0 control documentation.
+- [x] Push branch and pre-refactor tag; verify remote state.
+- [x] Stop after Phase 0 report.
+
+## Phase 0.5 closeout
+
+- [x] Read required Phase 0 control documents.
+- [x] Confirm clean starting worktree and remote refactor branch parity.
+- [x] Refresh remote references and fast-forward/synchronize local `master`.
+- [x] Restore `/root/robot` to clean `master`.
+- [x] Create `/root/robot-career-refactor` on `refactor/career-intelligence` with Git worktree.
+- [x] Inventory all current Hermes references to the production, development, and research workdirs.
+- [x] Diagnose the Hermes health-status disagreement without restart or workflow changes.
+- [x] Verify UTC/NTP and document the Singapore conversion policy.
+- [x] Create empty restricted backup directories without copying secrets.
+- [x] Update only the five authorized project control documents.
+- [x] Run `npm ci`, production build, worktree checks, and final diff review.
+- [x] Commit and push Phase 0.5 documentation on the refactor branch.
+- [x] Stop before Phase 1.
 
 ## Phase 1 — pending explicit authorization
 
@@ -42,6 +58,7 @@ Last updated: 2026-07-18 UTC
 
 - Evidence for the existing survey, supplier interviews, salary tables, and BOM figures has not been found.
 - Vercel project/dashboard configuration and preview-environment isolation have not been inspected.
-- Hermes CLI and systemd disagree on gateway health.
-- The weekly Hermes job shares the developer checkout.
+- Direct GitHub API and weekly-worktree writes to `master` still bypass a career publication quality gate.
+- Vercel preview behavior for feature-branch pushes remains unverified.
+- Backup retention, rotation, encryption, and restore testing are not implemented.
 - No test harness or data-quality command exists yet.

@@ -47,3 +47,14 @@
 | `/root/.hermes/state/` | Automation state markers |
 | `/root/hermes-workspace/` | Restricted arXiv automation workspace; not a Git checkout |
 | `/etc/systemd/system/hermes-gateway.service` | System Hermes gateway unit |
+
+## Worktree and backup layout
+
+| Path | Branch/role | Modification rule |
+|---|---|---|
+| `/root/robot` | `master`; production/weekly Hermes worktree | No Codex refactor development; only authorized production sync/operations |
+| `/root/robot-career-refactor` | `refactor/career-intelligence`; Codex development | All current refactor documentation, code, and tests belong here |
+| `/root/hermes-workspace` | Hermes arXiv isolated workdir | Preserve current behavior; arXiv publisher writes remote `master` via API |
+| `/root/robot-backups/config` | Restricted local configuration backups | Mode `0700`; never commit; copy only through an approved dated procedure |
+| `/root/robot-backups/data` | Restricted local data backups | Mode `0700`; staging/production namespaces required later |
+| `/root/robot-backups/logs` | Restricted local run-log backups | Mode `0700`; define retention before use |
