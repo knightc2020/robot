@@ -18,18 +18,26 @@ npm run dev
 
 Default Astro development behavior may bind a local port. Do not expose it publicly without an approved staging plan.
 
-## Deterministic validation available at baseline
+## Deterministic content and build validation
 
 ```bash
 cd /root/robot-career-refactor
 npm test --if-present
+npm run content:check
+npm run content:test
 npm run build
 git status --short --branch
 git diff --stat
 git diff --check
 ```
 
-There is no defined test/lint/typecheck script. At baseline, `npm run build` is the only application validation command.
+There is still no general lint/typecheck framework. Phase 1 adds a narrow deterministic content test and quality gate:
+
+- `content:check` reads source files and fails on publication-state, source, duplicate, forbidden-claim, fixture, route-filter, or redirect defects.
+- `content:test` creates an isolated temporary invalid fixture, proves it fails, removes it, and proves the clean control passes.
+- `build` runs `content:check`, Astro, then verifies generated routes and scans output for withdrawn content. It does not call external networks or AI APIs and does not mutate source content.
+
+A failing content gate blocks the build. Fix the reported source/metadata issue; do not bypass, auto-delete, or weaken the rule to publish.
 
 Phase 0.5 clean-install baseline: `npm ci` succeeded, but npm reported 13 dependency vulnerabilities (2 low, 4 moderate, 7 high). Do not run `npm audit fix` or `--force` as an unreviewed operational shortcut; assess and test dependency changes in a separately authorized phase.
 
@@ -60,6 +68,19 @@ Do not use empty commits or direct GitHub API writes as a deployment method for 
 5. Production is updated through the approved `master` path; never copy development files manually into `/root/robot`.
 6. After an authorized remote `master` change, synchronize `/root/robot` only when clean and only with fetch plus fast-forward.
 7. Verify Vercel production and retain a rollback reference. Phase 0.5 performs none of these production merge/deploy steps.
+
+Phase 1 also performs no merge or deployment. Its quality gate affects Vercel only after an explicitly authorized merge into `master`.
+
+## Content publication rules
+
+1. All public content must declare exact `status: published`; other or missing states receive no list entry or detail route.
+2. Published content requires structured external source URLs, publication/update dates, source type, and truthful review status.
+3. `pending_review` is publishable only as an explicitly visible review state; it must never be presented as human-reviewed or source-verified.
+4. Same-language arXiv IDs, DOIs, and canonical source URLs must be unique. Intentional bilingual pairs are allowed.
+5. Test, fixture, demo, and synthetic publication payloads remain outside `src/content`.
+6. Withdrawn URLs are maintained in `vercel.json`; all current rules are permanent and must point to an internal canonical/hub destination.
+
+The full claim decisions and duplicate mappings are in `docs/CONTENT_PROVENANCE_REGISTER.md` and `docs/DUPLICATE_CONTENT_REVIEW.md`.
 
 ## Git baseline and rollback reference
 
@@ -98,6 +119,15 @@ Existing jobs must not be manually triggered during the refactor baseline:
 - weekly review: workdir `/root/robot`; creates HTML, updates the Chinese homepage link, builds, commits, and pushes `master`.
 
 Worktree collisions are now isolated, but both jobs can still change the production branch while development is in progress. Fetch and review remote divergence before any future merge.
+
+The active Hermes arXiv publisher does not yet emit the Phase 1 `sourceUrls`, `updatedAt`, and `reviewStatus` contract. If the quality gate is later merged to production, a legacy-format Hermes commit can make the Vercel build fail. This is the intended fail-closed behavior, but the workflow must be updated in a separately authorized Hermes phase; do not bypass the gate or edit `/root/.hermes` during Phase 1.
+
+## Phase 1 rollback
+
+- Development rollback reference before Phase 1: `7ed3928`.
+- Before merge, abandon/revert only the scoped feature-branch commit; `/root/robot` and production are unaffected.
+- After a future authorized merge, use `git revert` of the Phase 1 commit through the reviewed production workflow. Do not reset shared history.
+- Redirect removal is part of the same revert, so verify old URL behavior during any rollback rehearsal.
 
 ## Logs and diagnostics
 

@@ -7,20 +7,25 @@
 | `package.json` | Astro/npm scripts and runtime dependencies |
 | `package-lock.json` | Locked npm dependency graph |
 | `astro.config.mjs` | Astro, MDX, Tailwind, and bilingual routing configuration |
-| `src/content.config.ts` | Article and career frontmatter schemas |
+| `src/content.config.ts` | Required publication status and extensible provenance/review schema |
 | `src/content/cn/research/` | Chinese research Markdown/MDX source |
 | `src/content/en/research/` | English research Markdown/MDX source |
-| `src/content/cn/career/` | Chinese career content; one file at baseline |
-| `src/content/en/career/` | English career content; one file at baseline |
+| `src/content/cn/career/` | Chinese career collection; intentionally empty after Phase 1 credibility cleanup |
+| `src/content/en/career/` | English career collection; intentionally empty after Phase 1 credibility cleanup |
 | `src/pages/cn/index.astro` | Chinese homepage and public quantitative claims |
 | `src/pages/en/index.astro` | English homepage and public quantitative claims |
 | `src/pages/{cn,en}/career/` | Static career index and detail routes |
 | `src/pages/{cn,en}/research/` | Static research index and detail routes |
 | `src/pages/research-news/` | Alternate research feed and detail routes |
-| `src/layouts/ArticleLayout.astro` | Article metadata, raw confidence badge, and feedback component |
-| `src/components/FeedbackFlywheel.astro` | Feedback links and database/cross-validation claims |
+| `src/lib/content-governance.ts` | Single `isPublishableContent()` predicate reused by all public content entry points |
+| `src/layouts/ArticleLayout.astro` | Article shell using governed metadata and feedback components |
+| `src/components/ContentMetadata.astro` | Shared bilingual source, date, and truthful review-status display |
+| `src/components/FeedbackFlywheel.astro` | Feedback links with non-automatic, non-verification handling notice |
 | `public/ppt/` | Static weekly-review presentation assets |
-| `test-payload.json` | Legacy published-status API test payload; current API no longer exists |
+| `scripts/content-check.mjs` | Deterministic pre-build status, provenance, duplicate, claim, route, and redirect gate |
+| `scripts/content-check.test.mjs` | Temporary negative fixture test proving violations fail and cleanup recovers |
+| `scripts/verify-build.mjs` | Post-build route and withdrawn-content leakage verification |
+| `vercel.json` | Permanent redirects for withdrawn and duplicate legacy URLs; development branch only until authorized merge |
 
 ## Phase 0 controls
 
@@ -36,6 +41,15 @@
 | `07_ACCEPTANCE_CRITERIA.md` | Phase and product acceptance gates |
 | `08_OPERATIONS_RUNBOOK.md` | Safe local operations, deployment, Hermes, and rollback notes |
 | `docs/CAREER_INTELLIGENCE_REFACTOR_PLAN.md` | Goals, phases, execution rules, and target architecture |
+| `docs/CONTENT_PROVENANCE_REGISTER.md` | Phase 1 claim/evidence decisions and withdrawn URL policy |
+| `docs/DUPLICATE_CONTENT_REVIEW.md` | Seven arXiv duplicate groups, canonical choices, and redirect results |
+
+## Phase 1 removed paths retained in Git history
+
+- Two career survey/salary MDX files.
+- Two bilingual actuator BOM/interview MDX files.
+- The public article generated from the legacy test payload and root `test-payload.json`.
+- Ten duplicate Chinese arXiv Markdown files listed in `docs/DUPLICATE_CONTENT_REVIEW.md`.
 
 ## External operational locations
 

@@ -1,10 +1,11 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { isPublishableContent } from '../../lib/content-governance';
 
 export async function getStaticPaths() {
-  const cnPosts = await getCollection('cn/research');
-  const enPosts = await getCollection('en/research');
+  const cnPosts = (await getCollection('cn/research')).filter(isPublishableContent);
+  const enPosts = (await getCollection('en/research')).filter(isPublishableContent);
 
   return [
     ...cnPosts.map((post) => ({

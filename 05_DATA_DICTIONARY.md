@@ -7,20 +7,41 @@ Status: logical baseline only. No career-intelligence database exists yet.
 | Field | Current type | Meaning/risk |
 |---|---|---|
 | `title` | string, required | Public article title |
-| `date` | date, required | Publication-like date; provenance semantics are not defined |
-| `updated` | optional date | Schema exists, but no content file currently uses it |
+| `date` | date, required (legacy) | Existing publication date; retained for compatibility |
+| `publishedAt` | optional date | Explicit publication time; public display falls back to legacy `date` |
+| `updatedAt` | optional date | Content/governance update time from frontmatter; never derived from build time |
+| `updated` | optional date (legacy) | Older compatibility field; not used as the Phase 1 governance field |
 | `author` | string | Defaults to `Editorial Team` |
 | `tags` | string array | Free-form labels |
 | `industry_sector` | enum | Robot-sector classification |
 | `data_source` | optional string | Free text; not a source registry relation |
-| `confidence_level` | enum | `verified`, `estimated`, `speculative`; defaults to `estimated` |
-| `status` | enum | `draft`, `review`, `published`; defaults to `draft` |
+| `confidence_level` | optional legacy enum | Deprecated for public display; no default and not accepted as evidence/review state |
+| `status` | required enum | `draft`, `review`, `published`, `archived`; only exact `published` is public |
+| `sourceType` | optional enum | `academic_paper`, `official_source`, `first_party`, or `other` |
+| `sourceUrls` | optional URL array in schema | Required by the deterministic gate for every published entry |
+| `reviewStatus` | optional enum in schema | `ai_generated`, `ai_assisted`, `pending_review`, `human_reviewed`, `source_verified`; required for publication by the gate |
 | `summary` | optional string | Public excerpt |
 | `cover_image` | optional string | Public asset reference |
 | `career_level` | optional enum | Career article audience level |
 | `skill_domain` | string array | Free-form skills; not normalized |
 | `salary_range` | optional string | Unstructured salary claim |
 | `region` | optional string | Unstructured geography |
+
+## Phase 1 public content minimum
+
+A public entry must declare:
+
+- `title`;
+- `status: published`;
+- valid `publishedAt` or legacy `date`;
+- a valid governance `updatedAt`;
+- `sourceType`;
+- a non-empty structured `sourceUrls` array containing at least one external, non-placeholder URL;
+- `reviewStatus` describing the actual review state.
+
+Missing fields do not receive invented defaults in the quality gate. The site itself cannot be the only factual source. `example.com`, local hosts, and fixture/demo/test payloads are rejected.
+
+Current retained public research uses `academic_paper`, normalized arXiv URLs, and `pending_review`. This establishes paper identity only; it does not certify every interpretation in the article body.
 
 ## Required provenance envelope for future external records
 

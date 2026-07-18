@@ -1,4 +1,4 @@
-# Current State — Phase 0 Baseline
+# Current State
 
 Baseline date: 2026-07-18 UTC
 
@@ -6,7 +6,7 @@ Production worktree: `/root/robot`
 
 Refactor development worktree: `/root/robot-career-refactor`
 
-Assessment scope: inventory only; no public-content or production change.
+Phase 0 assessment scope was inventory only. Phase 1 changes described at the end of this document exist only on `refactor/career-intelligence`; production remains unchanged.
 
 ## 1. Environment
 
@@ -221,3 +221,50 @@ No Hermes path references `/root/robot-career-refactor`.
 - npm reported 13 dependency vulnerabilities: 2 low, 4 moderate, and 7 high. No automated audit fix was run because dependency upgrades are outside Phase 0.5 and may introduce breaking changes.
 - `npm run build` passed and generated 59 static pages.
 - The same pre-existing collection schema and missing `_stub.md` warnings recorded in Phase 0 remained. They were not changed in this safety-only phase.
+
+## 13. Phase 1 credibility governance baseline
+
+Implemented on 2026-07-18 UTC only in `/root/robot-career-refactor` on `refactor/career-intelligence`.
+
+### Public claims and withdrawn content
+
+- Removed unsupported homepage metrics and process claims: `340+`, `50+`, `12+` segment coverage, three-layer validation, supplier interviews, anonymous engineer surveys, and production-line research.
+- Replaced the claims with non-quantified statements about continuous tracking, public source links, review status, and explicit update dates.
+- Replaced the feedback/database assertion with an accurate statement that submissions are review leads and are not automatically verified or published.
+- Removed two career survey/salary articles and two actuator BOM/interview articles because repository files, Git history, relevant Hermes definitions, and likely local evidence paths contained no auditable source package.
+- Removed the public Chinese article generated from the legacy test payload and deleted the unused root `test-payload.json`.
+- Career collections are intentionally empty after the cleanup; both language career index pages remain and state that the system is under development.
+
+### Duplicate and route result
+
+- Reviewed 17 Chinese files in seven same-arXiv-source groups.
+- Retained seven canonical Chinese pages and removed ten duplicate files.
+- Added 28 source-controlled permanent Vercel redirects: eight withdrawn demo/test detail routes and twenty duplicate routes.
+- Duplicate identity is enforced per language, allowing a deliberate Chinese/English translation pair to share a paper source while blocking multiple pages in the same language.
+- Removed content no longer generates Astro details. Redirects will become active only after a separately authorized production merge/deployment.
+
+### Publication and provenance rules
+
+- `status` is required and supports `draft`, `review`, `published`, and `archived`; missing status is not public.
+- `isPublishableContent()` is reused by every homepage, list, and detail static-path entry point. Only exact `published` entries can appear or generate routes.
+- The project has no sitemap integration or sitemap source file, so there was no separate sitemap list to filter; generated route inventory is the authoritative public set in this phase.
+- Schema now supports `sourceType`, structured `sourceUrls`, `publishedAt`, `updatedAt`, and `reviewStatus`.
+- All 12 retained published research entries have a structured arXiv source, publication date, Phase 1 governance update date, and `pending_review` status.
+- Legacy `confidence_level` remains schema-compatible only for non-public history. It has no default and is not rendered. No retained published entry uses it.
+- A unified metadata component renders real source links, dates, and review labels. Missing metadata is not replaced by invented labels or build timestamps.
+
+### Deterministic publication gate
+
+- `npm run content:check` validates prohibited claims, explicit status, minimum published metadata, source URL format/placeholders/self-sourcing, test-content isolation, language-scoped arXiv/DOI/canonical-source duplicates, route filter reuse, and redirect coverage.
+- `npm run content:test` proves that an intentionally invalid temporary fixture fails and that deleting it restores a clean result.
+- `npm run build` now runs the content check, Astro build, and post-build route/content leakage verification. All checks are local, deterministic, read-only with respect to project content, network-free, and AI-free.
+- Baseline Astro build: 59 generated pages. Phase 1 Astro build: 31 generated pages. The 28-page reduction matches the eight demo/test detail routes and twenty duplicate detail routes removed from generation.
+- Existing collection-schema and missing `_stub.md` warnings remain. Empty career collections add non-fatal warnings, but the build passes and both career indexes generate.
+
+### Residual operational risk
+
+- Existing Hermes jobs still write directly to remote `master` and do not use the Phase 1 metadata contract.
+- The quality gate protects production only after this branch is reviewed and explicitly merged into `master`; no such merge or deployment occurred in Phase 1.
+- A future legacy Hermes article that lacks structured sources/review metadata will make the Vercel build fail. The Hermes workflow was deliberately not changed in this phase.
+- Retained arXiv summaries have source identity but have not been manually fact-checked; `pending_review` is intentionally visible.
+- npm still reports the Phase 0.5 dependency vulnerabilities; no dependency fix or upgrade was attempted.

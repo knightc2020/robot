@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/cn/career/robotics-salary-2025/:path*", "destination": "/cn/career/", "permanent": true },
+    { "source": "/en/career/robotics-career-map-2025/:path*", "destination": "/en/career/", "permanent": true },
+    { "source": "/cn/research/humanoid-actuator-bom-2025/:path*", "destination": "/cn/research/", "permanent": true },
+    { "source": "/en/research/humanoid-actuator-bom-2025/:path*", "destination": "/en/research/", "permanent": true },
+    { "source": "/research-news/cn/humanoid-actuator-bom-2025/:path*", "destination": "/cn/research/", "permanent": true },
+    { "source": "/research-news/en/humanoid-actuator-bom-2025/:path*", "destination": "/en/research/", "permanent": true },
+    { "source": "/cn/research/2026-02-28T16-48-38-2026/:path*", "destination": "/cn/research/", "permanent": true },
+    { "source": "/research-news/cn/2026-02-28T16-48-38-2026/:path*", "destination": "/cn/research/", "permanent": true },
+
+    { "source": "/cn/research/arxiv-1772334967/:path*", "destination": "/cn/research/arxiv-2602-22243/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772334967/:path*", "destination": "/research-news/cn/arxiv-2602-22243/", "permanent": true },
+
+    { "source": "/cn/research/arxiv-1772335777/:path*", "destination": "/cn/research/arxiv-2602-23287/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772335777/:path*", "destination": "/research-news/cn/arxiv-2602-23287/", "permanent": true },
+    { "source": "/cn/research/arxiv-1772336924/:path*", "destination": "/cn/research/arxiv-2602-23287/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772336924/:path*", "destination": "/research-news/cn/arxiv-2602-23287/", "permanent": true },
+    { "source": "/cn/research/arxiv-1772356557/:path*", "destination": "/cn/research/arxiv-2602-23287/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772356557/:path*", "destination": "/research-news/cn/arxiv-2602-23287/", "permanent": true },
+    { "source": "/cn/research/arxiv-1772399776/:path*", "destination": "/cn/research/arxiv-2602-23287/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772399776/:path*", "destination": "/research-news/cn/arxiv-2602-23287/", "permanent": true },
+
+    { "source": "/cn/research/arxiv-1772442962/:path*", "destination": "/cn/research/arxiv-1772442953/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772442962/:path*", "destination": "/research-news/cn/arxiv-1772442953/", "permanent": true },
+    { "source": "/cn/research/arxiv-1772638926/:path*", "destination": "/cn/research/arxiv-1772682221/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1772638926/:path*", "destination": "/research-news/cn/arxiv-1772682221/", "permanent": true },
+    { "source": "/cn/research/arxiv-1778211670/:path*", "destination": "/cn/research/arxiv-1778168473/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1778211670/:path*", "destination": "/research-news/cn/arxiv-1778168473/", "permanent": true },
+    { "source": "/cn/research/arxiv-1778254872/:path*", "destination": "/cn/research/arxiv-1778298071/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1778254872/:path*", "destination": "/research-news/cn/arxiv-1778298071/", "permanent": true },
+    { "source": "/cn/research/arxiv-1778384475/:path*", "destination": "/cn/research/arxiv-1778341273/", "permanent": true },
+    { "source": "/research-news/cn/arxiv-1778384475/:path*", "destination": "/research-news/cn/arxiv-1778341273/", "permanent": true }
+  ]
+}

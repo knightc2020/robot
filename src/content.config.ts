@@ -24,8 +24,20 @@ const articleSchema = z.object({
     'general',
   ]),
   data_source: z.string().optional(),
-  confidence_level: z.enum(['verified', 'estimated', 'speculative']).default('estimated'),
-  status: z.enum(['draft', 'review', 'published']).default('draft'),
+  /** Legacy field retained for non-public historical compatibility only. */
+  confidence_level: z.enum(['verified', 'estimated', 'speculative']).optional(),
+  status: z.enum(['draft', 'review', 'published', 'archived']),
+  sourceType: z.enum(['academic_paper', 'official_source', 'first_party', 'other']).optional(),
+  sourceUrls: z.array(z.string().url()).optional(),
+  publishedAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
+  reviewStatus: z.enum([
+    'ai_generated',
+    'ai_assisted',
+    'pending_review',
+    'human_reviewed',
+    'source_verified',
+  ]).optional(),
   summary: z.string().optional(),
   cover_image: z.string().optional(),
 });

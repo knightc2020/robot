@@ -1,15 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { isPublishableContent } from '../../../lib/content-governance';
 
 const posts = (await getCollection('cn/career'))
-  .filter((p) => p.data.status === 'published')
+  .filter(isPublishableContent)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <BaseLayout title="职业导航 - RoboMatrix" lang="cn">
   <h1 class="text-2xl font-bold mb-2">职业导航</h1>
-  <p class="text-neutral-500 text-sm mb-8">技能图谱、行业地图、薪资洞察</p>
+  <p class="text-neutral-500 text-sm mb-8">机器人职业情报系统正在建设中</p>
 
   {posts.length === 0 && (
     <p class="text-neutral-600 text-sm">暂无已发布的职业指南。</p>

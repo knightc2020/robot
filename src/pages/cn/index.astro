@@ -1,24 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { isPublishableContent } from '../../lib/content-governance';
 
 const latestResearch = (await getCollection('cn/research'))
-  .filter((p) => p.data.status === 'published')
+  .filter(isPublishableContent)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
 
 const latestCareer = (await getCollection('cn/career'))
-  .filter((p) => p.data.status === 'published')
+  .filter(isPublishableContent)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
 
 // 前沿研究动态：只取中文 research，最新 6 篇
 const latestNews = (await getCollection('cn/research'))
+  .filter(isPublishableContent)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 6);
 ---
 
-<BaseLayout title="RoboMatrix - 机器人产业深度研究与职业导航" lang="cn" description="以审计级严谨度拆解机器人产业链，为从业者提供行业研究报告、BOM成本分析与职业发展导航。">
+<BaseLayout title="RoboMatrix - 机器人产业研究与职业导航" lang="cn" description="持续跟踪机器人产业、技术与职业信息；重要结论保留公开来源和更新时间。">
 
   <!-- Hero -->
   <section class="relative py-20 md:py-32 overflow-hidden">
@@ -28,17 +30,17 @@ const latestNews = (await getCollection('cn/research'))
     <div class="relative">
       <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-neutral-800 rounded-full text-xs text-neutral-500">
         <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-        数据持续更新中 · 覆盖 12 个细分赛道
+        机器人产业与职业信息持续更新中
       </div>
 
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-        <span class="text-neutral-50">穿透机器人产业链</span><br />
-        <span class="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">数据驱动的深度研究</span>
+        <span class="text-neutral-50">持续跟踪机器人产业</span><br />
+        <span class="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">技术与职业信息</span>
       </h1>
 
       <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mb-10 leading-relaxed">
-        以审计级严谨度，系统拆解人形机器人、工业臂、AMR 等核心赛道。<br class="hidden md:block" />
-        为投资人、创业者与一线工程师提供可验证的产业情报。
+        研究内容尽量保留原始公开来源、发布时间和治理更新时间。<br class="hidden md:block" />
+        机器人职业情报系统正在建设中。
       </p>
 
       <div class="flex flex-wrap gap-4">
@@ -60,20 +62,20 @@ const latestNews = (await getCollection('cn/research'))
   <section class="border-y border-neutral-800 py-8 mb-16">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">12+</div>
-        <div class="text-xs text-neutral-500 mt-1">细分赛道覆盖</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">产业研究</div>
+        <div class="text-xs text-neutral-500 mt-1">持续跟踪公开信息</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">340+</div>
-        <div class="text-xs text-neutral-500 mt-1">一线工程师样本</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">职业导航</div>
+        <div class="text-xs text-neutral-500 mt-1">情报系统建设中</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">50+</div>
-        <div class="text-xs text-neutral-500 mt-1">供应商深度访谈</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">来源记录</div>
+        <div class="text-xs text-neutral-500 mt-1">保留原始公开链接</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">3 层</div>
-        <div class="text-xs text-neutral-500 mt-1">数据交叉验证</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">状态治理</div>
+        <div class="text-xs text-neutral-500 mt-1">明确审核与更新时间</div>
       </div>
     </div>
   </section>
@@ -91,7 +93,7 @@ const latestNews = (await getCollection('cn/research'))
           <p class="text-xs text-neutral-500">Due Diligence Hub</p>
         </div>
       </div>
-      <p class="text-sm text-neutral-400 mb-5">行业深度报告、硬件 BOM 拆解、供应链成本矩阵、竞争格局分析。所有数据标注来源与置信度。</p>
+      <p class="text-sm text-neutral-400 mb-5">整理机器人研究动态，并为公开内容保留可定位的原始来源与审核状态。</p>
       <div class="space-y-3">
         {latestResearch.map((post) => (
           <a href={`/cn/research/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
@@ -116,7 +118,7 @@ const latestNews = (await getCollection('cn/research'))
           <p class="text-xs text-neutral-500">Career Mentorship Hub</p>
         </div>
       </div>
-      <p class="text-sm text-neutral-400 mb-5">面向青年机器人工程师的 Wiki 式知识库。技能图谱、行业地图、薪资基准、成长路径。</p>
+      <p class="text-sm text-neutral-400 mb-5">机器人职业情报系统正在建设中，当前不发布无来源的薪资或问卷结论。</p>
       <div class="space-y-3">
         {latestCareer.map((post) => (
           <a href={`/cn/career/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
@@ -146,7 +148,7 @@ const latestNews = (await getCollection('cn/research'))
 
     {latestNews.length === 0 ? (
       <div class="border border-dashed border-neutral-800 rounded-xl py-12 text-center text-neutral-600 text-sm">
-        暂无内容 — 通过 API 发布第一篇论文解读
+        暂无已发布的论文解读
       </div>
     ) : (
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -179,21 +181,21 @@ const latestNews = (await getCollection('cn/research'))
     )}
   </section>
 
-  <!-- Methodology -->
+  <!-- Content governance -->
   <section class="border border-neutral-800 rounded-xl p-8 mb-16 bg-neutral-900/30">
-    <h2 class="text-xl font-semibold mb-6 text-neutral-100">研究方法论</h2>
+    <h2 class="text-xl font-semibold mb-6 text-neutral-100">内容治理原则</h2>
     <div class="grid md:grid-cols-3 gap-6">
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">01 · 一手数据采集</div>
-        <p class="text-sm text-neutral-400">供应商直接访谈、工程师匿名问卷、产线实地调研。拒绝二手信息堆砌。</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">01 · 公开来源</div>
+        <p class="text-sm text-neutral-400">重要研究结论保留论文或官方页面链接；缺少来源时不展示虚假来源标签。</p>
       </div>
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">02 · 三重交叉验证</div>
-        <p class="text-sm text-neutral-400">供应商报价 × 公开招标数据 × 上市公司财报。每个数据点标注置信度等级。</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">02 · 状态明确</div>
+        <p class="text-sm text-neutral-400">仅显式发布的内容生成公开页面，并如实标注当前审核状态。</p>
       </div>
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">03 · 社群反馈闭环</div>
-        <p class="text-sm text-neutral-400">一线工程师持续纠错与补充。数据不是静态快照，而是动态演进的产业知识图谱。</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">03 · 时间可追踪</div>
+        <p class="text-sm text-neutral-400">内容日期来自文章元数据；构建时间不冒充内容更新时间。</p>
       </div>
     </div>
   </section>

@@ -12,9 +12,26 @@
 - [x] Required project-control files created without secrets.
 - [x] Build passed; absent test script and existing Astro warnings are recorded.
 - [x] Final diff contains only Phase 0 documentation.
-- [ ] Scoped commit exists.
-- [ ] Branch and backup tag are pushed or the precise push blocker is recorded.
+- [x] Scoped commit exists.
+- [x] Branch and backup tag are pushed or the precise push blocker is recorded.
 - [x] No Phase 1 content change or production deployment occurred.
+
+## Phase 1 acceptance
+
+- [x] Claim/evidence ledger covers homepage samples, career surveys, BOM interviews/costs, feedback/database wording, legacy confidence labels, test payload, and duplicate arXiv content.
+- [x] Unsupported statements are absent from public source files and generated output.
+- [x] Two career articles, two BOM articles, and one generated test article no longer produce public details.
+- [x] The unused root test payload is deleted and no production/Hermes reference remains.
+- [x] Seven duplicate-source groups were reviewed by normalized arXiv ID; ten files were removed and seven canonical pages retained.
+- [x] All 28 withdrawn detail URLs have permanent redirect definitions.
+- [x] Missing or non-published status cannot appear in lists or static detail routes.
+- [x] Source/date/review fields exist in schema and a shared bilingual component renders only present, truthful metadata.
+- [x] Published content has at least one valid external structured source URL and no placeholder/self-only source.
+- [x] `npm run content:check` and the deliberate failure/recovery fixture test pass.
+- [x] `npm run build` invokes the quality gate and post-build verifier; Chinese and English pages build successfully.
+- [x] Build output contains no withdrawn article body or user-visible legacy estimate label.
+- [x] No dependency upgrade, audit fix, Hermes change, production merge, or deployment occurred.
+- [x] One scoped Phase 1 commit is pushed to `origin/refactor/career-intelligence`.
 
 ## Initial product targets
 

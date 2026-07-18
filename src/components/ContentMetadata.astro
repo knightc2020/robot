@@ -1,0 +1,97 @@
+---
+interface Metadata {
+  date: Date | string;
+  publishedAt?: Date | string;
+  updatedAt?: Date | string;
+  author?: string;
+  reviewStatus?: string;
+  sourceType?: string;
+  sourceUrls?: string[];
+}
+
+interface Props {
+  metadata: Metadata;
+  lang?: 'en' | 'cn';
+}
+
+const { metadata, lang = 'cn' } = Astro.props;
+
+const reviewLabels: Record<'en' | 'cn', Record<string, string>> = {
+  cn: {
+    ai_generated: 'AI 生成 · 待人工复核',
+    ai_assisted: 'AI 辅助整理',
+    pending_review: '待人工复核',
+    human_reviewed: '已人工复核',
+    source_verified: '来源已核验',
+  },
+  en: {
+    ai_generated: 'AI-generated · Pending review',
+    ai_assisted: 'AI-assisted',
+    pending_review: 'Pending review',
+    human_reviewed: 'Human reviewed',
+    source_verified: 'Source verified',
+  },
+};
+
+const sourceTypeLabels: Record<'en' | 'cn', Record<string, string>> = {
+  cn: {
+    academic_paper: '学术论文',
+    official_source: '官方来源',
+    first_party: '第一方来源',
+    other: '公开来源',
+  },
+  en: {
+    academic_paper: 'Academic paper',
+    official_source: 'Official source',
+    first_party: 'First-party source',
+    other: 'Public source',
+  },
+};
+
+const toDate = (value: Date | string | undefined) => {
+  if (!value) return undefined;
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date;
+};
+
+const publishedDate = toDate(metadata.publishedAt ?? metadata.date);
+const updatedDate = toDate(metadata.updatedAt);
+const reviewLabel = metadata.reviewStatus
+  ? reviewLabels[lang][metadata.reviewStatus]
+  : undefined;
+const sourceLabel = metadata.sourceType
+  ? sourceTypeLabels[lang][metadata.sourceType]
+  : lang === 'cn' ? '公开来源' : 'Public source';
+const sourceUrls = metadata.sourceUrls ?? [];
+---
+
+<div class="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+  {publishedDate && (
+    <time datetime={publishedDate.toISOString()}>
+      {publishedDate.toISOString().slice(0, 10)}
+    </time>
+  )}
+  {metadata.author && <span>{metadata.author}</span>}
+  {updatedDate && (
+    <span>
+      {lang === 'cn' ? '更新于' : 'Updated'}{' '}
+      <time datetime={updatedDate.toISOString()}>{updatedDate.toISOString().slice(0, 10)}</time>
+    </span>
+  )}
+  {reviewLabel && (
+    <span class="px-1.5 py-0.5 border border-neutral-700 rounded text-[10px]">
+      {reviewLabel}
+    </span>
+  )}
+</div>
+
+{sourceUrls.length > 0 && (
+  <div class="flex flex-wrap items-center gap-2 mt-3 text-xs text-neutral-500">
+    <span>{sourceLabel}:</span>
+    {sourceUrls.map((url, index) => (
+      <a href={url} target="_blank" rel="noreferrer" class="text-primary-400 hover:text-primary-300">
+        {lang === 'cn' ? `来源 ${index + 1}` : `Source ${index + 1}`}
+      </a>
+    ))}
+  </div>
+)}

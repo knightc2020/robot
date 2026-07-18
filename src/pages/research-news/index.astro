@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isPublishableContent } from '../../lib/content-governance';
 
-const enPosts = await getCollection('en/research');
-const cnPosts = await getCollection('cn/research');
+const enPosts = (await getCollection('en/research')).filter(isPublishableContent);
+const cnPosts = (await getCollection('cn/research')).filter(isPublishableContent);
 
 type Post = (typeof enPosts)[number] & { _lang: 'en' | 'cn' };
 
@@ -12,17 +13,6 @@ const allPosts = [
   ...cnPosts.map((p) => ({ ...p, _lang: 'cn' as const })),
 ].sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const confidenceColor: Record<string, string> = {
-  verified: 'text-green-400 bg-green-900/30 border-green-800',
-  estimated: 'text-yellow-400 bg-yellow-900/30 border-yellow-800',
-  speculative: 'text-red-400 bg-red-900/30 border-red-800',
-};
-
-const statusColor: Record<string, string> = {
-  published: 'text-sky-400 bg-sky-900/30 border-sky-800',
-  review: 'text-purple-400 bg-purple-900/30 border-purple-800',
-  draft: 'text-neutral-400 bg-neutral-800 border-neutral-700',
-};
 ---
 
 <BaseLayout title="Research News — RoboMatrix" lang="cn">
@@ -60,15 +50,11 @@ const statusColor: Record<string, string> = {
             class="group block no-underline rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-neutral-600 hover:bg-neutral-900 transition-all duration-200"
           >
             <div class="p-5 flex flex-col h-full">
-              <!-- Top meta row -->
-              <div class="flex items-center justify-between gap-2 mb-3">
+              <!-- Language marker -->
+              <div class="flex items-center gap-2 mb-3">
                 <!-- Lang badge -->
                 <span class={`text-[10px] font-mono uppercase px-1.5 py-0.5 rounded border ${post._lang === 'en' ? 'text-sky-400 bg-sky-900/30 border-sky-800' : 'text-rose-400 bg-rose-900/30 border-rose-800'}`}>
                   {post._lang}
-                </span>
-                <!-- Status badge -->
-                <span class={`text-[10px] uppercase px-1.5 py-0.5 rounded border ${statusColor[post.data.status] ?? statusColor.draft}`}>
-                  {post.data.status}
                 </span>
               </div>
 
@@ -87,14 +73,9 @@ const statusColor: Record<string, string> = {
               <!-- Bottom meta row -->
               <div class="flex items-center justify-between mt-auto pt-3 border-t border-neutral-800 text-[11px] text-neutral-600">
                 <time>{date}</time>
-                <div class="flex items-center gap-2">
-                  <span class="px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
-                    {post.data.industry_sector}
-                  </span>
-                  <span class={`px-1.5 py-0.5 border rounded ${confidenceColor[post.data.confidence_level ?? 'estimated']}`}>
-                    {post.data.confidence_level}
-                  </span>
-                </div>
+                <span class="px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
+                  {post.data.industry_sector}
+                </span>
               </div>
             </div>
           </a>

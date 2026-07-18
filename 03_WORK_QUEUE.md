@@ -33,15 +33,25 @@ Last updated: 2026-07-18 UTC
 - [x] Commit and push Phase 0.5 documentation on the refactor branch.
 - [x] Stop before Phase 1.
 
-## Phase 1 — pending explicit authorization
+## Phase 1 closeout
 
-1. Create a claim/evidence ledger for every affected homepage and article assertion.
-2. Define quarantine and redirect behavior for unsupported/duplicate content.
-3. Remove or neutralize unsupported `340+`, `50+`, survey, interview, and verification claims.
-4. Correct confidence-label semantics and Chinese localization.
-5. Add source URL/update requirements and deterministic content-governance checks.
-6. Canonicalize the seven same-source arXiv duplicate groups without breaking URLs blindly.
-7. Build and preview; conduct human review before any production proposal.
+- [x] Create the claim/evidence register and record unsupported public assertions.
+- [x] Remove unsupported homepage, feedback, salary, survey, interview, BOM, and test-payload content.
+- [x] Preserve 28 old detail URLs through permanent source-controlled redirects.
+- [x] Require explicit publication status and reuse one public-route predicate everywhere.
+- [x] Add structured source/date/review metadata and one bilingual metadata component.
+- [x] Remove the user-visible legacy confidence label without inventing review claims.
+- [x] Review seven duplicate arXiv groups, keep seven canonical pages, and remove ten duplicate files.
+- [x] Add deterministic content checks, a negative fixture test, and post-build leakage verification.
+- [x] Run `npm run content:check`, `npm run content:test`, `npm run build`, and route/output checks.
+- [x] Review final diff, create one scoped Phase 1 commit, and push only the refactor branch.
+- [x] Stop before Phase 2; do not merge, deploy, or alter Hermes.
+
+## Phase 2 — pending explicit authorization
+
+1. Evaluate staging, backup, concurrency, query, and export requirements before choosing storage.
+2. Define versioned schemas and migrations for the seven required career-intelligence entities.
+3. Keep collection and publication disabled; do not invent company or job records.
 
 ## Later-phase backlog
 
@@ -61,4 +71,6 @@ Last updated: 2026-07-18 UTC
 - Direct GitHub API and weekly-worktree writes to `master` still bypass a career publication quality gate.
 - Vercel preview behavior for feature-branch pushes remains unverified.
 - Backup retention, rotation, encryption, and restore testing are not implemented.
-- No test harness or data-quality command exists yet.
+- The Phase 1 gate is not active in production until an authorized merge to `master`.
+- Current Hermes research output does not yet emit the new structured source/review metadata and would be blocked by the gate.
+- Retained historical arXiv analyses remain pending human review even though their paper identities are sourced.
