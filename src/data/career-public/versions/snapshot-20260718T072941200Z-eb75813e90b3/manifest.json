@@ -1,0 +1,27 @@
+{
+  "files": {
+    "companies.json": {
+      "records": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "jobs.json": {
+      "records": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "project-templates.json": {
+      "records": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "role-summary.json": {
+      "records": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "skills.json": {
+      "records": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "format": "robotcareer-career-public-snapshot",
+  "generatedAt": "2026-07-18T07:29:41.200Z",
+  "schemaVersion": 1
+}

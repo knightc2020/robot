@@ -26,12 +26,14 @@
 | `scripts/content-check.test.mjs` | Temporary negative fixture test proving violations fail and cleanup recovers |
 | `scripts/verify-build.mjs` | Post-build route and withdrawn-content leakage verification |
 | `vercel.json` | Permanent redirects for withdrawn and duplicate legacy URLs; development branch only until authorized merge |
-| `career-intelligence/migrations/` | Checksummed SQLite migrations; Phase 2 contains the physical version 1 schema |
+| `career-intelligence/migrations/` | Checksummed SQLite migrations; version 1 schema plus Phase 2.1 control-audit hardening |
 | `career-intelligence/schema/v1/` | JSON Schema bundle for the seven logical entity contracts |
 | `career-intelligence/README.md` | Explicit-path database, safety-control, backup, and atomic-snapshot commands |
-| `scripts/lib/career-db.mjs` | SQLite migration, validate, controls, backup, consistent read, and atomic snapshot implementation |
-| `scripts/career-db.mjs` | Safe data-layer CLI; no implicit database/output paths |
-| `scripts/career-db.test.mjs` | Physical schema, constraint, WAL/concurrency, migration lock, backup/restore, and snapshot tests |
+| `scripts/career_db.py` | Python standard-library SQLite adapter and CLI for runtime, migration, validation, controls, backup/restore, and atomic snapshots |
+| `scripts/career_db_test.py` | Path/mode, schema/checksum, whitelist, WAL/concurrency, migration lock, backup/restore, Astro, and snapshot tests |
+| `scripts/verify-career-snapshot.mjs` | Build-time ordinary-file, inventory, path, and checksum verification for the current public snapshot |
+| `src/data/career-public/` | Git-owned empty public snapshot: ordinary `current.json` plus immutable complete entity versions |
+| `src/lib/career-public-snapshot.ts` | Astro static loader using only repository-owned JSON imports |
 
 ## Phase 0 controls
 
@@ -77,6 +79,7 @@
 | `/root/robot` | `master`; production/weekly Hermes worktree | No Codex refactor development; only authorized production sync/operations |
 | `/root/robot-career-refactor` | `refactor/career-intelligence`; Codex development | All current refactor documentation, code, and tests belong here |
 | `/root/hermes-workspace` | Hermes arXiv isolated workdir | Preserve current behavior; arXiv publisher writes remote `master` via API |
+| `/root/robot-data` | Restricted Phase 2.1 career runtime; empty staging DB, runtime directories, and validated backup | Outside Git; mode `0700` directories and `0600` database/backup; never read by Astro/Vercel |
 | `/root/robot-backups/config` | Restricted local configuration backups | Mode `0700`; never commit; copy only through an approved dated procedure |
 | `/root/robot-backups/data` | Restricted local data backups | Mode `0700`; staging/production namespaces required later |
 | `/root/robot-backups/logs` | Restricted local run-log backups | Mode `0700`; define retention before use |

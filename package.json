@@ -6,9 +6,10 @@
     "dev": "astro dev",
     "content:check": "node scripts/content-check.mjs",
     "content:test": "node scripts/content-check.test.mjs",
-    "career:db": "node scripts/career-db.mjs",
-    "career:db:test": "node --test scripts/career-db.test.mjs",
-    "build": "npm run content:check && astro build && node scripts/verify-build.mjs",
+    "career:db": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/career_db.py",
+    "career:db:test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts/career_db_test.py",
+    "career:snapshot:check": "node scripts/verify-career-snapshot.mjs",
+    "build": "npm run content:check && npm run career:snapshot:check && astro build && node scripts/verify-build.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

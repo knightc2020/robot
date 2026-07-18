@@ -7,3 +7,7 @@ dist/
 *.sqlite3
 *.sqlite-shm
 *.sqlite-wal
+__pycache__/
+*.pyc
+src/data/career-public/.current-*.tmp
+src/data/career-public/versions/.snapshot-tmp-*/

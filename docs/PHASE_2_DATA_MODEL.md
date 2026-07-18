@@ -5,8 +5,9 @@ Date: 2026-07-18 UTC
 The version 1 JSON Schema bundle defines the seven logical exchange contracts at
 `career-intelligence/schema/v1/entities.schema.json`. The SQLite migration at
 `career-intelligence/migrations/0001_initial.sql` implements those entities plus
-normalized relations and operational control tables. A logical contract does not
-replace a physical table.
+normalized relations and operational control tables. Phase 2.1 migration
+`0002_runtime_hardening.sql` adds auditable control events and trigger enforcement.
+A logical contract does not replace a physical table.
 
 ## Logical contract to physical storage
 
@@ -28,8 +29,9 @@ snapshot boundary.
 
 | Physical table | Contract/role | Phase 2 state |
 |---|---|---|
-| `schema_migrations` | Checksummed ordered migration ledger created by the migrator | One row for migration 1 after initialization |
+| `schema_migrations` | Checksummed ordered migration ledger created by the migrator | Two rows for migrations 1 and 2 after Phase 2.1 initialization |
 | `system_controls` | Independent collection/publication safety switches with reason and actor | Singleton row; both switches default off |
+| `system_control_events` | Trigger-generated audit history for explicit control updates | Contains only safety-control audit events; no domain facts |
 | `companies` | `company` entity | Empty |
 | `career_sources` | `career_source` entity | Empty; sources default disabled |
 | `job_postings` | `job_posting` entity and full provenance envelope | Empty |
@@ -59,4 +61,23 @@ pipeline run, or review item.
 - Model-assisted relations retain extraction evidence/version and cannot silently
   become canonical skill records.
 - Public snapshots read one SQLite transaction, contain approved rows only, validate
-  all checksums/counts before exposure, and update `current` atomically.
+  all checksums/counts/allowlists before exposure, and update ordinary `current.json`
+  atomically inside the Git worktree.
+
+## Phase 2.1 public projection
+
+The seven internal entity contracts remain the normalized database boundary. The
+public projection intentionally exposes only five entity/summary arrays:
+
+- `companies.json` projects approved `companies` rows.
+- `jobs.json` projects approved `job_postings` rows; source registry and provenance
+  internals remain private.
+- `skills.json` projects approved `skills` and aggregates public `skill_aliases`.
+- `role-summary.json` aggregates approved jobs and reviewed skill relations by role.
+- `project-templates.json` projects approved templates plus normalized job-family
+  and skill links.
+
+`manifest.json` records the snapshot schema version, UTC generation time, relative
+filenames, record counts, and SHA-256 checksums. It is metadata, not an eighth
+domain entity. The exact public field allowlists are documented in
+`05_DATA_DICTIONARY.md` and enforced in `scripts/career_db.py`.

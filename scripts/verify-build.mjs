@@ -55,6 +55,7 @@ const forbiddenOutput = [
   ['published payload demo', /具身智能最新进展：2026年人形机器人论文综述/],
   ['unsupported engineer sample', /340\s*\+\s*(?:一线工程师|Engineer Respondents)/i],
   ['unsupported supplier sample', /50\s*\+\s*(?:供应商|Supplier)/i],
+  ['VPS-local career data path', /\/root\/robot-data/],
 ];
 
 for (const file of htmlFiles) {

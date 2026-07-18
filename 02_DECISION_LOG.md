@@ -166,3 +166,32 @@
 - Status: accepted and implemented in Phase 2
 - Decision: apply each checksummed migration under `BEGIN IMMEDIATE`, which excludes concurrent writers while allowing WAL readers. Prevent update/delete of `job_changes` through database triggers.
 - Consequence: schema transitions cannot interleave with collectors, and source observation history cannot be silently rewritten.
+
+## D-025 — Authorize only Phase 2.1 runtime hardening
+
+- Date: 2026-07-18
+- Status: accepted and implemented on `refactor/career-intelligence`
+- Decision: establish and validate the empty external staging runtime, remove the experimental SQLite API risk, harden public snapshot DTOs and delivery, and stop before Phase 3.
+- Consequence: no real recruitment data, collector, schedule, production merge, deployment, `/root/robot` change, or Hermes change is authorized.
+
+## D-026 — Use Python standard-library SQLite for data operations
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2.1
+- Decision: replace the Node `node:sqlite` implementation with the isolated `scripts/career_db.py` adapter using Python 3.12 standard-library `sqlite3` for migrations, validation, safety controls, backup, restore, and snapshot export.
+- Rationale: the host runtime provides Python 3.12.3 with SQLite 3.45.1 and the online backup API; this removes the Node experimental-API warning without adding a package dependency.
+- Consequence: the CLI boundary and regression suite remain replaceable, but database behavior no longer depends on Node's experimental module.
+
+## D-027 — Keep deployable snapshots as repository-owned ordinary files
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2.1; supersedes any Phase 2 interpretation that `current` is a symlink
+- Decision: publish the six-file entity snapshot only under `src/data/career-public`, retain immutable complete version directories, and atomically replace ordinary `current.json` after validation. Never create a link to `/root/robot-data` or another external target.
+- Consequence: Astro and Vercel consume only Git-owned files, builds do not require VPS-local paths, and an incomplete temporary version cannot become current.
+
+## D-028 — Enforce a strict public DTO allowlist and audited controls
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 2.1
+- Decision: define per-file public field allowlists in the export adapter, reject any unknown or forbidden internal key, and append every safety-control update to `system_control_events` through migration 2 triggers.
+- Consequence: raw paths, hashes, review details, errors, confidence values, and local paths cannot cross the public boundary; future collection and publication enablement remain independent, explicit, attributable, and default-off.

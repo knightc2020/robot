@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Status: Phase 2 logical and physical schema implemented; no operational database or factual records exist.
+Status: Phase 2.1 logical/physical schema and empty external staging runtime implemented; no factual records exist.
 
 ## Current content frontmatter
 
@@ -95,12 +95,28 @@ Portfolio project template: target job families, skills demonstrated, deliverabl
 
 - `schema_migrations`: ordered filename/checksum/application ledger.
 - `system_controls`: independently configurable collection and public-snapshot switches; both default disabled.
+- `system_control_events`: trigger-created audit rows for every explicit control update.
 - `pipeline_runs`: immutable-at-source execution metadata for later collection, parsing, validation, review, export, and migration commands.
 - `review_queue`: cross-entity manual-review items with priority, evidence, assignment, and resolution.
 - `project_template_job_families` and `project_template_skills`: normalized project target links.
 
-Phase 2 creates only the `system_controls` singleton and migration ledger. All domain,
+Phase 2.1 creates only the `system_controls` singleton, its control-event audit rows,
+and the migration ledger. All domain,
 pipeline-run, and review-queue tables remain empty.
+
+## Phase 2.1 public DTO boundary
+
+- `companies.json`: `id`, `name`, `countryCode`, `regions`, `websiteUrl`, `careerUrl`.
+- `jobs.json`: `id`, `companyId`, `title`, `location`, `countryCode`, `region`, `employmentType`, `jobFamily`, `sourceUrl`, `postedAt`, `updatedAt`, `status`.
+- `skills.json`: `id`, `name`, `aliases`, `category`, `definition`, `evidenceExpectations`.
+- `role-summary.json`: `role`, `jobCount`, `companyCount`, `skillIds`.
+- `project-templates.json`: `id`, `slug`, `title`, `summary`, `difficulty`, `estimatedEffortHours`, `prerequisites`, `deliverables`, `acceptanceEvidence`, `safetyNotes`, `licenseNotes`, `targetJobFamilies`, `skillIds`.
+
+The exporter rejects every field outside these allowlists. In particular,
+`raw_snapshot_path`, `raw_snapshot_ref`, `content_hash`, internal review fields,
+errors/logs, confidence values, parser/extraction metadata, and local paths are never
+public DTO fields. `manifest.json` contains only snapshot schema/version metadata,
+relative entity filenames, counts, and SHA-256 checksums.
 
 ## Controlled vocabularies to define later
 

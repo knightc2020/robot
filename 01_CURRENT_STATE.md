@@ -271,10 +271,10 @@ Implemented on 2026-07-18 UTC only in `/root/robot-career-refactor` on `refactor
 
 ## 14. Phase 2 career-intelligence data baseline
 
-Phase 2 adds a non-production SQLite data layer only on
-`refactor/career-intelligence`. No operational database was provisioned, no factual
-company/job/skill/project data was added, no collector or schedule was enabled, and
-the Astro site has no database runtime dependency.
+At the Phase 2 closeout, the branch added a non-production SQLite data layer only on
+`refactor/career-intelligence`. No operational database had yet been provisioned,
+no factual company/job/skill/project data was added, no collector or schedule was
+enabled, and the Astro site has no database runtime dependency.
 
 ### Storage and isolation
 
@@ -295,8 +295,9 @@ the Astro site has no database runtime dependency.
   `docs/PHASE_2_DATA_MODEL.md`.
 - Collection and public snapshot publication are independent, reasoned controls;
   both default off. Tests exercise explicit changes only in disposable databases.
-- No real environment was enabled and no operational database file exists in the
-  repository or recommended data paths.
+- At Phase 2 closeout, no real environment was enabled and no operational database
+  file existed in the repository or recommended data paths. Phase 2.1 later created
+  only the formal empty external staging database described below.
 
 ### Backup, snapshot, and concurrency behavior
 
@@ -304,19 +305,66 @@ the Astro site has no database runtime dependency.
   migration checksums, then uses an atomic non-overwriting link. Existing backup
   destinations are rejected.
 - A public snapshot requires the publication switch, uses one consistent read
-  transaction, includes only approved/public rows, validates per-file checksums and
-  record counts, and atomically switches a `current` symlink. Updating an existing
-  current snapshot requires explicit `--replace`.
+  transaction, includes only approved/public rows, and validates per-file checksums
+  and record counts. The original Phase 2 `current` symlink design is superseded in
+  Phase 2.1 by repository-owned ordinary `current.json` replacement.
 - Tests cover two simultaneous readers, reads during a write transaction, WAL,
   busy timeout and a waiting second writer, migration write exclusion, snapshot
   consistency across a concurrent update, append-only change history, backup
   restore/validation, and removal of temporary artifacts.
 
-### Residual Phase 2 constraints
+### Constraints recorded at Phase 2 closeout
 
-- Node 24 still labels the dependency-free `node:sqlite` API experimental; the
-  adapter is isolated and must remain regression-tested during Node upgrades.
+- Node 24 labelled the original dependency-free `node:sqlite` API experimental.
+  Phase 2.1 resolves this risk by replacing that adapter with Python `sqlite3` while
+  retaining and extending the regression coverage.
 - No source registry entry is enabled, no real raw snapshot exists, and no data may
   be published until a later phase separately authorizes collection and publication.
 - Backup retention, pruning, encryption, off-host copying, and production restore
   rehearsal remain later operational work.
+
+## 15. Phase 2.1 career-data runtime hardening
+
+Phase 2.1 resolves the experimental database API and snapshot-delivery risks without
+starting collection. The formal staging database exists, but every factual domain,
+pipeline, and review table is empty. Collection and publication are disabled.
+
+### Runtime and database
+
+- `/root/robot-data/{raw,staging,exports,logs,backups}` now exist outside Git as
+  `root:root` directories with mode `0700`.
+- `/root/robot-data/staging/career.sqlite3` is a regular file with mode `0600`.
+  It has migrations 1 and 2, passes integrity/foreign-key/schema/checksum validation,
+  and contains no company, source, job, skill, project, run, or review data.
+- The formal non-overwriting backup is
+  `/root/robot-data/backups/career-phase-2.1-initial.sqlite3`; an independent restore
+  passed `validate`, and the disposable restore target was removed afterward.
+- Database migration, validation, controls, backup, restore, and snapshot export now
+  use Python 3.12 standard-library `sqlite3`. The Node `node:sqlite` adapter and tests
+  were removed, so the experimental Node API is no longer a runtime dependency.
+
+### Public snapshot boundary
+
+- The only accepted public snapshot root is the repository-owned ordinary directory
+  `src/data/career-public`; neither Astro nor Vercel reads the VPS database or an
+  external path.
+- A complete immutable version contains `manifest.json`, `companies.json`,
+  `jobs.json`, `skills.json`, `role-summary.json`, and `project-templates.json`.
+- Export writes a same-parent temporary directory, validates inventory, checksums,
+  counts, path safety, and strict per-file field allowlists, renames the complete
+  version atomically, then atomically replaces ordinary `current.json`. No symlink
+  or half-written version is a valid input.
+- Raw snapshot paths, content hashes, review/audit details, errors, confidence values,
+  and local paths are forbidden from public DTOs. The checked-in snapshot is empty.
+
+### Phase 2.1 verification and remaining constraints
+
+- Tests cover external path enforcement, modes, migrations/checksums, fail-closed
+  controls, strict DTO allowlists, internal-field exclusion, entity inventory,
+  WAL/read/write behavior, busy timeout, migration write exclusion, consistent
+  snapshots, backup/restore/non-overwrite, Astro imports, and absence of VPS paths in
+  Vercel output.
+- No source is enabled, no collector or schedule exists, no real record was collected,
+  and Phase 3 has not started.
+- Retention, encryption, off-host backup, production restore rehearsal, taxonomy,
+  collector governance, and human-reviewed source registration remain future gates.

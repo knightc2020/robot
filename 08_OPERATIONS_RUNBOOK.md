@@ -26,6 +26,7 @@ npm test --if-present
 npm run content:check
 npm run content:test
 npm run career:db:test
+npm run career:snapshot:check
 npm run build
 git status --short --branch
 git diff --stat
@@ -44,33 +45,56 @@ Phase 0.5 clean-install baseline: `npm ci` succeeded, but npm reported 13 depend
 
 ## Career database operations
 
-Phase 2 provides tooling but does not create an operational database. Every path is
-explicit, absolute, outside Git, and environment-specific. Do not substitute a path
-under `/root/robot`, this refactor worktree, `src/`, `public/`, or `dist/`.
+Phase 2.1 provides a formal empty staging runtime. Database, backup, restore, and
+runtime paths are explicit, absolute, outside Git, and environment-specific. Do not
+substitute a path under `/root/robot`, this refactor worktree, or Hermes. Public
+snapshot output is the sole exception: it must equal the repository-owned
+`src/data/career-public` path, which is validated separately and contains JSON only.
 
 ```bash
 cd /root/robot-career-refactor
+npm run career:db -- runtime-init --root /root/robot-data
+npm run career:db -- runtime-validate --root /root/robot-data
 npm run career:db -- migrate --database /root/robot-data/staging/career.sqlite3
-npm run career:db -- verify --database /root/robot-data/staging/career.sqlite3
+npm run career:db -- validate --database /root/robot-data/staging/career.sqlite3
 npm run career:db -- controls --database /root/robot-data/staging/career.sqlite3 \
-  --collection enabled --reason "Explicit later-phase authorization reference"
+  --collection enabled --reason "Explicit later-phase authorization reference" \
+  --actor "approved-operator"
 npm run career:db -- backup --database /root/robot-data/staging/career.sqlite3 \
-  --output /root/robot-backups/data/YYYY-MM-DD-career.sqlite3
+  --output /root/robot-data/backups/YYYY-MM-DD-career.sqlite3
+npm run career:db -- restore --backup /root/robot-data/backups/YYYY-MM-DD-career.sqlite3 \
+  --database /root/robot-data/staging/YYYY-MM-DD-restore-test.sqlite3
+npm run career:db -- validate \
+  --database /root/robot-data/staging/YYYY-MM-DD-restore-test.sqlite3
+npm run career:db -- controls --database /root/robot-data/staging/career.sqlite3 \
+  --publication enabled --reason "Approved empty snapshot refresh" \
+  --actor "approved-operator"
 npm run career:db -- snapshot --database /root/robot-data/staging/career.sqlite3 \
-  --output /root/robot-data/staging/public-snapshot
-npm run career:db -- snapshot-validate --database /root/robot-data/staging/career.sqlite3 \
-  --output /root/robot-data/staging/public-snapshot
+  --output /root/robot-career-refactor/src/data/career-public --replace
+npm run career:db -- snapshot-validate \
+  --output /root/robot-career-refactor/src/data/career-public
+npm run career:db -- controls --database /root/robot-data/staging/career.sqlite3 \
+  --publication disabled --reason "Snapshot refresh complete" \
+  --actor "approved-operator"
 ```
 
 - Collection and publication default off and must be enabled independently with an
-  explicit value and reason. Phase 2 authorizes neither in a real environment.
+  explicit value, actor, and reason. Migration 2 records each update in
+  `system_control_events`. Phase 2.1 leaves both disabled.
 - Backup output is installed only after full validation and never overwrites an
   existing path; choose a new dated destination.
-- Snapshot publication requires `publication enabled`, emits only approved rows,
-  and creates `current` only after validating a complete immutable version.
-- Updating an existing `current` requires `--replace`; the pointer swap is atomic
-  and older complete versions remain available for rollback.
-- Never copy a database or snapshot into Astro source as a publication shortcut.
+- Restore output also refuses overwrite. Remove a disposable restore-test file only
+  after its independent `validate` succeeds; never remove the formal staging file.
+- Snapshot publication requires `publication enabled`, emits only approved rows and
+  allowlisted fields, builds in a same-parent temporary directory, validates every
+  file/count/checksum/path, and renames a complete immutable version before current
+  changes. Updating existing `current.json` requires `--replace` and uses atomic
+  replacement; `current.json` and all referenced files must be regular repository
+  files, never symlinks.
+- The enable/export/disable example is an operational sequence, not authorization to
+  publish. A failed export must still be followed by an explicit disable command.
+- Never copy the SQLite database, raw records, logs, or an external snapshot target
+  into Astro source. Astro imports the reviewed public DTO files only.
 
 ## Preview
 
@@ -162,13 +186,15 @@ The active Hermes arXiv publisher does not yet emit the Phase 1 `sourceUrls`, `u
 
 ## Phase 2 rollback
 
-- Before any future operational database exists, revert the scoped Phase 2 Git
-  commit; production and `/root/robot` remain unaffected.
+- Before production use, revert scoped feature-branch code through Git; production
+  and `/root/robot` remain unaffected. Do not delete the formal staging database or
+  its backup as a source-code rollback shortcut.
 - After migrations are used in a later environment, never downgrade by deleting or
   editing migration-ledger rows. Stop writers, take a new non-overwriting backup,
   validate restore, and use a reviewed forward migration or restore procedure.
-- Public snapshot rollback is an atomic `current` pointer switch to a previously
-  validated immutable version; no Phase 2 snapshot is connected to production.
+- Public snapshot rollback regenerates or atomically replaces ordinary `current.json`
+  to reference a previously validated repository version; external symlinks are
+  forbidden and no Phase 2.1 snapshot is connected to production.
 
 ## Logs and diagnostics
 
@@ -197,21 +223,27 @@ The following local directories exist as `root:root` with mode `0700`:
 
 They are empty at the Phase 0.5 baseline. Future backups must use dated, non-overwriting names, remain outside Git, avoid printing contents, and define retention and restore tests before production reliance.
 
-## Future staging layout recommendation
+The Phase 2.1 career-data backup uses the separate restricted path
+`/root/robot-data/backups/career-phase-2.1-initial.sqlite3`. It is a validated mode
+`0600` regular file. The older `/root/robot-backups` baseline remains unchanged.
 
-Proposed, not created in Phase 0:
+## Current staging layout
 
 ```text
 /root/robot-career-refactor/           # current refactor branch worktree
 /root/robot/                            # current master/weekly automation worktree
-/root/robot-data/staging/              # staging raw/normalized DB and snapshots
-/root/robot-data/production/           # production DB and snapshots
-/root/robot-logs/staging/               # staging run logs
-/root/robot-logs/production/            # production run logs
-/root/robot-backups/                    # created restricted backup root
+/root/robot-data/raw/                   # restricted future raw input; empty
+/root/robot-data/staging/               # empty migrated career.sqlite3 only
+/root/robot-data/exports/               # restricted non-public export workspace; empty
+/root/robot-data/logs/                  # restricted future data logs; empty
+/root/robot-data/backups/               # validated formal staging backup
+/root/robot-backups/                    # existing Phase 0.5 backup root; unchanged
 ```
 
-Use distinct credentials, database paths/services, log paths, and Vercel environments. These paths are recommendations only and do not exist at baseline.
+All five `/root/robot-data` directories are mode `0700`; the database and formal
+backup are mode `0600`. A production namespace does not exist and must not be
+inferred from this staging layout. Define distinct credentials, paths, retention,
+and restore ownership before any future production authorization.
 
 ## Incident stop conditions
 

@@ -61,6 +61,19 @@ Last updated: 2026-07-18 UTC
 - [x] Keep all factual tables empty; add no collector, schedule, operational database, master change, Hermes change, or production deployment.
 - [x] Review the final diff, create one scoped Phase 2 commit, and push only `refactor/career-intelligence`.
 
+## Phase 2.1 closeout
+
+- [x] Establish `/root/robot-data/{raw,staging,exports,logs,backups}` outside Git with mode `0700`.
+- [x] Create, migrate, validate, back up, restore-test, and permission-check the empty `staging/career.sqlite3` without factual records.
+- [x] Replace the experimental Node SQLite implementation with a Python standard-library adapter and regression suite.
+- [x] Add migration 2 so every explicit safety-control change is auditable and the singleton cannot be deleted.
+- [x] Publish an empty, six-file, repository-owned entity snapshot using strict DTO allowlists, complete validation, immutable versions, and atomic ordinary `current.json` replacement.
+- [x] Prove Astro and Vercel builds consume only repository files and never depend on `/root/robot-data`.
+- [x] Remove only identified Phase 2 test directories from `/tmp`; preserve the formal staging database and backup.
+- [x] Run data tests, content checks, negative tests, Astro build, and `git diff --check`.
+- [x] Create one scoped Phase 2.1 commit and push only `refactor/career-intelligence`.
+- [x] Stop before Phase 3; do not collect, merge, deploy, or alter `/root/robot` or Hermes.
+
 ## Later-phase backlog
 
 - Phase 3: official career-source registry and three-company collector pilot.
@@ -79,7 +92,7 @@ Last updated: 2026-07-18 UTC
 - Vercel preview behavior for feature-branch pushes remains unverified.
 - Backup retention, rotation, encryption, and restore testing are not implemented.
 - The Phase 1 gate is not active in production until an authorized merge to `master`.
-- The Phase 2 schema/tooling is not connected to production; no operational database exists and both future controls default off.
-- Node 24 marks `node:sqlite` experimental, so Node upgrades require the Phase 2 regression suite before use.
+- The empty Phase 2.1 staging database is external to Git and not connected to production; both controls are disabled.
+- Backup retention, encryption, off-host replication, and a production restore rehearsal are not yet defined.
 - Current Hermes research output does not yet emit the new structured source/review metadata and would be blocked by the gate.
 - Retained historical arXiv analyses remain pending human review even though their paper identities are sourced.

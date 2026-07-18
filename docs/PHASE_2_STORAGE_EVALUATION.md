@@ -25,9 +25,11 @@ exports. Phase 2 creates no company, source, job, skill, or project records.
 SQLite is selected for the current single-host, batch-oriented stage. WAL supports
 concurrent reads and a serialized writer; a single file makes staging separation,
 dated backup, restore rehearsal, and local inspection straightforward. The standard
-Node 24 `node:sqlite` module keeps the migration tool dependency-free. The module is
-still marked experimental by Node 24, so it is isolated behind a small repository
-adapter and covered by migration/backup/export tests.
+Phase 2.1 replaces Node 24's experimental `node:sqlite` implementation with the
+Python 3.12 standard-library `sqlite3` module. The host provides Python 3.12.3,
+SQLite 3.45.1, WAL, busy-timeout controls, transactions, and the online backup API.
+The repository keeps all database operations behind one adapter/CLI and adds no
+third-party database dependency.
 
 PostgreSQL is not justified yet: there is no online application server, remote
 multi-writer workload, high-availability requirement, or query scale that needs a
@@ -38,7 +40,10 @@ requirement.
 
 ## Safety and publication boundary
 
-- Operational database files and exports live outside Git and outside Astro inputs.
+- Operational database, raw, staging, log, backup, and non-public export files live
+  outside Git and outside Astro inputs. The reviewed public DTO snapshot is an
+  explicit exception: ordinary JSON files live under `src/data/career-public` so
+  Astro/Vercel never follows a VPS path.
 - `system_controls` defaults `collection_enabled` and `publication_enabled` to `0`.
   The switches can be changed independently only through an explicit command with
   a recorded reason; Phase 2 tests the mechanism but leaves real environments off.
@@ -49,4 +54,5 @@ requirement.
 - `job_changes` is append-only; update and delete triggers fail closed.
 - Backups always refuse overwrite. Snapshot generation writes a temporary immutable
   directory, verifies every checksum and record count, renames it into `versions/`,
-  and atomically switches `current`. Updating `current` requires `--replace`.
+  and atomically replaces ordinary `current.json`. Updating it requires `--replace`;
+  symlinks and external targets are rejected.

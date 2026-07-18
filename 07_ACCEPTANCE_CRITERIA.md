@@ -49,6 +49,22 @@
 - [x] No collector, Hermes change, operational database, public-content change, `master` change, or production deployment is included.
 - [x] One scoped Phase 2 commit is pushed to `origin/refactor/career-intelligence`.
 
+## Phase 2.1 acceptance
+
+- [x] The five `/root/robot-data` runtime subdirectories exist outside Git with mode `0700`.
+- [x] The empty staging database is migrated through version 2, validates, uses mode `0600`, and leaves all factual tables empty.
+- [x] A non-overwriting mode-`0600` backup is validated, restored to an independent database, revalidated, and retained without the disposable restore target.
+- [x] Python 3.12 standard-library `sqlite3` replaces Node's experimental SQLite API for every data operation.
+- [x] The public snapshot contains exactly the manifest and five required entity files under a repository-owned ordinary-file tree.
+- [x] Strict DTO allowlists reject unknown/internal fields, local paths, confidence, audit, error, raw-snapshot, and content-hash data.
+- [x] Snapshot publication uses a temporary directory, full validation, immutable version rename, and atomic ordinary `current.json` replacement; no symlink or external target is accepted.
+- [x] Collection and publication remain independently default-off; explicit changes require actor/reason and are appended to `system_control_events`.
+- [x] Tests cover external paths/modes, migrations/checksums, two readers, read during write, WAL, busy timeout, migration write exclusion, consistent snapshots, backup/restore, no-overwrite, Astro static imports, and Vercel path independence.
+- [x] Content checks, negative tests, Astro production build, generated-output verification, and `git diff --check` pass.
+- [x] Only identified Phase 2 temporary test directories were removed; the formal database and backup remain.
+- [x] One scoped Phase 2.1 commit is pushed to `origin/refactor/career-intelligence`.
+- [x] No real data, Phase 3 work, `master` change, `/root/robot` change, Hermes change, or deployment occurred.
+
 ## Initial product targets
 
 - 20 verified companies in the source registry.
@@ -95,6 +111,6 @@ A job posting is valid only when:
 | Job families | 0 normalized |
 | Standard skills | 0 normalized |
 | Project templates | 0 |
-| Career database | none |
+| Career database | empty external staging SQLite; no factual rows |
 | Career Hermes schedules | none |
-| Automated quality tests | none |
+| Automated quality tests | content, database, snapshot, negative-fixture, and build gates |
