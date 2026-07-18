@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": 900001,
+      "title": "Robotics Software Engineer",
+      "absolute_url": "https://job-boards.example.invalid/fixture/jobs/900001?gh_jid=900001&utm_source=fixture#apply",
+      "location": {"name": "Singapore"}
+    },
+    {
+      "id": 900002,
+      "title": "Robot Test Engineer",
+      "absolute_url": "https://job-boards.example.invalid/fixture/jobs/900002/?gh_jid=900002&utm_campaign=fixture",
+      "location": {"name": "Remote"}
+    }
+  ]
+}

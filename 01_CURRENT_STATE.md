@@ -365,6 +365,97 @@ pipeline, and review table is empty. Collection and publication are disabled.
   snapshots, backup/restore/non-overwrite, Astro imports, and absence of VPS paths in
   Vercel output.
 - No source is enabled, no collector or schedule exists, no real record was collected,
-  and Phase 3 has not started.
+  and Phase 3 had not started at the Phase 2.1 closeout.
 - Retention, encryption, off-host backup, production restore rehearsal, taxonomy,
   collector governance, and human-reviewed source registration remain future gates.
+
+## 16. Phase 3A official recruitment source verification MVP
+
+Phase 3A was authorized on 2026-07-18 as a bounded verification MVP, not as continuous
+collection. The starting branch was `refactor/career-intelligence`, matching
+`origin/refactor/career-intelligence` at `70156a6`. The worktree already contained
+uncommitted Phase 3A code, migration, fixtures, and a reconnaissance plan; those
+changes were preserved and reviewed instead of reset or replaced.
+
+### Starting checks
+
+- `git status` showed modified `package.json`, `scripts/career_db.py`, and
+  `scripts/career_db_test.py`, plus untracked Phase 3A migration/source/fixture files.
+- The starting database suite passed 12/12 tests.
+- The starting source suite passed 15/15 tests.
+- The deterministic content negative test passed.
+- `/root/robot-data/staging/career.sqlite3` is a mode-`0600` external database. A
+  read-only migration-ledger check showed migrations 1 and 2 only; migration 3 has
+  intentionally not been applied to that formal database during development.
+
+### Implemented boundary
+
+- Migration 3 adds `career_source_profiles` and append-only
+  `source_verification_runs` while reusing the existing `companies` and
+  `career_sources` tables. It seeds no company, source, job, or change record.
+- Source status defaults to `candidate`; source collection/publication controls and
+  the base source `enabled` flag remain false. Manual `verified` status cannot enable
+  any of them.
+- The shared adapter contract and staging DTO cover list/detail parsing, detail-link
+  extraction, native-ID extraction, URL normalization, stable job keys, canonical
+  URLs, normalized fields, and content hashes.
+- A synthetic, credential-free Greenhouse-compatible fixture fully exercises the
+  `standard_ats_greenhouse_v1` adapter offline. `official_html_v1` and
+  `official_json_v1` provide only the common interface/defensive parser skeletons;
+  no source-specific success is claimed for them.
+- Live smoke requires `--confirm-live`, makes at most one listing and two detail
+  requests, never paginates, and stops on access barriers, 401/403/429, unknown-domain
+  redirects, or schema drift.
+- Raw responses, parsed JSONL, SHA-256 metadata, and summaries go only to unique,
+  non-overwriting repository-external staging runs. Parsed descriptions redact
+  unnecessary phone and email details.
+- Dry-run reads business-table counts before and after and never writes
+  `job_postings` or `job_changes`; only source verification metadata is recorded.
+
+### Source and live status
+
+The first factual source is now verified: Nuro's official Careers page links jobs by
+Greenhouse `gh_jid`, and the public Greenhouse Job Board API for board token `nuro`
+returned the same native IDs. The external database contains one company and one
+source profile, `nuro-greenhouse`. Its status is `verified`, while the base source
+`enabled`, `collection_enabled`, and `publication_enabled` flags all remain 0.
+
+The source fixture succeeded offline. A bounded live smoke then made one listing and
+two detail requests, all HTTP 200 with no redirect, login, CAPTCHA, 401, 403, or 429.
+The first manual inspection found entity-encoded Greenhouse markup leaking into the
+normalized description. The text-cleaning order was corrected with a regression test,
+and one bounded manual retry produced two clean plain-text descriptions. Both runs
+used unique external staging directories and neither wrote a business table.
+
+Continuous collection, test-job persistence, change/down detection, scheduling,
+Hermes changes, public snapshots, frontend work, production merge, and deployment
+remain outside Phase 3A.
+
+### Phase 3A verification result
+
+- `npm test` passed: the content negative fixture plus 12 database and 19 source
+  unit tests (31 Python tests, 0 failures).
+- A full CLI fixture acceptance run used
+  `/tmp/robot-career-phase3a-acceptance-ChzcXP`: migrations 1–3 applied, two jobs
+  parsed with zero network requests, five mode-`0600` artifacts written outside Git,
+  and both `job_postings` and `job_changes` stayed at 0. The synthetic source remained
+  `candidate` with source controls at 0.
+- A read-only backup copy of the formal migration-2 database was upgraded in
+  `/tmp/robot-career-phase3a-upgrade-NcCuXz`; only migration 3 applied, validation
+  passed at version 3, controls stayed false, and all domain counts stayed 0.
+- `npm run build` passed content, snapshot, Astro, and generated-output checks. It
+  retained the previously documented empty-career-collection/schema warnings.
+- Before the real-source run, the formal database was backed up without overwrite to
+  `/root/robot-data/backups/career-pre-phase3a-live-20260718T114724Z.sqlite3`.
+  The formal `/root/robot-data/staging/career.sqlite3` then migrated from version 2
+  to 3 and passed integrity, foreign-key, checksum, permission, and schema validation.
+- Formal row counts changed from company/source/job/change `0/0/0/0` to `1/1/0/0`.
+  The only factual additions are Nuro and its source registration; `job_postings` and
+  `job_changes` remained empty across fixture and both live runs.
+- The accepted live run is
+  `/root/robot-data/raw/career-sources/nuro-greenhouse/20260718T122539530494Z-2d52325342`.
+  It parsed native Job IDs `7442056` and `7442057`; no duplicate job key, unstable
+  URL, field shift, or residual HTML markup was found. Missing employment type and
+  publication time remain null rather than inferred.
+- `git diff --check` passed. No database, staging artifact, log, credential, or
+  temporary acceptance file is tracked by Git.

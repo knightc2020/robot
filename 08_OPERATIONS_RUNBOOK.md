@@ -26,6 +26,7 @@ npm test --if-present
 npm run content:check
 npm run content:test
 npm run career:db:test
+npm run career:sources:test
 npm run career:snapshot:check
 npm run build
 git status --short --branch
@@ -95,6 +96,53 @@ npm run career:db -- controls --database /root/robot-data/staging/career.sqlite3
   publish. A failed export must still be followed by an explicit disable command.
 - Never copy the SQLite database, raw records, logs, or an external snapshot target
   into Astro source. Astro imports the reviewed public DTO files only.
+
+## Phase 3A source verification operations
+
+Source verification uses `npm run career:sources`. Both the database and staging
+directory must be explicit absolute paths outside Git. Do not use `/root/robot`,
+Hermes paths, the repository, or a symlink as output. The full synthetic fixture
+setup is documented in `docs/阶段3A_官方招聘源接入与采集验证MVP.md`.
+
+```bash
+cd /root/robot-career-refactor
+npm run career:sources -- list \
+  --db /absolute/external/path/career.sqlite3
+npm run career:sources -- dry-run \
+  --db /absolute/external/path/career.sqlite3 \
+  --staging-dir /absolute/external/path/career-source-staging \
+  --source-id SOURCE_ID \
+  --mode fixture
+```
+
+Fixture mode performs no network access. A live smoke is a separate, explicit action:
+
+```bash
+npm run career:sources -- dry-run \
+  --db /absolute/external/path/career.sqlite3 \
+  --staging-dir /absolute/external/path/career-source-staging \
+  --source-id SOURCE_ID \
+  --mode live-smoke \
+  --confirm-live
+```
+
+- Before live smoke, manually establish the company-homepage-to-career-entry chain,
+  record allowed domains, and review robots, terms, login, and captcha status.
+- The command makes one listing and at most two detail requests, serially, with a
+  minimum three-second same-domain interval. It never paginates or runs all sources.
+- Stop and leave the source unverified on 401, 403, 429, login/captcha, unknown-domain
+  redirects, unrecognized structures, or evidence of access restrictions. Do not
+  retry around or bypass the barrier.
+- Review raw and parsed output in the unique external run directory. Do not copy raw
+  pages, parsed JSONL, summaries, or the SQLite database into Git.
+- Dry-run writes only source verification metadata. It must report equal before/after
+  counts for `job_postings` and `job_changes`.
+- `verify --confirm` requires a successful fixture and live run plus manual evidence.
+  It leaves global/source collection, base `enabled`, and publication controls off.
+
+The formal database was at migration 2 when Phase 3A development began. It was backed
+up without overwrite and migrated to version 3 before the Nuro run; never edit the
+migration ledger or overwrite either retained backup.
 
 ## Preview
 

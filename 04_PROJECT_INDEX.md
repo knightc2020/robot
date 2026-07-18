@@ -26,11 +26,15 @@
 | `scripts/content-check.test.mjs` | Temporary negative fixture test proving violations fail and cleanup recovers |
 | `scripts/verify-build.mjs` | Post-build route and withdrawn-content leakage verification |
 | `vercel.json` | Permanent redirects for withdrawn and duplicate legacy URLs; development branch only until authorized merge |
-| `career-intelligence/migrations/` | Checksummed SQLite migrations; version 1 schema plus Phase 2.1 control-audit hardening |
+| `career-intelligence/migrations/` | Checksummed SQLite migrations; base schema, Phase 2.1 control audit, and Phase 3A source verification |
 | `career-intelligence/schema/v1/` | JSON Schema bundle for the seven logical entity contracts |
 | `career-intelligence/README.md` | Explicit-path database, safety-control, backup, and atomic-snapshot commands |
 | `scripts/career_db.py` | Python standard-library SQLite adapter and CLI for runtime, migration, validation, controls, backup/restore, and atomic snapshots |
 | `scripts/career_db_test.py` | Path/mode, schema/checksum, whitelist, WAL/concurrency, migration lock, backup/restore, Astro, and snapshot tests |
+| `scripts/career_sources_cli.py` | Phase 3A disabled source registration, bounded dry-run, list, and manual verification CLI |
+| `scripts/career_sources/` | Shared source adapters, HTTP stop controls, identity/hash model, service, and external staging writer |
+| `scripts/career_sources_test.py` | Offline fixture, identity, path, bounds, stop-condition, verification, and zero-business-write tests |
+| `tests/fixtures/career_sources/` | Synthetic, credential-free source adapter fixtures; never factual source records |
 | `scripts/verify-career-snapshot.mjs` | Build-time ordinary-file, inventory, path, and checksum verification for the current public snapshot |
 | `src/data/career-public/` | Git-owned empty public snapshot: ordinary `current.json` plus immutable complete entity versions |
 | `src/lib/career-public-snapshot.ts` | Astro static loader using only repository-owned JSON imports |
@@ -53,6 +57,8 @@
 | `docs/DUPLICATE_CONTENT_REVIEW.md` | Seven arXiv duplicate groups, canonical choices, and redirect results |
 | `docs/PHASE_2_STORAGE_EVALUATION.md` | Staging, backup, concurrency, querying, export, restore evaluation and SQLite decision |
 | `docs/PHASE_2_DATA_MODEL.md` | Seven logical contracts mapped to every application database table |
+| `docs/阶段3A_官方招聘源接入与采集验证MVP.md` | Phase 3A implementation, CLI, staging contract, safety limits, source status, and next boundary |
+| `docs/PHASE_3A_SOURCE_RECONNAISSANCE_PLAN.md` | Source-selection and compliance reconnaissance companion for Phase 3A |
 
 ## Phase 1 removed paths retained in Git history
 

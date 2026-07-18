@@ -65,6 +65,23 @@
 - [x] One scoped Phase 2.1 commit is pushed to `origin/refactor/career-intelligence`.
 - [x] No real data, Phase 3 work, `master` change, `/root/robot` change, Hermes change, or deployment occurred.
 
+## Phase 3A acceptance
+
+- [x] Existing `companies` and `career_sources` are reused; migration 3 adds only the missing source-verification profile and run ledger.
+- [x] New sources default to `candidate` with base/source collection and publication controls disabled.
+- [x] A shared adapter contract covers list/detail parsing, link/ID extraction, and detail URL normalization.
+- [x] One synthetic Greenhouse-compatible fixture parses two jobs fully offline into the unified staging DTO.
+- [x] Native job IDs are preferred; normalized detail URLs provide the tested fallback; `content_hash` is not an identity key.
+- [x] Raw pages, parsed JSONL, hashes, URLs, statuses, times, and summaries are written only to unique non-overwriting external staging runs.
+- [x] Live smoke requires explicit confirmation and is bounded to one list plus at most two details with no pagination.
+- [x] 401, 403, 429, access barriers, unknown-domain redirects, and unrecognized structures stop the current run without bypass behavior.
+- [x] Dry-run before/after checks and database constraints prove `job_postings` and `job_changes` are unchanged.
+- [x] Manual `verified` requires successful fixture/live runs and recorded review evidence but never enables collection or publication.
+- [x] Automated tests use no real network and cover migration, defaults, fixture parsing, identity, normalization, hashing, paths, confirmation, bounds, stops, no-overwrite, and zero business writes.
+- [x] No company or source URL is fabricated to compensate for the empty factual registry.
+- [x] Nuro was traced from its official Careers page to its Greenhouse board, completed fixture and explicitly confirmed bounded live smoke, passed two-job manual review, and was marked verified with every enable switch off.
+- [x] No scheduler, daemon, queue, continuous collection, browser automation, job persistence, frontend, public snapshot, Hermes change, or deployment is included.
+
 ## Initial product targets
 
 - 20 verified companies in the source registry.

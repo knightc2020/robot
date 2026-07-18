@@ -1,0 +1,29 @@
+{
+  "adapter_name": "standard_ats_greenhouse_v1",
+  "description": "Synthetic, non-company Greenhouse-compatible fixture for offline tests only.",
+  "listing": {
+    "file": "listing.json",
+    "requested_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs?content=true&utm_source=test",
+    "final_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs?content=true",
+    "http_status": 200,
+    "content_type": "application/json"
+  },
+  "details": [
+    {
+      "file": "detail_900001.json",
+      "requested_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900001",
+      "final_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900001",
+      "match_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900001",
+      "http_status": 200,
+      "content_type": "application/json"
+    },
+    {
+      "file": "detail_900002.json",
+      "requested_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900002",
+      "final_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900002",
+      "match_url": "https://boards-api.example.invalid/v1/boards/fixture/jobs/900002",
+      "http_status": 200,
+      "content_type": "application/json"
+    }
+  ]
+}

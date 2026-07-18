@@ -195,3 +195,45 @@
 - Status: accepted and implemented in Phase 2.1
 - Decision: define per-file public field allowlists in the export adapter, reject any unknown or forbidden internal key, and append every safety-control update to `system_control_events` through migration 2 triggers.
 - Consequence: raw paths, hashes, review details, errors, confidence values, and local paths cannot cross the public boundary; future collection and publication enablement remain independent, explicit, attributable, and default-off.
+
+## D-029 — Validate the Phase 3A business loop before a production platform
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3A
+- Decision: implement only disabled source registration, a shared adapter boundary, offline fixture parsing, bounded live-smoke support, repository-external staging, and dry-run/verification commands.
+- Consequence: Phase 3A adds no scheduler, daemon, queue, browser automation, monitoring platform, frontend, or production collector.
+
+## D-030 — Complete one adapter fixture before expanding to three sources
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3A
+- Decision: first complete the Greenhouse-compatible standard ATS fixture. Expand to at most three representative real sources only after the first source completes official-evidence review and live smoke.
+- Consequence: Phase 3A does not invent company or source URLs. Expansion beyond the synthetic fixture began only after Nuro completed official-evidence review and bounded live smoke.
+
+## D-031 — Keep dry-run out of formal job and change tables
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3A
+- Decision: fixture and live-smoke dry-runs may append source-verification metadata and write external staging files, but may not insert or update `job_postings` or `job_changes`.
+- Consequence: every run records before/after counts, and database constraints require them to be equal.
+
+## D-032 — Use source-native identity before normalized URLs
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3A
+- Decision: construct job identity from `source_id` plus the official/ATS native job ID when available, otherwise from `source_id` plus the normalized detail URL. Use `content_hash` only for change detection.
+- Consequence: content edits do not create new job identities, while meaningful non-tracking URL parameters remain available for URL-based identity.
+
+## D-033 — Verification never enables collection or publication
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3A
+- Decision: `verified` is a manually confirmed source state requiring successful fixture and live runs plus recorded evidence; it does not change any collection, base-source, global, or publication switch.
+- Consequence: an HTTP 200, parser success, or `verify --confirm` cannot start collection or publication.
+
+## D-034 — Defer continuous runs and scheduling to the next phase
+
+- Date: 2026-07-18
+- Status: accepted
+- Decision: continuous 7—14 day observation, test-job-table writes, new/change/down detection, and minimal scheduling belong to the next separately authorized phase.
+- Consequence: Phase 3A ended after Nuro completed fixture, explicitly confirmed bounded live smoke, manual review, and verification; no continuous run or scheduler was added.

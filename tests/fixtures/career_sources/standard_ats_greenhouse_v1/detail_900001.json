@@ -1,0 +1,10 @@
+{
+  "id": 900001,
+  "title": "Robotics Software Engineer",
+  "absolute_url": "https://job-boards.example.invalid/fixture/jobs/900001?utm_medium=test&gh_jid=900001",
+  "location": {"name": "Singapore"},
+  "departments": [{"name": "Autonomy"}],
+  "metadata": [{"name": "Employment Type", "value": "Full-time"}],
+  "published_at": "2026-07-01T08:00:00Z",
+  "content": "<p>Build deterministic motion-planning and perception software.</p><p>Work with Python and C++.</p>"
+}

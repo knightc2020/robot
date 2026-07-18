@@ -41,6 +41,8 @@ REQUIRED_TABLES = {
     "schema_migrations",
     "system_controls",
     "system_control_events",
+    "career_source_profiles",
+    "source_verification_runs",
     *DOMAIN_TABLES,
 }
 
@@ -49,6 +51,9 @@ REQUIRED_INDEXES = {
     "companies_lifecycle_index",
     "career_sources_company_index",
     "career_sources_health_index",
+    "career_source_profiles_status_index",
+    "career_source_profiles_controls_index",
+    "source_verification_runs_source_mode_index",
     "job_postings_company_status_index",
     "job_postings_source_status_index",
     "job_postings_hash_index",
@@ -71,6 +76,9 @@ REQUIRED_TRIGGERS = {
     "system_controls_require_audit_metadata",
     "system_controls_record_event",
     "system_controls_no_delete",
+    "career_source_profiles_verified_guard",
+    "source_verification_runs_no_update",
+    "source_verification_runs_no_delete",
 }
 
 PUBLIC_FILES = (

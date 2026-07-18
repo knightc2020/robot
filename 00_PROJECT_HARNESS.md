@@ -10,10 +10,10 @@ Target relationship:
 
 ## Active stage
 
-- Active stage: Phase 2.1 — career-intelligence data runtime hardening.
-- Phase 0, Phase 0.5, Phase 1, and Phase 2 are complete on `refactor/career-intelligence`.
-- Phase 2.1 may harden the existing non-production schema, runtime, backup, and public-snapshot boundary only; Phase 3 collection is not authorized.
-- Public content, production deployment, real data collection, `/root/robot`, and Hermes must remain unchanged.
+- Active stage: Phase 3A accepted — first official recruitment source verified; Phase 3B is not authorized.
+- Phase 0, Phase 0.5, Phase 1, Phase 2, and Phase 2.1 are complete on `refactor/career-intelligence`.
+- The accepted Phase 3A boundary permits disabled source registration, offline fixtures, and explicitly confirmed bounded live smoke only; continuous collection and scheduling remain unauthorized.
+- Public content, production deployment, job/change-table writes, `/root/robot`, and Hermes must remain unchanged.
 
 ## Non-negotiable controls
 

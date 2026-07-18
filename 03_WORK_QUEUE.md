@@ -74,9 +74,25 @@ Last updated: 2026-07-18 UTC
 - [x] Create one scoped Phase 2.1 commit and push only `refactor/career-intelligence`.
 - [x] Stop before Phase 3; do not collect, merge, deploy, or alter `/root/robot` or Hermes.
 
+## Phase 3A closeout
+
+- [x] Preserve and review the existing uncommitted Phase 3A work.
+- [x] Record branch, worktree, baseline tests, and the formal external database migration state.
+- [x] Add a checksummed migration for the disabled source profile and append-only verification-run ledger without seeding factual records.
+- [x] Establish the shared adapter interface and unified staging-job DTO.
+- [x] Fully parse one synthetic Greenhouse-compatible fixture without network access.
+- [x] Implement stable native-ID/normalized-URL job keys and content-only hashes.
+- [x] Implement repository-external, unique, non-overwriting raw/parsed staging output.
+- [x] Add registration, list, fixture/live-smoke dry-run, and manual verify CLI commands.
+- [x] Enforce explicit live confirmation, one-list/two-detail bounds, stop conditions, and zero business-table writes.
+- [x] Update Phase 3A state, decisions, operations, source-registry, README, ignore rules, and stage documentation.
+- [x] Trace Nuro from its official Careers page to its public Greenhouse board, register it disabled, run the authorized fixture and bounded live smoke, inspect two jobs, and manually mark it `verified`.
+- [x] Keep `job_postings` and `job_changes` at zero and keep base collection, source collection, and publication controls disabled after verification.
+- [x] Stop before continuous collection, test-job persistence, change/down detection, scheduling, Hermes, frontend, publication, or deployment.
+
 ## Later-phase backlog
 
-- Phase 3: official career-source registry and three-company collector pilot.
+- Next phase: select three verified sources for 7—14 days of bounded continuous observation, isolated test-job writes, new/change/down detection, and minimal scheduling.
 - Phase 4: JD parsing, deduplication, change history, and review queue.
 - Phase 5: eight job families and normalized skill dictionary.
 - Phase 6: evidence-linked project template library.

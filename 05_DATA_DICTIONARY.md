@@ -1,6 +1,7 @@
 # Data Dictionary
 
-Status: Phase 2.1 logical/physical schema and empty external staging runtime implemented; no factual records exist.
+Status: Phase 3A source-verification extension implemented; the formal external
+database is at migration 3 with one verified company/source and no job/change rows.
 
 ## Current content frontmatter
 
@@ -99,6 +100,27 @@ Portfolio project template: target job families, skills demonstrated, deliverabl
 - `pipeline_runs`: immutable-at-source execution metadata for later collection, parsing, validation, review, export, and migration commands.
 - `review_queue`: cross-entity manual-review items with priority, evidence, assignment, and resolution.
 - `project_template_job_families` and `project_template_skills`: normalized project target links.
+
+## Phase 3A source-verification tables
+
+- `career_source_profiles`: one-to-one extension of the existing `career_sources`
+  row with official/listing URLs, MVP source type, ATS vendor, allowed domains,
+  adapter/parser versions, identity strategy, verification evidence/status, fail-closed
+  source controls, health timestamps, failure reason, review fields, and notes.
+- `source_verification_runs`: append-only fixture/live-smoke result ledger with
+  external summary path, bounded request counts, parsed count, and before/after
+  `job_postings`/`job_changes` counts. Equal-count constraints prevent a successful
+  dry-run record from asserting business-table writes.
+
+The source-profile vocabulary is `candidate`, `verified`, `paused`, or `blocked`.
+The MVP source structures are `official_html`, `standard_ats`, and `official_json`.
+`collection_enabled` and `publication_enabled` default to and remain 0 in Phase 3A.
+
+The non-database staging DTO contains `source_id`, `company_id`,
+`external_job_id`, `job_key`, `title`, `location`, `department`,
+`employment_type`, `description`, `detail_url`, `canonical_url`, `published_at`,
+`content_hash`, and `fetched_at`, plus requested/final URL and identity strategy.
+It is serialized only beneath the explicitly supplied external staging directory.
 
 Phase 2.1 creates only the `system_controls` singleton, its control-event audit rows,
 and the migration ledger. All domain,

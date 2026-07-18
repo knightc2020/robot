@@ -145,7 +145,7 @@ class CareerDatabaseTest(unittest.TestCase):
         runtime = career_db.validate_runtime(self.root)
         self.assertEqual(runtime["checked"][str(self.database)], "0600")
         validation = career_db.validate_database(self.database)
-        self.assertEqual(validation["currentVersion"], 2)
+        self.assertEqual(validation["currentVersion"], 3)
         self.assertFalse(validation["collectionEnabled"])
         self.assertFalse(validation["publicationEnabled"])
         self.assertTrue(all(count == 0 for count in validation["domainCounts"].values()))
