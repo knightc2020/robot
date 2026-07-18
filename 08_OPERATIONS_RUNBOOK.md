@@ -144,6 +144,52 @@ The formal database was at migration 2 when Phase 3A development began. It was b
 up without overwrite and migrated to version 3 before the Nuro run; never edit the
 migration ledger or overwrite either retained backup.
 
+## Phase 3B three-source tracking operations
+
+Phase 3B is allowlisted to Nuro, Zipline, and Agility Robotics. A normal run uses one
+Greenhouse `content=true` list request per source, no detail request, and no pagination.
+Enable only these verified source controls and the audited global collection control;
+do not enable publication:
+
+```bash
+cd /root/robot-career-refactor
+npm run career:sources -- collection-control \
+  --db /root/robot-data/staging/career.sqlite3 \
+  --source-id nuro-greenhouse \
+  --source-id zipline-greenhouse \
+  --source-id agility-robotics-greenhouse \
+  --enable --actor phase3b-operator --confirm
+npm run career:db -- controls \
+  --database /root/robot-data/staging/career.sqlite3 \
+  --collection enabled \
+  --reason "Authorize Phase 3B collection for three verified sources" \
+  --actor phase3b-operator
+```
+
+Run one complete snapshot:
+
+```bash
+npm run career:sources -- collect \
+  --db /root/robot-data/staging/career.sqlite3 \
+  --staging-dir /root/robot-data/raw/career-sources \
+  --all-verified \
+  --confirm-write
+```
+
+The command refuses repository-local database/staging paths, disabled or unverified
+sources, publication enablement, missing `--confirm-write`, and a pre-existing UTC-day
+summary. A source failure never advances missing/closed state for that source. Inspect
+the external `daily-summaries/YYYY-MM-DD/summary.{json,md}` after every run.
+
+Cron example only; it has not been installed:
+
+```cron
+0 2 * * * /usr/bin/flock -n /root/robot-data/logs/career-phase3b.lock /usr/bin/bash -lc 'cd /root/robot-career-refactor && PATH=/root/.nvm/versions/node/v24.12.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /root/.nvm/versions/node/v24.12.0/bin/npm run career:sources -- collect --db /root/robot-data/staging/career.sqlite3 --staging-dir /root/robot-data/raw/career-sources --all-verified --confirm-write >> /root/robot-data/logs/career-phase3b-$(/usr/bin/date -u +\%F).log 2>&1'
+```
+
+See `docs/阶段3B_三来源岗位持续跟踪MVP.md` for the transition definitions,
+baseline result, failure behavior, and current limitations.
+
 ## Preview
 
 ```bash

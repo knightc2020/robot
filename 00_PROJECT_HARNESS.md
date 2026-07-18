@@ -10,10 +10,10 @@ Target relationship:
 
 ## Active stage
 
-- Active stage: Phase 3A accepted — first official recruitment source verified; Phase 3B is not authorized.
+- Active stage: Phase 3B tracking MVP implemented; first three-source baseline completed and natural-change observation is pending.
 - Phase 0, Phase 0.5, Phase 1, Phase 2, and Phase 2.1 are complete on `refactor/career-intelligence`.
-- The accepted Phase 3A boundary permits disabled source registration, offline fixtures, and explicitly confirmed bounded live smoke only; continuous collection and scheduling remain unauthorized.
-- Public content, production deployment, job/change-table writes, `/root/robot`, and Hermes must remain unchanged.
+- Phase 3B permits one-shot collection and job/change-table writes only for the three verified Greenhouse sources; no fourth source or new adapter is authorized.
+- Public content, production deployment, `/root/robot`, Hermes, and system cron remain unchanged.
 
 ## Non-negotiable controls
 

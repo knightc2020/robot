@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "test": "npm run content:test && npm run career:db:test && npm run career:sources:test",
+    "test": "npm run content:test && npm run career:db:test && npm run career:sources:test && npm run career:tracking:test",
     "dev": "astro dev",
     "content:check": "node scripts/content-check.mjs",
     "content:test": "node scripts/content-check.test.mjs",
@@ -11,6 +11,7 @@
     "career:db:test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts/career_db_test.py",
     "career:sources": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/career_sources_cli.py",
     "career:sources:test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts/career_sources_test.py",
+    "career:tracking:test": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts/career_tracking_test.py",
     "career:snapshot:check": "node scripts/verify-career-snapshot.mjs",
     "build": "npm run content:check && npm run career:snapshot:check && astro build && node scripts/verify-build.mjs",
     "preview": "astro preview",

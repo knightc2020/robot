@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI for Phase 3A recruitment-source registration and bounded dry-runs."""
+"""CLI for recruitment-source verification and Phase 3B one-shot tracking."""
 
 from __future__ import annotations
 
@@ -20,6 +20,12 @@ from career_sources.service import (
     verify_source,
 )
 from career_sources.staging import StagingError
+from career_sources.tracking import (
+    PHASE3B_SOURCE_IDS,
+    TrackingError,
+    collect,
+    set_collection_enabled,
+)
 
 
 def _print_json(value: Any) -> None:
@@ -28,7 +34,7 @@ def _print_json(value: Any) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Phase 3A official recruitment source verification CLI."
+        description="Official recruitment source verification and tracking CLI."
     )
     commands = parser.add_subparsers(dest="command", required=True)
 
@@ -91,6 +97,31 @@ def build_parser() -> argparse.ArgumentParser:
     verify.add_argument("--source-id", required=True)
     verify.add_argument("--actor", required=True)
     verify.add_argument("--confirm", action="store_true")
+
+    source_control = commands.add_parser(
+        "collection-control", help="Explicitly enable or disable Phase 3B source collection"
+    )
+    source_control.add_argument("--db", required=True)
+    source_control.add_argument(
+        "--source-id", action="append", required=True, choices=PHASE3B_SOURCE_IDS
+    )
+    switch = source_control.add_mutually_exclusive_group(required=True)
+    switch.add_argument("--enable", action="store_true")
+    switch.add_argument("--disable", action="store_true")
+    source_control.add_argument("--actor", required=True)
+    source_control.add_argument("--confirm", action="store_true")
+
+    collect_command = commands.add_parser(
+        "collect", help="Run one complete Phase 3B Greenhouse snapshot"
+    )
+    collect_command.add_argument("--db", required=True)
+    collect_command.add_argument("--staging-dir", required=True)
+    source_selection = collect_command.add_mutually_exclusive_group(required=True)
+    source_selection.add_argument(
+        "--source-id", action="append", choices=PHASE3B_SOURCE_IDS
+    )
+    source_selection.add_argument("--all-verified", action="store_true")
+    collect_command.add_argument("--confirm-write", action="store_true")
     return parser
 
 
@@ -144,16 +175,32 @@ def main(argv: list[str] | None = None) -> int:
                 actor=args.actor,
                 confirm=args.confirm,
             )
+        elif args.command == "collection-control":
+            result = set_collection_enabled(
+                args.db,
+                source_ids=args.source_id,
+                enabled=args.enable,
+                actor=args.actor,
+                confirm=args.confirm,
+            )
+        elif args.command == "collect":
+            result = collect(
+                args.db,
+                args.staging_dir,
+                source_ids=list(PHASE3B_SOURCE_IDS) if args.all_verified else args.source_id,
+                confirm_write=args.confirm_write,
+            )
         else:  # pragma: no cover - argparse enforces the command.
             raise AssertionError(args.command)
         _print_json(result)
-        return 0
+        return 2 if result.get("result") == "partial_failure" else 0
     except (
         AdapterError,
         career_db.CareerDataError,
         HttpClientError,
         SourceServiceError,
         StagingError,
+        TrackingError,
         ValueError,
     ) as error:
         print(f"career-sources: {error}", file=sys.stderr)

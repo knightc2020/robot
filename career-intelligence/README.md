@@ -1,8 +1,9 @@
 # Career Intelligence Data Layer
 
-Phase 3A adds a fail-closed official-recruitment-source registry and bounded dry-run
-verification flow to the versioned, non-production career-intelligence data layer.
-It does not schedule collection, write job/change records, or deploy a public site.
+Phase 3B adds one-shot change tracking for the three verified Greenhouse sources to
+the Phase 3A source-verification flow. It writes internal job/change state only after
+explicit collection controls and `--confirm-write`; it does not install scheduling,
+publish jobs, or deploy a public site.
 
 ## Layout
 
@@ -10,9 +11,10 @@ It does not schedule collection, write job/change records, or deploy a public si
 - `schema/v1/`: versioned JSON Schema contracts for the seven domain entities.
 - `../scripts/career_db.py`: Python standard-library SQLite adapter and explicit-path CLI.
 - `../scripts/career_db_test.py`: runtime, migration, constraint, concurrency, backup, restore, DTO, Astro, and export tests.
-- `../scripts/career_sources_cli.py`: source registration, fixture/live-smoke dry-run, and manual verification CLI.
-- `../scripts/career_sources/`: shared adapters, safe HTTP client, identity model, service, and external staging writer.
+- `../scripts/career_sources_cli.py`: source verification, collection controls, and one-shot tracking CLI.
+- `../scripts/career_sources/`: shared adapters, safe HTTP client, identity model, external staging, and tracking service.
 - `../scripts/career_sources_test.py`: offline migration, parsing, identity, bounds, stop-condition, and zero-business-write tests.
+- `../scripts/career_tracking_test.py`: offline baseline, transition, failure-protection, idempotency, and summary tests.
 - `../tests/fixtures/career_sources/`: synthetic, credential-free adapter fixtures.
 - `../scripts/verify-career-snapshot.mjs`: build-time verification of repository-owned snapshot files.
 - `../src/data/career-public/`: ordinary current descriptor and immutable public entity versions.
@@ -52,8 +54,9 @@ are rejected.
 Collection and publication default independently to disabled. The `controls`
 command requires an explicit setting, reason, and attributable actor; migration 2
 records every update. Publication must be enabled before snapshot generation.
-Phase 3A also leaves both global switches disabled. Source verification never enables
-collection or publication.
+Phase 3A leaves both global switches disabled and source verification never enables
+either one. Phase 3B explicitly enables collection only for its three allowlisted
+verified sources; publication remains disabled globally and per source.
 
 ## Phase 3A source verification
 
@@ -90,6 +93,31 @@ are written under a unique non-overwriting run directory. Dry-runs record only
 verification metadata; before/after row counts prove `job_postings` and `job_changes`
 are unchanged. See `../docs/阶段3A_官方招聘源接入与采集验证MVP.md` for the complete
 offline setup, source prerequisites, and safety limits.
+
+## Phase 3B one-shot tracking
+
+```bash
+npm run career:sources -- collection-control \
+  --db /root/robot-data/staging/career.sqlite3 \
+  --source-id nuro-greenhouse \
+  --source-id zipline-greenhouse \
+  --source-id agility-robotics-greenhouse \
+  --enable --actor phase3b-operator --confirm
+npm run career:db -- controls \
+  --database /root/robot-data/staging/career.sqlite3 \
+  --collection enabled \
+  --reason "Authorize Phase 3B collection for three verified sources" \
+  --actor phase3b-operator
+npm run career:sources -- collect \
+  --db /root/robot-data/staging/career.sqlite3 \
+  --staging-dir /root/robot-data/raw/career-sources \
+  --all-verified --confirm-write
+```
+
+Each source receives one `content=true` list request and no detail requests. A failed
+source does not advance missing/closed state. Daily JSON and Markdown summaries are
+external and non-overwriting. See `../docs/阶段3B_三来源岗位持续跟踪MVP.md` for baseline,
+transition, cron-example, and failure rules.
 
 Public files are `manifest.json`, `companies.json`, `jobs.json`, `skills.json`,
 `role-summary.json`, and `project-templates.json`. Only per-file allowlisted DTO

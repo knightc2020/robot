@@ -237,3 +237,31 @@
 - Status: accepted
 - Decision: continuous 7—14 day observation, test-job-table writes, new/change/down detection, and minimal scheduling belong to the next separately authorized phase.
 - Consequence: Phase 3A ended after Nuro completed fixture, explicitly confirmed bounded live smoke, manual review, and verification; no continuous run or scheduler was added.
+
+## D-035 — Treat the first complete snapshot as a baseline
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3B
+- Decision: when a tracked source has no persisted jobs, import its complete successful snapshot as a baseline and record `baseline_import_count` without generating `added` events.
+- Consequence: the 280 jobs that predated tracking are not misrepresented as newly posted on the baseline date; subsequent unseen job keys generate `added` normally.
+
+## D-036 — Close only after two consecutive successful absences
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3B
+- Decision: the first absence in a complete successful source snapshot changes an open job to `missing`; only a second consecutive absence in another complete successful snapshot changes it to `closed`.
+- Consequence: a single source-side delay or transient omission cannot immediately close a job, and a returning missing/closed identity generates `reopened`.
+
+## D-037 — Never infer absence from a failed source run
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3B
+- Decision: each verified Greenhouse source receives exactly one `content=true` list request per run and no detail requests. Request, barrier, parsing, duplicate, or completeness failure records a source failure and skips all missing/closed evaluation for that source.
+- Consequence: network or schema failures cannot be converted into a false mass closure; other successful sources in the same one-shot run can still advance.
+
+## D-038 — Enable collection narrowly and keep publication off
+
+- Date: 2026-07-18
+- Status: accepted and implemented in Phase 3B
+- Decision: allow source collection only for the three explicitly allowlisted, manually verified Greenhouse sources, require an explicit source-control command plus audited global collection control, and keep global/source publication disabled.
+- Consequence: Phase 3B can write internal job/change tables without publishing jobs or authorizing a fourth source, new adapter, frontend, or scheduler installation.

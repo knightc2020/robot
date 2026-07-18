@@ -116,15 +116,34 @@ The source-profile vocabulary is `candidate`, `verified`, `paused`, or `blocked`
 The MVP source structures are `official_html`, `standard_ats`, and `official_json`.
 `collection_enabled` and `publication_enabled` default to and remain 0 in Phase 3A.
 
+## Phase 3B tracking extensions
+
+Migration 4 keeps the existing business tables. `job_postings` adds
+`department_text`, `canonical_url`, and `consecutive_missing_count`; its existing
+`job_id`, source native ID, collection timestamps, lifecycle, content hash, raw
+reference, and parser metadata carry the remaining tracking state. `active`,
+`missing`, and `closed` are the physical equivalents of open, missing, and closed.
+
+`job_changes` adds the Phase 3B event names `added`, `updated`, `missing`, `closed`,
+and `reopened`, plus `run_id` referencing `pipeline_runs`. Existing append-only
+triggers remain in force. `changed_fields_json` is an object whose keys identify the
+fields that changed.
+
+Migration 4 permits `career_source_profiles.collection_enabled=1` only when the
+profile is verified. `publication_enabled` remains constrained to 0. The Phase 3B
+CLI further allowlists only Nuro, Zipline, and Agility Robotics and requires global
+collection enabled/global publication disabled.
+
 The non-database staging DTO contains `source_id`, `company_id`,
 `external_job_id`, `job_key`, `title`, `location`, `department`,
 `employment_type`, `description`, `detail_url`, `canonical_url`, `published_at`,
 `content_hash`, and `fetched_at`, plus requested/final URL and identity strategy.
 It is serialized only beneath the explicitly supplied external staging directory.
 
-Phase 2.1 creates only the `system_controls` singleton, its control-event audit rows,
-and the migration ledger. All domain,
-pipeline-run, and review-queue tables remain empty.
+Phase 2.1 originally created only the `system_controls` singleton, its control-event
+audit rows, and the migration ledger. Phase 3B now stores the first internal baseline
+in `job_postings` and one collection record in `pipeline_runs`; these remain outside
+the public DTO boundary.
 
 ## Phase 2.1 public DTO boundary
 

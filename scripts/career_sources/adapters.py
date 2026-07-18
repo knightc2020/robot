@@ -318,11 +318,10 @@ class StandardAtsAdapter(BaseSourceAdapter):
             raise SchemaDriftError("Greenhouse listing URL must end with /jobs")
         return urlunsplit((parsed.scheme, parsed.netloc, f"{path}/{quote(job_id)}", "", ""))
 
-    def parse_listing(self, page: HttpPage, source: dict[str, Any]) -> list[dict[str, Any]]:
+    def _listing_jobs(self, page: HttpPage) -> list[dict[str, Any]]:
         jobs = self._json(page).get("jobs")
         if not isinstance(jobs, list) or not jobs:
             raise SchemaDriftError("Greenhouse listing is missing jobs")
-        parsed: list[dict[str, Any]] = []
         seen_ids: set[str] = set()
         for job in jobs:
             if not isinstance(job, dict) or job.get("id") is None or not job.get("absolute_url"):
@@ -331,6 +330,28 @@ class StandardAtsAdapter(BaseSourceAdapter):
             if job_id in seen_ids:
                 raise SchemaDriftError(f"Greenhouse listing contains duplicate job id: {job_id}")
             seen_ids.add(job_id)
+        return jobs
+
+    @staticmethod
+    def _employment_type(job: dict[str, Any]) -> str | None:
+        metadata = job.get("metadata")
+        if not isinstance(metadata, list):
+            return None
+        for item in metadata:
+            if not isinstance(item, dict):
+                continue
+            name = str(item.get("name", "")).strip().lower()
+            if name not in {"employment type", "time type"}:
+                continue
+            value = item.get("value")
+            return ", ".join(map(str, value)) if isinstance(value, list) else _optional_string(value)
+        return None
+
+    def parse_listing(self, page: HttpPage, source: dict[str, Any]) -> list[dict[str, Any]]:
+        jobs = self._listing_jobs(page)
+        parsed: list[dict[str, Any]] = []
+        for job in jobs:
+            job_id = str(job["id"])
             location = job.get("location", {})
             parsed.append({
                 "external_job_id": job_id,
@@ -339,6 +360,61 @@ class StandardAtsAdapter(BaseSourceAdapter):
                 "title": str(job.get("title", "")),
                 "locations": [location.get("name")] if isinstance(location, dict) and location.get("name") else [],
             })
+        return parsed
+
+    def parse_complete_listing(
+        self, page: HttpPage, source: dict[str, Any]
+    ) -> list[StagingJob]:
+        """Parse a Greenhouse ``content=true`` response without detail requests."""
+
+        jobs = self._listing_jobs(page)
+        parsed: list[StagingJob] = []
+        for job in jobs:
+            if not _optional_string(job.get("title")):
+                raise SchemaDriftError("Greenhouse listing job is missing title")
+            if not isinstance(job.get("content"), str):
+                raise SchemaDriftError(
+                    "Greenhouse listing is missing content; content=true is required"
+                )
+            job_id = str(job["id"])
+            detail_url = normalize_detail_url(str(job["absolute_url"]))
+            location = job.get("location", {})
+            locations = (
+                [str(location["name"])]
+                if isinstance(location, dict) and _optional_string(location.get("name"))
+                else []
+            )
+            normalized = {
+                "title": str(job["title"]).strip(),
+                "location": " | ".join(normalized_strings(locations)) or None,
+                "department": _first_named(job.get("departments")),
+                "employment_type": self._employment_type(job),
+                "description": plain_text(str(job["content"])),
+                "published_at": _optional_string(
+                    job.get("published_at") or job.get("first_published")
+                ),
+            }
+            parsed.append(
+                StagingJob(
+                    source_id=source["source_id"],
+                    company_id=source["company_id"],
+                    external_job_id=job_id,
+                    job_key=build_job_key(source["source_id"], job_id, detail_url),
+                    title=normalized["title"],
+                    location=normalized["location"],
+                    department=normalized["department"],
+                    employment_type=normalized["employment_type"],
+                    description=normalized["description"],
+                    detail_url=detail_url,
+                    canonical_url=detail_url,
+                    published_at=normalized["published_at"],
+                    content_hash=job_content_hash(normalized),
+                    fetched_at=page.fetched_at,
+                    requested_url=page.requested_url,
+                    final_url=page.final_url,
+                    identity_strategy="native_job_id",
+                )
+            )
         return parsed
 
     def parse_detail(
@@ -350,20 +426,12 @@ class StandardAtsAdapter(BaseSourceAdapter):
         if str(job["id"]) != str(listing_item.get("external_job_id")):
             raise IdentityError("Greenhouse listing and detail job IDs do not match")
         location = job.get("location", {})
-        employment_type = None
-        metadata = job.get("metadata")
-        if isinstance(metadata, list):
-            for item in metadata:
-                if isinstance(item, dict) and str(item.get("name", "")).strip().lower() == "employment type":
-                    value = item.get("value")
-                    employment_type = ", ".join(map(str, value)) if isinstance(value, list) else _optional_string(value)
-                    break
         return {
             "external_job_id": str(job["id"]),
             "title": str(job["title"]),
             "locations": [location.get("name")] if isinstance(location, dict) and location.get("name") else listing_item.get("locations", []),
             "department": _first_named(job.get("departments")),
-            "employment_type": employment_type,
+            "employment_type": self._employment_type(job),
             "description": job.get("content"),
             "published_at": job.get("published_at"),
             "canonical_url": job.get("absolute_url") or listing_item.get("detail_url") or page.final_url,

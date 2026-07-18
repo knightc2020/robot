@@ -105,7 +105,7 @@ class CareerSourcesTest(unittest.TestCase):
 
     def test_migration_and_source_defaults_are_fail_closed(self) -> None:
         validation = career_db.validate_database(self.database)
-        self.assertEqual(validation["currentVersion"], 3)
+        self.assertEqual(validation["currentVersion"], 4)
         source = load_source(self.database, "fixture-greenhouse")
         self.assertEqual(source["status"], "candidate")
         self.assertEqual(source["adapter_test_status"], "pending")

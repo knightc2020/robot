@@ -90,9 +90,28 @@ Last updated: 2026-07-18 UTC
 - [x] Keep `job_postings` and `job_changes` at zero and keep base collection, source collection, and publication controls disabled after verification.
 - [x] Stop before continuous collection, test-job persistence, change/down detection, scheduling, Hermes, frontend, publication, or deployment.
 
+## Phase 3B development and baseline closeout
+
+- [x] Create the selective Phase 3A replication checkpoint `a599002` without pushing.
+- [x] Reuse the existing posting, change, and pipeline-run tables through minimal migration 4.
+- [x] Restrict collection to the three verified Greenhouse source IDs.
+- [x] Parse all jobs from one `content=true` response per source with no detail requests or pagination.
+- [x] Implement baseline, added, updated/changed-fields, missing, closed, and reopened behavior.
+- [x] Ensure a failed source cannot increment missing counts or close its jobs.
+- [x] Generate non-overwriting repository-external JSON and Markdown daily summaries.
+- [x] Add explicit source collection controls and require `--confirm-write` for business writes.
+- [x] Pass offline baseline/transition/failure/idempotency/path/publication tests.
+- [x] Rehearse migration 3→4 against a consistent copy of the populated formal database.
+- [x] Create and validate the timestamped formal pre-migration backup.
+- [x] Migrate and validate the formal external database at version 4.
+- [x] Complete the real baseline: Nuro 95, Zipline 131, Agility Robotics 54; 280 total.
+- [x] Confirm zero duplicate job keys, zero missing counts, zero baseline change events, and publication off.
+- [x] Generate the first external daily summary and document a cron example without installing it.
+- [ ] Observe natural changes once daily for 7—14 days; do not simulate formal changes.
+
 ## Later-phase backlog
 
-- Next phase: select three verified sources for 7—14 days of bounded continuous observation, isolated test-job writes, new/change/down detection, and minimal scheduling.
+- Current observation: run the three verified sources once daily for 7—14 days and review natural added/updated/missing/closed/reopened events.
 - Phase 4: JD parsing, deduplication, change history, and review queue.
 - Phase 5: eight job families and normalized skill dictionary.
 - Phase 6: evidence-linked project template library.
@@ -108,7 +127,7 @@ Last updated: 2026-07-18 UTC
 - Vercel preview behavior for feature-branch pushes remains unverified.
 - Backup retention, rotation, encryption, and restore testing are not implemented.
 - The Phase 1 gate is not active in production until an authorized merge to `master`.
-- The empty Phase 2.1 staging database is external to Git and not connected to production; both controls are disabled.
+- The formal staging database remains external to Git and disconnected from public delivery; Phase 3B collection is enabled only for three verified sources, while publication remains disabled.
 - Backup retention, encryption, off-host replication, and a production restore rehearsal are not yet defined.
 - Current Hermes research output does not yet emit the new structured source/review metadata and would be blocked by the gate.
 - Retained historical arXiv analyses remain pending human review even though their paper identities are sourced.

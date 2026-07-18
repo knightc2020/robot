@@ -469,3 +469,53 @@ remain outside Phase 3A.
 - After checkpoint `850295d`, the same adapter was replicated to Zipline and Agility
   Robotics. Final company/source/job/change counts are `3/3/0/0`; all three sources
   have successful fixture and live runs and remain disabled despite verification.
+
+## 17. Phase 3B three-source job tracking MVP
+
+Phase 3B was authorized on 2026-07-18 for only the three verified Greenhouse sources.
+Checkpoint `a599002` first preserved the final Phase 3A replication changes without
+including a database, raw page, staging output, log, credential, or unrelated edit.
+
+Migration 4 reuses `job_postings`, `job_changes`, and `pipeline_runs`. It adds only
+department, canonical URL, and consecutive-missing fields to the posting table,
+associates change events with an existing pipeline run, and permits collection to be
+explicitly enabled only for verified sources. The source and global publication
+controls remain off.
+
+The Phase 3B collector is allowlisted to `nuro-greenhouse`, `zipline-greenhouse`, and
+`agility-robotics-greenhouse`. It makes one `content=true` list request per source,
+zero detail requests, and no pagination. A failed source cannot increment missing
+counts or close jobs belonging to that source; successful sources in the same run can
+still be processed.
+
+Ten new offline tracking tests prove baseline, added, updated with concrete changed
+fields, first missing, second-missing close, failed-source protection, reopened,
+explicit-write confirmation, publication isolation, cross-source identity,
+idempotency, external paths, summaries, and non-overwrite behavior. The complete
+test run passed 12 database, 21 source, and 10 tracking tests plus the content negative
+fixture.
+
+Before the formal upgrade, migration 4 was rehearsed on an online SQLite backup copy
+of the version-3 database. The first rehearsal correctly exposed the existing
+verification-run foreign key; the migration was corrected to preserve and rebuild the
+same append-only table inside one transaction with foreign keys enabled. The second
+rehearsal retained all 3 companies, 3 sources, and 8 verification rows and passed
+foreign-key and full database validation.
+
+The formal pre-migration backup is
+`/root/robot-data/backups/career-pre-phase3b-baseline-20260718T132025Z.sqlite3`.
+The formal database migrated from version 3 to 4 and validated before collection.
+Only the three verified sources and global collection control were then explicitly
+enabled; global and source publication stayed 0.
+
+The first real run, `phase3b-20260718T132452151113Z-7d88443f3f`, completed as a
+baseline with Nuro 95, Zipline 131, and Agility Robotics 54 jobs, exactly 280 total.
+All 280 rows are active with missing count 0, no duplicate job key or within-source
+native ID, no detected HTML-like description residue, and publication status
+`blocked`. The baseline intentionally generated 0 `job_changes`; its historical rows
+are represented by `baseline_import_count=280`, not by false same-day additions.
+
+The first Markdown and JSON summary is external at
+`/root/robot-data/raw/career-sources/daily-summaries/2026-07-18/`. No cron was
+installed. Real added/updated/missing/closed/reopened events now require 7—14 days of
+natural observations; the formal database was not modified to simulate a second day.
