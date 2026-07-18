@@ -4,11 +4,12 @@ Baseline date: 2026-07-18 UTC
 
 ## Progress
 
-- Verified career-company sources: **1 / 20**.
+- Verified career-company sources: **3 / 20**.
 - Stable company collectors: **0 / 10**.
-- Registered factual career-company sources: **1** (`nuro-greenhouse`).
+- Registered factual career-company sources: **3** (`nuro-greenhouse`, `zipline-greenhouse`, `agility-robotics-greenhouse`).
 - Offline adapter fixtures passing: **1** (`standard_ats_greenhouse_v1`, synthetic Greenhouse-compatible JSON).
-- Accepted live smoke sources: **1** (`nuro-greenhouse`; one repair retry is retained as a separate non-overwriting run).
+- Factual source fixture runs passing: **3 / 3**.
+- Accepted live smoke sources: **3** (all use `standard_ats_greenhouse_v1`; repair attempts remain separate non-overwriting runs).
 - No collector is enabled. Verification records source identity and parser acceptance only.
 
 ## Registration requirements
@@ -48,6 +49,8 @@ Baseline date: 2026-07-18 UTC
 | Source ID | Company | Official evidence | Listing endpoint / type | Allowed domains | Verification result | Enabled |
 |---|---|---|---|---|---|---|
 | `nuro-greenhouse` | Nuro | `https://www.nuro.ai/careers` exposes Greenhouse `gh_jid` jobs | `https://boards-api.greenhouse.io/v1/boards/nuro/jobs?content=true`; `standard_ats` / Greenhouse | `boards-api.greenhouse.io`, `www.nuro.ai` | Fixture passed; bounded live smoke passed; native IDs `7442056` and `7442057` manually reviewed; verified 2026-07-18 UTC | Base/source collection 0; publication 0 |
+| `zipline-greenhouse` | Zipline | `https://www.zipline.com/careers` links to official Open Roles; board results return `zipline.com` `gh_jid` URLs | `https://boards-api.greenhouse.io/v1/boards/flyzipline/jobs?content=true`; `standard_ats` / Greenhouse | `boards-api.greenhouse.io`, `www.zipline.com` | Fixture passed; bounded live smoke passed; native IDs `7776209003` and `7765099003` manually reviewed; verified 2026-07-18 UTC | Base/source collection 0; publication 0 |
+| `agility-robotics-greenhouse` | Agility Robotics | `https://www.agilityrobotics.com/careers` directly references Greenhouse board `agilityrobotics` | `https://boards-api.greenhouse.io/v1/boards/agilityrobotics/jobs?content=true`; `standard_ats` / Greenhouse | `boards-api.greenhouse.io`, `www.agilityrobotics.com` | Fixture passed; bounded live smoke passed after correcting a JSON prose false positive; native IDs `5986011004` and `6101794004` manually reviewed; verified 2026-07-18 UTC | Base/source collection 0; publication 0 |
 
 ## Candidate-company entry template
 

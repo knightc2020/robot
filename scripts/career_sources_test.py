@@ -20,6 +20,7 @@ from career_sources.http_client import (  # noqa: E402
     RawHttpResponse,
     SafeHttpClient,
     SsrfProtectionError,
+    detect_access_barrier,
 )
 from career_sources.models import (  # noqa: E402
     build_job_key,
@@ -199,6 +200,19 @@ class CareerSourcesTest(unittest.TestCase):
         text = plain_text("&lt;p&gt;&lt;strong&gt;Build robots&lt;/strong&gt; safely.&lt;/p&gt;")
         self.assertEqual(text, "Build robots safely.")
         self.assertNotIn("<p>", text or "")
+
+    def test_json_job_content_does_not_trigger_a_false_login_barrier(self) -> None:
+        body = json.dumps({"jobs": [{"content": "Sign in to the weekly team meeting."}]}).encode()
+        self.assertIsNone(
+            detect_access_barrier("application/json", body, "https://jobs.example.com/jobs")
+        )
+
+    def test_json_error_still_triggers_a_login_barrier(self) -> None:
+        body = json.dumps({"error": "Login required"}).encode()
+        self.assertEqual(
+            detect_access_barrier("application/json", body, "https://jobs.example.com/jobs"),
+            "login",
+        )
 
     def test_repository_internal_staging_is_rejected(self) -> None:
         with self.assertRaisesRegex(career_db.CareerDataError, "outside the Git worktree"):

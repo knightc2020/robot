@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ipaddress
+import json
 import socket
 import ssl
 import time
@@ -147,6 +148,18 @@ def detect_access_barrier(content_type: str, body: bytes, final_url: str) -> str
     if not (content_type.startswith("text/") or "json" in content_type):
         return None
     sample = body[:262144].decode("utf-8", errors="ignore").lower()
+    if "json" in content_type:
+        try:
+            payload = json.loads(body)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            pass
+        else:
+            if isinstance(payload, dict):
+                sample = " ".join(
+                    str(payload[key])
+                    for key in ("error", "message", "detail", "error_description")
+                    if payload.get(key) is not None
+                ).lower()
     final_path = urlsplit(final_url).path.lower()
     signals = {
         "captcha": ("captcha", "hcaptcha", "recaptcha"),

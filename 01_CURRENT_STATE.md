@@ -414,11 +414,12 @@ changes were preserved and reviewed instead of reset or replaced.
 
 ### Source and live status
 
-The first factual source is now verified: Nuro's official Careers page links jobs by
-Greenhouse `gh_jid`, and the public Greenhouse Job Board API for board token `nuro`
-returned the same native IDs. The external database contains one company and one
-source profile, `nuro-greenhouse`. Its status is `verified`, while the base source
-`enabled`, `collection_enabled`, and `publication_enabled` flags all remain 0.
+Three factual Greenhouse sources are now verified: Nuro (`nuro`), Zipline
+(`flyzipline`), and Agility Robotics (`agilityrobotics`). Each official Careers path
+was traced to a public Greenhouse board whose canonical job URLs return to the company
+domain. The external database contains three companies and three source profiles. All
+three have status `verified`, while every base `enabled`, `collection_enabled`, and
+`publication_enabled` flag remains 0.
 
 The source fixture succeeded offline. A bounded live smoke then made one listing and
 two detail requests, all HTTP 200 with no redirect, login, CAPTCHA, 401, 403, or 429.
@@ -426,6 +427,12 @@ The first manual inspection found entity-encoded Greenhouse markup leaking into 
 normalized description. The text-cleaning order was corrected with a regression test,
 and one bounded manual retry produced two clean plain-text descriptions. Both runs
 used unique external staging directories and neither wrote a business table.
+
+Zipline and Agility Robotics subsequently reused the same adapter without a new ATS
+type. Both passed fixture, bounded live smoke, and two-job manual review. Agility's
+first live attempt was safely stopped by a false login signal caused by scanning job
+prose inside valid JSON; the existing detector was narrowed to top-level JSON error
+fields, two offline regression tests passed, and one bounded retry succeeded.
 
 Continuous collection, test-job persistence, change/down detection, scheduling,
 Hermes changes, public snapshots, frontend work, production merge, and deployment
@@ -459,3 +466,6 @@ remain outside Phase 3A.
   publication time remain null rather than inferred.
 - `git diff --check` passed. No database, staging artifact, log, credential, or
   temporary acceptance file is tracked by Git.
+- After checkpoint `850295d`, the same adapter was replicated to Zipline and Agility
+  Robotics. Final company/source/job/change counts are `3/3/0/0`; all three sources
+  have successful fixture and live runs and remain disabled despite verification.
