@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { sortResearchByNewest, splitResearchFeed } from '../../utils/research';
 
-const latestResearch = (await getCollection('cn/research'))
-  .filter((p) => p.data.status === 'published')
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+const cnResearch = await getCollection('cn/research');
+const latestResearch = sortResearchByNewest(cnResearch.filter((p) => p.data.status === 'published'))
   .slice(0, 3);
 
 const latestCareer = (await getCollection('cn/career'))
@@ -12,10 +12,10 @@ const latestCareer = (await getCollection('cn/career'))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 3);
 
-// 前沿研究动态：只取中文 research，最新 6 篇
-const latestNews = (await getCollection('cn/research'))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 6);
+// 前沿研究动态：重点推荐优先，其后按论文发布时间倒序。
+const researchFeed = splitResearchFeed(cnResearch);
+const featuredNewsIds = new Set(researchFeed.recommended.map((post) => post.id));
+const latestNews = [...researchFeed.recommended, ...researchFeed.latest].slice(0, 6);
 ---
 
 <BaseLayout title="RoboMatrix - 机器人产业深度研究与职业导航" lang="cn" description="以审计级严谨度拆解机器人产业链，为从业者提供行业研究报告、BOM成本分析与职业发展导航。">
@@ -164,9 +164,14 @@ const latestNews = (await getCollection('cn/research'))
               class="group block no-underline rounded-xl border border-neutral-800 bg-neutral-900/40 hover:border-violet-800/60 hover:bg-violet-950/10 transition-all duration-200 p-4"
             >
               <div class="flex items-center justify-between mb-2">
-                <span class="text-[10px] px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
-                  {post.data.industry_sector}
-                </span>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[10px] px-1.5 py-0.5 bg-neutral-800 text-neutral-500 rounded">
+                    {post.data.industry_sector}
+                  </span>
+                  {featuredNewsIds.has(post.id) && (
+                    <span class="text-[10px] px-1.5 py-0.5 bg-amber-950/50 text-amber-400 rounded">精选</span>
+                  )}
+                </div>
                 <time class="text-[11px] text-neutral-600">{date}</time>
               </div>
               <h3 class="text-sm font-medium text-neutral-200 group-hover:text-violet-300 transition-colors leading-snug mb-2 line-clamp-2">

@@ -28,6 +28,12 @@ const articleSchema = z.object({
   status: z.enum(['draft', 'review', 'published']).default('draft'),
   summary: z.string().optional(),
   cover_image: z.string().optional(),
+  arxiv_id: z.string().optional(),
+  source: z.string().url().optional(),
+  paper_published_at: z.coerce.date().optional(),
+  importance_score: z.number().min(0).max(100).optional(),
+  featured: z.boolean().default(false),
+  selection_reason: z.string().optional(),
 });
 
 /** Career-specific schema extends base with mentorship fields */

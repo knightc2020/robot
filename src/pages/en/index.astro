@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { splitResearchFeed } from '../../utils/research';
 
-const latestResearch = (await getCollection('en/research'))
-  .filter((p) => p.data.status === 'published')
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 3);
+const researchFeed = splitResearchFeed(await getCollection('en/research'));
+const latestResearch = [...researchFeed.recommended, ...researchFeed.latest].slice(0, 3);
 
 const latestCareer = (await getCollection('en/career'))
   .filter((p) => p.data.status === 'published')
