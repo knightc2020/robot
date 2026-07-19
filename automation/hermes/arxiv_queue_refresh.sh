@@ -8,4 +8,4 @@ readonly API_URL="https://export.arxiv.org/api/query?search_query=cat:cs.RO&sort
 
 curl -fsS --retry 3 --retry-delay 2 --max-time 45 "${API_URL}" -o "${FEED_PATH}"
 python3 "${QUEUE_TOOL}" --state "${STATE_PATH}" ingest --feed "${FEED_PATH}"
-python3 "${QUEUE_TOOL}" --state "${STATE_PATH}" list --statuses unseen,failed --limit 12
+python3 "${QUEUE_TOOL}" --state "${STATE_PATH}" list --statuses unseen,selected,failed --limit 30
