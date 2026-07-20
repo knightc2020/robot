@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-8 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">上下文缩放成为新范式</h3>
+                        <p class="text-sm leading-[1.6]">RoboTTT证明上下文长度是机器人基础模型的有效缩放维度。从"更大的模型、更多的数据"转向"更长的上下文、更强的记忆"，有望成为VLA策略的下一个突破口。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">生成式方法走向实时</h3>
+                        <p class="text-sm leading-[1.6]">Reflex（2.58×）、BridgeFlow（15×）、DriftWorld（17×）三项工作均聚焦于将生成式模型推向实时控制速率，使扩散/流匹配/漂移模型的推理瓶颈大幅缓解。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">数据基础设施加速建设</h3>
+                        <p class="text-sm leading-[1.6]">Open-AoE的2000小时自我中心数据集将数据门槛大幅降低。大规模、低成本、社区协作的数据生产范式正在为机器人和具身智能研究提供关键基础设施。</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">8篇论文覆盖从基础模型到具体落地的完整链路：上下文缩放开辟新维度，生成式推理突破实时瓶颈，数据基础设施建设降低准入门槛。人形机器人基础模型走向系统化，多智能体仓储方案追求即插即用的效率提升，空中机器人首次获得世界动作模型验证——机器人领域正在加速向通用智能迈进。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

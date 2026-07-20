@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文4-5：运动规划与世界模型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 04 · 05</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">运动规划 · 世界模型</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-6">
+                    <!-- BridgeFlow -->
+                    <div class="flex-1 border border-gray-200 p-5">
+                        <div class="text-xs font-semibold text-[#002FA7] uppercase mb-2">运动规划</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 leading-[1.2] mb-3">BridgeFlow：15倍加速<br>的等变运动规划</h3>
+                        <ul class="list-disc pl-4 space-y-1 text-sm leading-[1.5] mb-4">
+                            <li>轻量级任务中心规范化实现SE(2)等变性</li>
+                            <li>布朗桥信息先验 + 上下文小批量最优传输</li>
+                            <li>推理速度提升15倍，有效轨迹率提高2倍</li>
+                            <li>对未知环境布局具有鲁棒泛化能力</li>
+                        </ul>
+                        <div class="text-xs text-gray-400">arXiv: <a href="https://arxiv.org/abs/2607.14725" class="text-[#002FA7] underline" target="_blank">2607.14725</a></div>
+                    </div>
+                    <!-- DriftWorld -->
+                    <div class="flex-1 border border-gray-200 p-5">
+                        <div class="text-xs font-semibold text-[#002FA7] uppercase mb-2">世界模型</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 leading-[1.2] mb-3">DriftWorld：17倍加速<br>的生成式世界建模</h3>
+                        <ul class="list-disc pl-4 space-y-1 text-sm leading-[1.5] mb-4">
+                            <li>漂移生成模型替代扩散模型，单步推理</li>
+                            <li>30+ FPS推理速度，17倍加速于扩散基线</li>
+                            <li>作为离线模拟器评估策略，相关系数0.99</li>
+                            <li>使实时想象-规划成为可行</li>
+                        </ul>
+                        <div class="text-xs text-gray-400">arXiv: <a href="https://arxiv.org/abs/2607.15065" class="text-[#002FA7] underline" target="_blank">2607.15065</a></div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 mt-6">
+                    <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                    <p class="font-sans text-[12pt] font-normal text-gray-500 leading-[1.5] m-0">
+                        两项工作分别从规划推理加速和世界模型rollout效率出发，将生成式方法推向实时机器人控制。
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

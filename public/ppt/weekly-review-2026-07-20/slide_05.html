@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文3：Reflex VLA实时推理</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 03</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">VLA · 推理优化</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[30pt] font-normal text-gray-900 leading-[1.2] mb-6">Reflex：流式VLA推理<br>加速2.58倍</h2>
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">Reflex利用时间步不变性实现流匹配VLA策略的实时流式推理，直接解决了迭代去噪策略推理缓慢的根本问题。</p>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>KV缓存三区划分：静态区、滑动区、动态区 → O(1)增量更新</li>
+                                <li>AdaRMSNorm自适应归一化防止BF16数值崩溃</li>
+                                <li>异步流水线解耦视觉编码与动作生成</li>
+                                <li>无需改动底层策略架构，广泛适用</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>为VLA模型走向实时生产部署提供了关键工程路径，无需专用硬件即可在控制回路频率下运行计算密集型模型。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Reflex: Streaming VLA via Timestep-Invariance</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2607.14695" class="text-[#002FA7] underline" target="_blank">2607.14695</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">2.58×</div>
+                                <div class="text-xs mt-1">推理加速</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">50Hz</div>
+                                <div class="text-xs mt-1">流式输出</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">54%</div>
+                                <div class="text-xs mt-1">延迟降低</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                首个利用KV缓存兼容性加速迭代去噪策略的工作——让流匹配VLA在LIBERO/Kinetix上实现50Hz稳定输出。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

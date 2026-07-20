@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文1：RoboTTT 上下文缩放</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <!-- Header -->
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">
+                    KEY RESEARCH 01
+                </div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">NVIDIA · Stanford</div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <!-- Left Column -->
+                    <div class="w-[428px] flex-shrink-0">
+                        <!-- Title -->
+                        <h2 class="font-serif text-[30pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            RoboTTT：8K上下文窗口<br>重塑机器人策略模型
+                        </h2>
+                        
+                        <!-- Description -->
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">NVIDIA GEAR Lab联合斯坦福提出RoboTTT，首次将VLA策略上下文窗口扩展至8000时间步，较现有最先进策略提升三个数量级。</p>
+                            
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>上下文窗口扩展至8K，推理延迟不随上下文增长增加</li>
+                                <li>整体性能较单步基线提升87%</li>
+                                <li>首次完整完成五分钟、十阶段装配任务</li>
+                                <li>8K模型比1K预训练模型性能高出62%</li>
+                            </ul>
+
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>从"更大的模型、更多的数据"转向"更长的上下文、更强的记忆"——机器人学习范式的新维度。</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="flex-1">
+                        <!-- Paper Info -->
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">RoboTTT: Test-Time-Training Robot Policies</p>
+                            <p class="text-sm text-gray-600 mb-2">作者：Yunfan Jiang, Yevgen Chebotar, Ruijie Zheng, 李飞飞, 朱玉可, 范麟熙等</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2607.15275" class="text-[#002FA7] underline" target="_blank">2607.15275</a></p>
+                        </div>
+                        
+                        <!-- Key Metrics -->
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">87%</div>
+                                <div class="text-xs mt-1">性能提升</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">8000</div>
+                                <div class="text-xs mt-1">上下文步长</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">10</div>
+                                <div class="text-xs mt-1">阶段装配任务</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Visual Caption -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                RoboTTT证明了上下文长度是机器人基础模型的有效新缩放维度——超越了传统"更大模型、更多数据"的范式。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

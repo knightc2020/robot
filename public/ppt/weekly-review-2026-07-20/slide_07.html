@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文6：AeroAct 四旋翼世界动作模型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 06</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">空中机器人</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[30pt] font-normal text-gray-900 leading-[1.2] mb-6">AeroAct：首例真实<br>四旋翼世界动作模型</h2>
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">首次在实际四旋翼无人机上验证的世界动作模型（WAM），适配预训练视频扩散Transformer，从第一视角视觉、本体感知和自然语言中预测轨迹-动作片段。</p>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>DiffAero + Isaac Lab + 3D高斯泼溅训练流水线</li>
+                                <li>联合预测动作及其视觉后果（密集后果监督）</li>
+                                <li>推理时直接解码动作，无需生成中间视频帧</li>
+                                <li>低成本手持采集设备模拟飞行第一视角</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>为语言引导的自主四旋翼飞行器打开大门——搜救、巡检、航拍影视等领域可受益于自然语言交互的无人机控制。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">AeroAct: World Action Models for Language-Conditioned Quadrotor Flight</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2607.14997" class="text-[#002FA7] underline" target="_blank">2607.14997</a></p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">首例</div>
+                                <div class="text-xs mt-1">实际验证的WAM</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">端到端</div>
+                                <div class="text-xs mt-1">语言条件导航</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                WAM范式在飞行器上的首次成功验证，可能从根本上改变自主无人机的编程方式——从路径点脚本到自然语言。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
