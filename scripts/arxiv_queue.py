@@ -8,16 +8,23 @@ import json
 import os
 import re
 import tempfile
+import time
 import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 
 DEFAULT_STATE = Path.home() / ".hermes/state/arxiv-robotics-ledger.json"
+DEFAULT_REMOTE_RAW_BASE = "https://raw.githubusercontent.com/knightc2020/robot/master"
+DEFAULT_REMOTE_VERIFY_ATTEMPTS = 4
+DEFAULT_REMOTE_VERIFY_RETRY_SECONDS = 2.0
 VALID_STATUSES = {"unseen", "selected", "published", "skipped", "failed"}
 ARXIV_ID_PATTERN = re.compile(r"^(?P<id>\d{4}\.\d{4,5})(?:v(?P<version>\d+))?$")
+SLUG_PATTERN = re.compile(r"^arxiv-\d{4}-\d{4,5}$")
 ATOM_NS = {
     "atom": "http://www.w3.org/2005/Atom",
     "arxiv": "http://arxiv.org/schemas/atom",
@@ -151,6 +158,108 @@ def list_candidates(state: Path, statuses: set[str], limit: int) -> list[dict[st
     return candidates[:limit]
 
 
+def canonical_slug(value: str) -> str:
+    """Validate and normalize a canonical research-post slug."""
+    slug = value.strip()
+    if slug.endswith(".md"):
+        slug = slug[:-3]
+    if not SLUG_PATTERN.fullmatch(slug):
+        raise ValueError(f"Invalid canonical research slug: {value}")
+    return slug
+
+
+def _validate_published_content(content: str, arxiv_id: str, location: str) -> None:
+    """Ensure a research brief has the identity fields required for publication."""
+    frontmatter = re.match(r"\A---\s*\n(?P<frontmatter>.*?)\n---\s*\n", content, re.DOTALL)
+    if frontmatter is None:
+        raise ValueError(f"{location} has no valid YAML frontmatter")
+
+    fields = frontmatter.group("frontmatter")
+    required = {
+        "arxiv_id": arxiv_id,
+        "status": "published",
+    }
+    for field, expected in required.items():
+        pattern = rf"^{re.escape(field)}:\s*[\"']?{re.escape(expected)}[\"']?\s*$"
+        if re.search(pattern, fields, re.MULTILINE) is None:
+            raise ValueError(f"{location} is missing {field}: {expected}")
+
+
+def verify_published_pair(
+    repo_root: Path,
+    raw_id: str,
+    slug: str,
+    remote_base_url: str = DEFAULT_REMOTE_RAW_BASE,
+    remote_attempts: int = DEFAULT_REMOTE_VERIFY_ATTEMPTS,
+    retry_delay_seconds: float = DEFAULT_REMOTE_VERIFY_RETRY_SECONDS,
+) -> dict[str, Any]:
+    """Verify the exact bilingual content pair exists locally and on GitHub.
+
+    A ledger entry becomes ``published`` only after the same two files are
+    present on the remote master branch. Comparing full contents catches
+    partial writes and stale or incorrectly named remote files. The remote is
+    retried briefly because GitHub Raw can lag immediately after a push.
+    """
+    arxiv_id = canonical_arxiv_id(raw_id)
+    canonical = canonical_slug(slug)
+    root = repo_root.resolve()
+    base_url = remote_base_url.rstrip("/")
+    if remote_attempts < 1:
+        raise ValueError("Remote verification attempts must be at least one")
+    if retry_delay_seconds < 0:
+        raise ValueError("Remote verification retry delay cannot be negative")
+
+    local_files: list[tuple[Path, str]] = []
+    for language in ("cn", "en"):
+        relative_path = Path("src") / "content" / language / "research" / f"{canonical}.md"
+        local_path = root / relative_path
+        if not local_path.is_file():
+            raise ValueError(f"Missing local publication file: {local_path}")
+
+        local_content = local_path.read_text(encoding="utf-8")
+        _validate_published_content(local_content, arxiv_id, str(local_path))
+        local_files.append((relative_path, local_content))
+
+    last_errors: list[str] = []
+    for attempt in range(1, remote_attempts + 1):
+        errors: list[str] = []
+        for relative_path, local_content in local_files:
+            remote_url = f"{base_url}/{relative_path.as_posix()}"
+            request = Request(remote_url, headers={"User-Agent": "arxiv-robotics-publisher"})
+            try:
+                with urlopen(request, timeout=20) as response:
+                    remote_content = response.read().decode("utf-8")
+                _validate_published_content(remote_content, arxiv_id, remote_url)
+                if remote_content != local_content:
+                    raise ValueError(
+                        f"Remote publication content differs from local file: {relative_path}"
+                    )
+            except HTTPError as error:
+                errors.append(f"Remote publication file is unavailable ({error.code}): {remote_url}")
+            except URLError as error:
+                errors.append(f"Could not verify remote publication file: {remote_url}: {error.reason}")
+            except (UnicodeDecodeError, ValueError) as error:
+                errors.append(str(error))
+
+        if not errors:
+            return {
+                "arxiv_id": arxiv_id,
+                "slug": canonical,
+                "verified_paths": [path.as_posix() for path, _content in local_files],
+                "remote_base_url": base_url,
+                "remote_attempts": attempt,
+            }
+
+        last_errors = errors
+        if attempt < remote_attempts:
+            time.sleep(retry_delay_seconds)
+
+    raise ValueError(
+        f"Remote publication verification failed after {remote_attempts} attempt(s): "
+        + "; ".join(last_errors)
+    )
+
+
 def mark_paper(
     state: Path,
     raw_id: str,
@@ -163,8 +272,11 @@ def mark_paper(
         raise ValueError(f"Invalid status: {status}")
     if score is not None and not 0 <= score <= 100:
         raise ValueError("Score must be between 0 and 100")
-    if status == "published" and not slug:
-        raise ValueError("Published papers require --slug")
+    canonical_published_slug = None
+    if status == "published":
+        if not slug:
+            raise ValueError("Published papers require --slug")
+        canonical_published_slug = canonical_slug(slug)
 
     arxiv_id = canonical_arxiv_id(raw_id)
     ledger = load_ledger(state)
@@ -179,7 +291,7 @@ def mark_paper(
     if reason:
         paper["selection_reason"] = reason
     if slug:
-        paper["slug"] = slug
+        paper["slug"] = canonical_published_slug or slug
     if status in {"selected", "failed"}:
         paper["attempts"] = int(paper.get("attempts", 0)) + 1
     if status == "published":
@@ -220,18 +332,57 @@ def build_parser() -> argparse.ArgumentParser:
     mark_parser.add_argument("--score", type=int)
     mark_parser.add_argument("--reason")
     mark_parser.add_argument("--slug")
+    mark_parser.add_argument(
+        "--verify-repo-root",
+        type=Path,
+        help="Required when marking a paper published; verifies both remote Markdown files.",
+    )
+    mark_parser.add_argument("--remote-base-url", default=DEFAULT_REMOTE_RAW_BASE)
+    mark_parser.add_argument("--verify-attempts", type=int, default=DEFAULT_REMOTE_VERIFY_ATTEMPTS)
+    mark_parser.add_argument(
+        "--verify-retry-delay-seconds",
+        type=float,
+        default=DEFAULT_REMOTE_VERIFY_RETRY_SECONDS,
+    )
+
+    verify_parser = subparsers.add_parser(
+        "verify-published", help="Verify a bilingual research brief on the remote master branch"
+    )
+    verify_parser.add_argument("--id", required=True)
+    verify_parser.add_argument("--slug", required=True)
+    verify_parser.add_argument("--repo-root", type=Path, required=True)
+    verify_parser.add_argument("--remote-base-url", default=DEFAULT_REMOTE_RAW_BASE)
+    verify_parser.add_argument("--verify-attempts", type=int, default=DEFAULT_REMOTE_VERIFY_ATTEMPTS)
+    verify_parser.add_argument(
+        "--verify-retry-delay-seconds",
+        type=float,
+        default=DEFAULT_REMOTE_VERIFY_RETRY_SECONDS,
+    )
 
     subparsers.add_parser("summary", help="Show queue counts")
     return parser
 
 
 def main() -> None:
-    args = build_parser().parse_args()
+    parser = build_parser()
+    args = parser.parse_args()
     if args.command == "ingest":
         result: Any = ingest(args.feed, args.state)
     elif args.command == "list":
         result = list_candidates(args.state, args.statuses, args.limit)
     elif args.command == "mark":
+        verification = None
+        if args.status == "published":
+            if args.verify_repo_root is None:
+                parser.error("mark --status published requires --verify-repo-root")
+            verification = verify_published_pair(
+                args.verify_repo_root,
+                args.id,
+                args.slug or "",
+                args.remote_base_url,
+                args.verify_attempts,
+                args.verify_retry_delay_seconds,
+            )
         result = mark_paper(
             args.state,
             args.id,
@@ -239,6 +390,17 @@ def main() -> None:
             args.score,
             args.reason,
             args.slug,
+        )
+        if verification is not None:
+            result["verification"] = verification
+    elif args.command == "verify-published":
+        result = verify_published_pair(
+            args.repo_root,
+            args.id,
+            args.slug,
+            args.remote_base_url,
+            args.verify_attempts,
+            args.verify_retry_delay_seconds,
         )
     else:
         ledger = load_ledger(args.state)

@@ -30,8 +30,9 @@ Publish a small, high-value bilingual selection of recent robotics papers. This 
    ```
 
 6. Mark every reviewed but unselected paper as `skipped`, including its score and reason. Never leave a reviewed candidate as `unseen`.
-7. For each selected paper, create and publish a native Chinese brief and a native English brief.
-8. Verify both remote files. Only then mark the paper `published`. If either side fails, mark it `failed` and report the exact non-secret error.
+7. For each selected paper, create a native Chinese brief and a native English brief in the local repository.
+8. Sync before editing with `git pull --ff-only origin master`; commit only the two expected files for each paper, then push to `origin master`. Do not use `gh` authentication or the GitHub Contents API.
+9. Run `python3 /root/robot/scripts/arxiv_queue.py verify-published --id ARXIV_ID --slug SLUG --repo-root /root/robot` after the push. It briefly retries GitHub Raw because a new commit can take a moment to propagate. Only then mark the paper `published`. If either remote file is absent, differs from the local file, or Git cannot fast-forward/push, mark it `failed` and report the exact non-secret error.
 
 ## Importance rubric
 
@@ -82,10 +83,10 @@ Each brief should cover background, core innovation, concrete results, limitatio
 
 ## Publishing transaction
 
-- Try `GITHUB_TOKEN` without printing it; fall back to existing `gh` authentication.
-- Publish only under `src/content/cn/research/` and `src/content/en/research/` in `knightc2020/robot`.
-- Use the GitHub Contents API and include the existing SHA when repairing a partial pair.
-- Treat the two writes as one transaction. Verify both remote paths before marking success.
+- Publish only under `src/content/cn/research/` and `src/content/en/research/` in the checked-out `knightc2020/robot` repository.
+- Treat the two language files as one transaction. Stage and commit only that pair, then push a fast-forward update to `master`.
+- Never create diagnostic files in either research directory. Do not use the GitHub Contents API, `gh api`, or date-only filenames.
+- The queue tool refuses to mark a paper `published` unless `--verify-repo-root /root/robot` is supplied; this verifies both exact remote files and their complete contents, retrying briefly for remote propagation.
 
 After both files are verified, run:
 
@@ -95,7 +96,8 @@ python3 /root/robot/scripts/arxiv_queue.py mark \
   --status published \
   --score SCORE \
   --reason "REASON" \
-  --slug arxiv-ARXIV-ID-WITH-DOT-AS-HYPHEN
+  --slug arxiv-ARXIV-ID-WITH-DOT-AS-HYPHEN \
+  --verify-repo-root /root/robot
 ```
 
 Do not edit this skill, the queue tool, or the pre-run script during a publishing run. Do not drift into parser tests or cleanup work. Leave temporary files in `/tmp`; operating-system cleanup is sufficient.
