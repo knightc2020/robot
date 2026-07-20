@@ -11,6 +11,8 @@ interface Props {
     industry_sector?: string;
     confidence_level?: string;
     summary?: string;
+    arxiv_id?: string;
+    source?: string;
   };
   lang?: 'en' | 'cn';
   slug?: string;
@@ -25,6 +27,12 @@ const confidenceBadge: Record<string, string> = {
 };
 
 const badgeClass = confidenceBadge[frontmatter.confidence_level ?? 'estimated'];
+const sourceUrl = frontmatter.source ?? (
+  frontmatter.arxiv_id ? `https://arxiv.org/abs/${frontmatter.arxiv_id}` : undefined
+);
+const sourceLabel = lang === 'cn'
+  ? (frontmatter.arxiv_id ? `原文 · arXiv:${frontmatter.arxiv_id}` : '原文链接')
+  : (frontmatter.arxiv_id ? `Paper · arXiv:${frontmatter.arxiv_id}` : 'Source');
 ---
 
 <BaseLayout title={frontmatter.title} lang={lang}>
@@ -52,6 +60,16 @@ const badgeClass = confidenceBadge[frontmatter.confidence_level ?? 'estimated'];
       )}
       {frontmatter.summary && (
         <p class="mt-4 text-sm text-neutral-400 italic">{frontmatter.summary}</p>
+      )}
+      {sourceUrl && (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex mt-4 text-sm text-primary-400 hover:text-primary-300 underline underline-offset-4"
+        >
+          {sourceLabel}
+        </a>
       )}
     </header>
 
