@@ -12,7 +12,7 @@ const latestCareer = (await getCollection('en/career'))
   .slice(0, 3);
 ---
 
-<BaseLayout title="RoboMatrix - Robotics Industry Research & Career Intelligence" lang="en" description="Audit-grade rigor applied to robotics supply chains. Deep-dive research reports, BOM teardowns, and career navigation for engineers.">
+<BaseLayout title="RoboMatrix - Public-Source Robotics Research & Career Intelligence" lang="en" description="A work-in-progress platform for robotics research and career information, with public source links retained where available.">
 
   <!-- Hero -->
   <section class="relative py-20 md:py-32 overflow-hidden">
@@ -21,17 +21,17 @@ const latestCareer = (await getCollection('en/career'))
     <div class="relative">
       <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-neutral-800 rounded-full text-xs text-neutral-500">
         <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-        Continuously updated · Covering 12+ industry segments
+        Public-source robotics research and career intelligence
       </div>
 
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-        <span class="text-neutral-50">Decode the Robotics</span><br />
-        <span class="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Supply Chain Matrix</span>
+        <span class="text-neutral-50">Robotics Research</span><br />
+        <span class="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">& Career Intelligence</span>
       </h1>
 
       <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mb-10 leading-relaxed">
-        Audit-grade rigor applied to humanoid robots, industrial arms, AMR, and beyond.<br class="hidden md:block" />
-        Verifiable industry intelligence for investors, founders, and engineers.
+        A work-in-progress platform for tracking robotics research and career information.<br class="hidden md:block" />
+        Public source links are retained where available.
       </p>
 
       <div class="flex flex-wrap gap-4">
@@ -50,20 +50,20 @@ const latestCareer = (await getCollection('en/career'))
   <section class="border-y border-neutral-800 py-8 mb-16">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">12+</div>
-        <div class="text-xs text-neutral-500 mt-1">Industry Segments</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">Public Sources</div>
+        <div class="text-xs text-neutral-500 mt-1">Links retained where available</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">340+</div>
-        <div class="text-xs text-neutral-500 mt-1">Engineer Respondents</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">Traceable Context</div>
+        <div class="text-xs text-neutral-500 mt-1">Dates and context shown where available</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">50+</div>
-        <div class="text-xs text-neutral-500 mt-1">Supplier Interviews</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">Ongoing Updates</div>
+        <div class="text-xs text-neutral-500 mt-1">Content reviewed progressively</div>
       </div>
       <div>
-        <div class="text-2xl md:text-3xl font-bold text-neutral-50">3-Layer</div>
-        <div class="text-xs text-neutral-500 mt-1">Cross-Validation</div>
+        <div class="text-lg md:text-xl font-bold text-neutral-50">Human Review</div>
+        <div class="text-xs text-neutral-500 mt-1">Editorial checks before publication</div>
       </div>
     </div>
   </section>
@@ -80,7 +80,7 @@ const latestCareer = (await getCollection('en/career'))
           <p class="text-xs text-neutral-500">Deep-Dive Reports & Data Matrices</p>
         </div>
       </div>
-      <p class="text-sm text-neutral-400 mb-5">Hardware BOM teardowns, supply chain cost matrices, competitive landscape analysis. Every data point sourced and confidence-rated.</p>
+      <p class="text-sm text-neutral-400 mb-5">Robotics research updates built from publicly available papers, official pages, and other documented sources.</p>
       <div class="space-y-3">
         {latestResearch.map((post) => (
           <a href={`/en/research/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
@@ -104,7 +104,7 @@ const latestCareer = (await getCollection('en/career'))
           <p class="text-xs text-neutral-500">Skills, Salaries & Growth Paths</p>
         </div>
       </div>
-      <p class="text-sm text-neutral-400 mb-5">Wiki-style knowledge base for robotics engineers. Skills roadmaps, industry maps, salary benchmarks, and career trajectories.</p>
+      <p class="text-sm text-neutral-400 mb-5">A developing knowledge base for robotics skills, roles, and career paths. Job and research information may change over time.</p>
       <div class="space-y-3">
         {latestCareer.map((post) => (
           <a href={`/en/career/${post.id.replace(/\.mdx?$/, '')}/`} class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-900/50 no-underline group/item">
@@ -119,21 +119,21 @@ const latestCareer = (await getCollection('en/career'))
     </div>
   </section>
 
-  <!-- Methodology -->
+  <!-- Content approach -->
   <section class="border border-neutral-800 rounded-xl p-8 mb-16 bg-neutral-900/30">
-    <h2 class="text-xl font-semibold mb-6 text-neutral-100">Our Methodology</h2>
+    <h2 class="text-xl font-semibold mb-6 text-neutral-100">How We Handle Content</h2>
     <div class="grid md:grid-cols-3 gap-6">
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">01 · Primary Data Collection</div>
-        <p class="text-sm text-neutral-400">Direct supplier interviews, anonymous engineer surveys, on-site production line research. No second-hand data aggregation.</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">01 · Publicly Available Sources</div>
+        <p class="text-sm text-neutral-400">We link papers and official pages where they are available.</p>
       </div>
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">02 · Triple Cross-Validation</div>
-        <p class="text-sm text-neutral-400">Supplier quotes x public tender data x listed company filings. Every data point tagged with a confidence level.</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">02 · Review in Progress</div>
+        <p class="text-sm text-neutral-400">Content is reviewed progressively as sources and context are checked.</p>
       </div>
       <div>
-        <div class="text-sm font-medium text-primary-400 mb-2">03 · Community Feedback Loop</div>
-        <p class="text-sm text-neutral-400">Continuous corrections from front-line engineers. Not a static snapshot — a living, evolving industry knowledge graph.</p>
+        <div class="text-sm font-medium text-primary-400 mb-2">03 · Changing Information</div>
+        <p class="text-sm text-neutral-400">Job and research information can change over time; pages are updated as work continues.</p>
       </div>
     </div>
   </section>
