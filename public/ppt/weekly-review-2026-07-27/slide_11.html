@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-8 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">具身基础模型密集发布</h3>
+                        <p class="text-sm leading-[1.6]">RynnBrain 1.1（2B-122B）和Masked Visual Actions两项工作代表了具身基础模型的规模化与泛化新方向。跨本体训练、像素空间控制接口使模型能够跨形态迁移，加速从专用到通用的演进。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">数据效率成为核心驱动力</h3>
+                        <p class="text-sm leading-[1.6]">HOST（单段视频29秒习得）、DEED（单GPU后训练）、AXIS（社区驱动数据引擎）三条路径共同指向数据效率革命。更少的数据、更快的训练、更低的部署成本正推动机器人学习从实验室走向真实世界。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">手术与安全验证取得突破</h3>
+                        <p class="text-sm leading-[1.6]">外翻生长机器人首次在完整人体脊髓中验证安全导航，RL-MACRO实现自主颅骨切除闭环控制。在工业侧，自动驾驶罕见故障发现从学术仿真推向商用卡车栈，为安全验证提供了可操作的工具箱。</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">12篇论文覆盖从基础模型到手术机器人的完整链路：具身基础模型进入规模化竞赛，单样本/少样本学习突破数据瓶颈，医疗机器人和自动驾驶安全验证取得实质性进展。机器人领域正在从"能做"向"能用"快速跨越，系统集成和数据质量的重要性不亚于算法创新。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

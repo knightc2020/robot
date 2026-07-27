@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文7-8：自动驾驶安全 + 精密装配</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 07-08</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">自动驾驶安全 + 运动规划</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: 自动驾驶安全 -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">自动驾驶安全 · 7月20日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">重要性采样在商用<br>卡车故障发现的应用</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">将AST和DiFS罕见故障发现算法首次应用于真实商用自动驾驶卡车栈，结合PCA分析诊断故障模式。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>发现蒙特卡洛仿真无法触及的罕见碰撞</li>
+                                <li>PCA聚类+反演实现故障模式诊断</li>
+                                <li>反演轨迹在相似场景中稳定复现碰撞</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 89</span>
+                            <span>arxiv: 2607.18106</span>
+                        </div>
+                    </div>
+                    <!-- Right: CMG-RRT -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">运动规划 · 7月20日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">流形引导的精密<br>装配运动规划</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">CMG-RRT通过临界流形引导采样，在精密装配中实现100%成功率，首次自动求解Elk益智拆卸谜题。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>层次化构型空间细分，自适应偏向临界流形</li>
+                                <li>概率完备性证明（标准间隙假设）</li>
+                                <li>所有旋转装配基准100%成功率</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 87</span>
+                            <span>arxiv: 2607.17898</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
