@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文10-11：DynaMAC + Data Pyramid 数据与双臂</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 10-11</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">双臂操作 + 数据生态</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: DynaMAC -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">双臂操作 · 7月24日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">DynaMAC：动态环境<br>双臂协作操作</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">将对手臂视为动态任务参数，为动态操作与双臂协调提供统一表述，无需显式主从关系，即插即用模块。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>DynaBench上领先基线提升 35+ 个百分点</li>
+                                <li>所需样本减少 20 倍，静态演示零样本迁移动态</li>
+                                <li>保留多流策略的样本效率与计算速度</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 85</span>
+                            <span>arxiv: 2607.22119</span>
+                        </div>
+                    </div>
+                    <!-- Right: Data Pyramid -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">数据生态 · 7月27日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">Data Pyramid：<br>具身操作数据金字塔</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">系统梳理具身数据生态系统为五层金字塔：真实机器人、UMI风格、自我/外中心、仿真、通用视觉语言数据。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>围绕可扩展性与机器人对齐的张力组织分析</li>
+                                <li>从数据配方角度审视具身基础模型能力来源</li>
+                                <li>识别六个开放挑战：触觉数据、失败恢复等</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 85</span>
+                            <span>arxiv: 2607.24744</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

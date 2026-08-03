@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文2：HiFi-UMI 零机器人后训练</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 02</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">数据采集 · 零机器人后训练</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[30pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            HiFi-UMI：<br>仅高保真UMI数据<br>训练可部署策略
+                        </h2>
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">头戴式离线立体惯性SLAM、原生相对位姿估计与微秒级GPIO同步的超广角立体相机协同设计，无需外部追踪基础设施即达 3mm 末端执行器精度。</p>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>"零机器人后训练"：仅UMI数据微调即可直接部署</li>
+                                <li>三个骨干家族均匹配同场景遥操作性能（±3pp）</li>
+                                <li>最强策略精密插入任务达 85% 成功率</li>
+                                <li>开源 HiFi-UMI-2K：2000小时微秒同步数据集</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>大规模无机器人数据采集可替代昂贵遥操作；4000小时预训练使未见任务动作误差降低 41%。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">HiFi-UMI: Learning Deployable Manipulation Policies from High-Fidelity UMI Data Alone</p>
+                            <p class="text-sm text-gray-600">2026-07-28 · 重要性评分: 92</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2607.25895" class="text-[#002FA7] underline" target="_blank">2607.25895</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">3mm</div>
+                                <div class="text-xs mt-1">末端执行器精度</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">85%</div>
+                                <div class="text-xs mt-1">精密插入成功率</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">2000h</div>
+                                <div class="text-xs mt-1">开源数据集</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                HiFi-UMI 训练与遥操作训练策略的成功率差异分别为 -2.5、+3.1 和 -0.6 个百分点——尽管其轨迹并非在评估场景中采集。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

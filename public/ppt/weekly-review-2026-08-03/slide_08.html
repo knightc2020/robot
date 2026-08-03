@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文6-7：FeelWorld + ViTacWorld 视触觉世界模型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 06-07</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">视触觉世界模型</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: FeelWorld -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">触觉世界模型 · 7月27日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">FeelWorld：层次化<br>接触预测与规划</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">层次化视觉-触觉世界模型，联合预测未来视觉潜在特征与三种触觉状态（接触、三维触觉编码、滑动）。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>接触门控非对称注意力，自由空间保持纯视觉路径</li>
+                                <li>80步自回归滚动后 LPIPS 比纯视觉基线低 61%</li>
+                                <li>接触感知CEM规划，零样本规划成功率 81.7%</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 85</span>
+                            <span>arxiv: 2607.24267</span>
+                        </div>
+                    </div>
+                    <!-- Right: ViTacWorld -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">视触觉世界模型 · 7月24日</div>
+                        <h3 class="font-serif text-[22pt] font-normal text-gray-900 mb-3 leading-[1.2]">ViTacWorld：视触觉<br>世界模型规模化</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">首个面向接触丰富操作的视触觉世界模型框架，利用触觉信号仿真-现实差距小于视觉的特性实现数据规模化。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>动作条件预测时间对齐的视觉观测与触觉反馈</li>
+                                <li>真实+仿真视触觉轨迹预训练，真实策略rollout微调</li>
+                                <li>双重角色：数据增强引擎 + 策略评估工具</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 85</span>
+                            <span>arxiv: 2607.22530</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文5：Pigey 物理智能体编排</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 05</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">智能体编排 · 编排鸿沟</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[30pt] font-normal text-gray-900 leading-[1.2] mb-6">
+                            Pigey：物理智能<br>体编排弥合<br>编排鸿沟
+                        </h2>
+                        <div class="font-sans text-base font-normal leading-[1.6]">
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-4">闭环物理智能体编排器将高层目标分解为子目标、调用低层 VLA 策略、验证执行结果并从失败中恢复——全程无需额外数据采集或微调。</p>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2">技术亮点</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>LIBERO-PRO 上 SOTA 提升 4 倍以上（12.8%→53.3%）</li>
+                                <li>真实机器人推理受限任务成功率从近零提升至 90%+</li>
+                                <li>可控制现有 VLA 策略与参数化技能，即插即用</li>
+                                <li>定义"编排鸿沟"并提供系统性弥合方法</li>
+                            </ul>
+                            <h3 class="font-semibold text-lg text-[#002FA7] mb-2 mt-4">行业价值</h3>
+                            <p>大幅降低在仓储、制造和服务场景部署通用机器人的数据与计算门槛。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Addressing the Orchestration Gap in Generalist Robots via Physical Agency</p>
+                            <p class="text-sm text-gray-600">2026-07-23 · 重要性评分: 88</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2607.21725" class="text-[#002FA7] underline" target="_blank">2607.21725</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">4x</div>
+                                <div class="text-xs mt-1">LIBERO-PRO提升</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">90%+</div>
+                                <div class="text-xs mt-1">真实机器人成功率</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">0</div>
+                                <div class="text-xs mt-1">额外数据/微调</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                与收集大量任务特定数据教会策略推理不同，Pigey 证明一个智能体外壳即可解锁底层模型中已存在的推理能力。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

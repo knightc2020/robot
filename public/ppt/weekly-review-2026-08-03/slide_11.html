@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>更多论文：HMP + FasTac + SymmGrid + TacWAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-6 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">MORE RESEARCH</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">更多论文速览</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-6 h-full">
+                    <!-- HMP -->
+                    <div class="border border-gray-200 p-4 flex flex-col">
+                        <div class="text-[#002FA7] text-xs font-semibold mb-1">人形运动 · 7月27日</div>
+                        <h3 class="font-serif text-[18pt] font-normal text-gray-900 mb-2 leading-[1.2]">HMP：可复用混合<br>运动先验</h3>
+                        <p class="text-xs leading-[1.6] flex-1">三阶段流水线将运动模仿技能蒸馏为冻结RVQ码本架构，任务策略通过选择码本条目实现locomotion。速度追踪策略成功部署真实Unitree G1，码本呈可解释的层次化步态。</p>
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                            <span class="font-semibold text-[#002FA7]">★ 84</span>
+                            <span>arxiv: 2607.24083</span>
+                        </div>
+                    </div>
+                    <!-- FasTac -->
+                    <div class="border border-gray-200 p-4 flex flex-col">
+                        <div class="text-[#002FA7] text-xs font-semibold mb-1">触觉传感器 · 7月30日</div>
+                        <h3 class="font-serif text-[18pt] font-normal text-gray-900 mb-2 leading-[1.2]">FasTac：曲面多光谱<br>触觉传感器</h3>
+                        <p class="text-xs leading-[1.6] flex-1">多光谱光度立体+动态卷积力估计+FPGA加速集成于紧凑曲面形态。深度误差降至0.0415mm MAE，三轴力NMAE约2.4%-2.7%，FPGA将处理延迟缩短至1.09ms。</p>
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                            <span class="font-semibold text-[#002FA7]">★ 83</span>
+                            <span>arxiv: 2607.28416</span>
+                        </div>
+                    </div>
+                    <!-- SymmGrid -->
+                    <div class="border border-gray-200 p-4 flex flex-col">
+                        <div class="text-[#002FA7] text-xs font-semibold mb-1">真实学习 · 7月29日</div>
+                        <h3 class="font-serif text-[18pt] font-normal text-gray-900 mb-2 leading-[1.2]">SymmGrid：并行化<br>对称性加速学习</h3>
+                        <p class="text-xs leading-[1.6] flex-1">轨迹级数据增强框架，利用操作任务内在几何对称性在对称树结构下建模MDP。真实接触任务壁钟训练加速1.37-2.17倍，插销插入16.6分钟、缆线布设10.9分钟收敛，AUC最高提升2.59倍。</p>
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2607.26985</span>
+                        </div>
+                    </div>
+                    <!-- TacWAM -->
+                    <div class="border border-gray-200 p-4 flex flex-col">
+                        <div class="text-[#002FA7] text-xs font-semibold mb-1">触觉世界动作模型 · 7月30日</div>
+                        <h3 class="font-serif text-[18pt] font-normal text-gray-900 mb-2 leading-[1.2]">TacWAM：锚点引导<br>触觉世界动作模型</h3>
+                        <p class="text-xs leading-[1.6] flex-1">预测未来触觉状态（外观、密集力场、形变流）监督接触丰富操作。锚点引导三模态注意力防止动作分支作弊。四个真实任务平均成功率75.0%，比最强基线高37.5个百分点。</p>
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                            <span class="font-semibold text-[#002FA7]">★ 81</span>
+                            <span>arxiv: 2607.28391</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
