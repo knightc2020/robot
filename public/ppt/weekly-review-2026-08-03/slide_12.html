@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-8 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">触觉感知×世界模型密集涌现</h3>
+                        <p class="text-sm leading-[1.6]">本周触觉成为世界模型的新核心维度：FeelWorld、ViTacWorld、TacWAM三篇触觉世界模型+ FasTac曲面传感器硬件，构成从感知硬件到预测监督的完整链路。触觉信号仿真-现实差距更小，正成为接触丰富操作学习的关键监督源。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">VLA走向实时化与低成本化</h3>
+                        <p class="text-sm leading-[1.6]">TurboVLA（0.2B、32Hz、0.9GB显存）与πR²（A5000上25Hz重规划）分别从架构与调度两端破解VLA闭环瓶颈；Pigey编排器证明无需重新训练即可解锁已有策略的推理能力，HiFi-UMI则让无机器人数据采集达到部署标准。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">数据效率与真实学习加速</h3>
+                        <p class="text-sm leading-[1.6]">DynaMAC以20倍样本效率突破双臂动态操作，SymmGrid用对称性增强将真实接触任务收敛压缩到17分钟内，Data Pyramid为具身数据生态提供系统化路线图。更少数据、更快训练正推动机器人学习走向现场部署。</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">15篇论文覆盖从触觉传感器硬件到VLA实时部署的完整链路：触觉感知与世界模型融合成为最密集主题，VLA部署向消费级硬件与真实闭环加速演进，数据效率与"零后训练"范式显著降低落地门槛。同时HumanCLAW提醒：VLM的具身自我意识仍是根本性短板。机器人领域正从"能做"向"便宜、实时、规模化地做"跨越。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
