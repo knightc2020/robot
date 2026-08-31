@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本周研究概览</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">OVERVIEW</div>
+                <div id="header" class="font-sans text-sm font-semibold text-gray-900">本周研究概览</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-12">
+                    <div class="w-[440px] flex-shrink-0 pt-4">
+                        <h1 class="font-serif text-[40px] font-normal text-gray-900 mb-6 leading-[1.2]">本周研究概览</h1>
+                        <div class="font-sans text-[21px] font-normal leading-[1.45]">
+                            <p class="mb-4">本周共收录 <strong class="text-[#002FA7]">12篇</strong> 机器人领域最新论文（8月24日-27日发布），覆盖统一世界动作模型、跨形态与数据效率、可解释与实时部署三大方向。</p>
+                            <p>研究重点集中在世界动作模型的统一与因果化（Riemann-1.0、CLAP、LAWA、GeoWAM）、跨形态与数据效率（UCAG-P、Zero-WAM、INDI、Pointing-VLA）、以及可解释性与实时部署（LM-X、FlashVLA、Cosmos-H-Dreams、TrAct），体现了从单点算法创新向通用、高效、可信赖的具身基础模型演进的鲜明趋势。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 flex gap-8">
+                        <div class="w-[320px] h-[580px] bg-white border border-gray-300 p-6 flex-shrink-0">
+                            <div class="size-full flex flex-col">
+                                <div class="flex-shrink-0 font-semibold mb-4 text-center">赛道分布</div>
+                                <div class="flex-1">
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                                <div class="flex flex-col gap-2 mt-3">
+                                    <div class="flex items-center gap-[6px]">
+                                        <div class="w-3 h-3 bg-[#002FA7]"></div>
+                                        <span class="font-sans text-[11px] text-gray-900">通用具身与操作 (8篇，66.7%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-[6px]">
+                                        <div class="w-3 h-3 bg-black"></div>
+                                        <span class="font-sans text-[11px] text-gray-900">软件与系统 (2篇，16.7%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-[6px]">
+                                        <div class="w-3 h-3 bg-[#2563EB]"></div>
+                                        <span class="font-sans text-[11px] text-gray-900">自动驾驶 (1篇，8.3%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-[6px]">
+                                        <div class="w-3 h-3 bg-[#6B7280]"></div>
+                                        <span class="font-sans text-[11px] text-gray-900">手术机器人 (1篇，8.3%)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script>
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['通用具身与操作', '软件与系统', '自动驾驶', '手术机器人'],
+                datasets: [{
+                    data: [8, 2, 1, 1],
+                    backgroundColor: ['#002FA7', '#000000', '#2563EB', '#6B7280'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: { padding: { top: 20, bottom: 20, left: 20, right: 20 } },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#111827',
+                        titleFont: { family: 'Inter', size: 12 },
+                        bodyFont: { family: 'Inter', size: 11 },
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '篇 (' + Math.round(context.parsed / 12 * 100) + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        </script>
+    </div>
+</body>
+</html>

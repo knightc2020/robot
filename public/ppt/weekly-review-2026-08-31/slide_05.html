@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文3：UCAG-P 统一相机中心动作几何</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 03</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用具身 · 跨本体预训练</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[26pt] font-normal text-gray-900 leading-[1.2] mb-5">
+                            UCAG-P：统一相机<br>中心动作几何，<br>服务异构本体
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">把操作表达为图像/相机坐标系中可观测的"锚点运动"，机械臂、人形机器人与人类手只是同一套动作模式的三种本体；几何条件动作翻译器把预测运动与目标本体运动学结合成可执行指令；解耦架构让共享 VLA 策略学习可迁移的操作几何，同时保留本体特有可控性。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>单一检查点：LIBERO 98.3%、RoboTwin Easy 88.7%/Hard 89.2%</li>
+                                <li>LIBERO-Plus 零样本 82.0%、RoboCasa GR-1 62.0%，全程无需按基准微调</li>
+                                <li>训练数据：4.03K 小时机器人+仿真 + 2.34K 小时人类演示</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>来自小米具身智能团队：一个预训练模型通过相机坐标系的动作几何同时服务机械臂与人形机器人，显著降低多平台部署与数据采集成本，人类演示数据可直接利用。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">UCAG-P: Unified Camera-Centric Action Geometry Pretraining for Heterogeneous Embodied Manipulation</p>
+                            <p class="text-sm text-gray-600">2026-08-26 · 重要性评分: 85</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2608.26058" class="text-[#002FA7] underline" target="_blank">2608.26058</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">98.3%</div>
+                                <div class="text-xs mt-1">LIBERO 成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">82.0%</div>
+                                <div class="text-xs mt-1">LIBERO-Plus 零样本</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">6.37K小时</div>
+                                <div class="text-xs mt-1">多源训练数据</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                动作被统一到相机可观察的几何空间，而非机器人特有的指令空间——"一个策略、多种本体"。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

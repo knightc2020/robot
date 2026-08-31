@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文5-6：LM-X + FlashVLA 可解释与实时</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 05-06</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">可解释建模与实时推理</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: LM-X -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">可解释动作建模 · 8月26日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">LM-X：进度、事件与<br>不确定性显式可见</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">在 VLA 骨干上显式预测三路多时间尺度信号——剩余回报（任务进度）、剩余事件（下一语义转折）与异方差动作流（局部可靠性），并直接条件化动作生成，使控制内在地可解释。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>RoboTwin2.0 随机加难任务 74.1%（对比 GR00T N1.7 的 55.4%）</li>
+                                <li>七个真实机器人任务 68.6%（对比 50.7%）；2万+小时真实轨迹训练</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2608.25757</span>
+                        </div>
+                    </div>
+                    <!-- Right: FlashVLA -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">流式动作解码 · 8月27日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">FlashVLA：流式解码<br>达到 30Hz 控制</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">维护不同噪声水平的流式动作缓冲区，以块间因果注意力解码，每个推理步产出一个可执行动作块，从结构上隐式保持动作连续性，消除控制回路走走停停的模式。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>单 GPU 上实现不低于 30Hz 的控制频率</li>
+                                <li>真实部署中异步执行平滑，推理速度大幅提升而任务性能保持稳定</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2608.27384</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

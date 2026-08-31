@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文9-10：LAWA + TrAct 世界模型参与决策</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 09-10</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">世界模型参与决策</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: LAWA -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">潜在动作未来想象 · 8月25日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">LAWA：潜在动作承载<br>未来意图</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">用紧凑潜在动作作为"未来意图"的操作表示：训练时联合去噪、推理时直接省略未来视频分支——未来想象隐式完成，无需昂贵的视频合成。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>RoboCasa 少样本 65.6%/全量 80.8%（较 Fast-WAM 基线 +9.6/+4.5 个百分点）</li>
+                                <li>推理延迟较 Joint-WAM 变体降低 42.9% 且性能持平；LIBERO-Plus 零样本鲁棒</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 77</span>
+                            <span>arxiv: 2608.24882</span>
+                        </div>
+                    </div>
+                    <!-- Right: TrAct -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">视觉轨迹接口 · 8月25日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">TrAct：以视觉轨迹<br>连接控制与预测</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">视觉轨迹（形态无关的场景关键点运动）作为控制与世界模型预测的共享接口：VLAT 生成候选、TWM 推演视觉后果、VLAC 按指令打分——对"未来"做测试时搜索。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>LIBERO-INTEGRAL 成功率 27%→55%（对比强 VLA 基线 π0.5）</li>
+                                <li>真实 Franka 任务 49%→76%；TWM 视频预测质量持续优于动作条件世界模型</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 75</span>
+                            <span>arxiv: 2608.24101</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

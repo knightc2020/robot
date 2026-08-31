@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-8 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">世界动作模型走向统一与跨形态</h3>
+                        <p class="text-sm leading-[1.6]">Riemann-1.0 以单一因果自回归模型统一策略执行与世界模拟；CLAP 用课程式跨形态学习覆盖人类、双臂、移动操作与人形机器人；LAWA 以潜在动作承载未来意图，GeoWAM 把状态空间迁移到显式点云几何，TrAct 让世界模型真正参与动作选择。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">跨形态与数据效率成为主线</h3>
+                        <p class="text-sm leading-[1.6]">UCAG-P 用相机中心的锚点运动统一机械臂、人形机器人与人类手的动作空间，单一检查点无需微调；Zero-WAM 把上下文学习带入操作，人类视频即任务规格；INDI 蒸馏行为意图替代纯行为克隆；Pointing-VLA 以类型化读出替代文本坐标接地。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">可解释、实时与垂直落地加速</h3>
+                        <p class="text-sm leading-[1.6]">LM-X 显式预测任务进度、事件与不确定性，让控制内在地可解释；FlashVLA 以流式动作解码在单 GPU 上达到 30Hz 控制频率；NVIDIA Cosmos-H-Dreams 在单卡上以约 160 FPS 实时渲染手术仿真，支持浏览器、VR 头显与手术控制台交互。</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">12 篇论文呈现"世界模型统一化、跨形态与数据效率、可解释与实时部署"三条主线：从策略-模拟器合一（Riemann-1.0、CLAP）到"一个策略、多种本体"（UCAG-P、Zero-WAM），再到可解释信号与实时控制（LM-X、FlashVLA），机器人学习正从"能做"走向"通用、高效、可信赖"。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
