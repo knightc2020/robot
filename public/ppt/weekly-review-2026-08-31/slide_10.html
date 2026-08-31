@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文11-12：Cosmos-H-Dreams + GeoWAM 世界模型垂直应用</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 11-12</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">世界模型垂直应用</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: Cosmos-H-Dreams -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">NVIDIA · 手术实时仿真 · 8月25日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">Cosmos-H-Dreams：<br>实时手术世界模型</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">基于 Open-H-Embodiment 微调与器械后训练的 Cosmos-H-Surgical-Simulator，经 Self Forcing 师生蒸馏转为因果少步数可控仿真器，再由 FlashDreams 流式推理部署。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>单张 RTX PRO 6000 工作站 GPU 上约 160 推理 FPS</li>
+                                <li>控制器无关：浏览器键盘、Quest 头显、Versius 手术控制台与学习策略四种控制</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 78</span>
+                            <span>arxiv: 2608.24199</span>
+                        </div>
+                    </div>
+                    <!-- Right: GeoWAM -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">自动驾驶 · 几何状态空间 · 8月24日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">GeoWAM：预测点云<br>而非像素</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">把世界动作模型的状态空间从像素重新定位到显式点云几何：预测未来场景几何而非未来图像，显式刻画空间结构与刚体/非刚体变换，并与驾驶动作执行的空间天然对齐。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>几何条件化动作头据此预测未来自车轨迹</li>
+                                <li>大量开环与闭环评估：视觉几何世界建模的驾驶策略显著强于基于图像的方案</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 77</span>
+                            <span>arxiv: 2608.23486</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

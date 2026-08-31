@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文7-8：INDI + Pointing-VLA 训练信号与空间接口</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 07-08</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">VLA 训练信号与空间接口</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: INDI -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">意图蒸馏 · 8月24日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">INDI：把行为意图<br>蒸馏进动作解码器</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">冻结教师 VLM 解释演示片段的行为级意图，蒸馏进 VLA 动作解码器——用"行为所服务的目标"监督动作学习，取代纯行为克隆。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>GR00T-N1.7：SimplerEnv-Bridge 64.3%→84.7%、RoboCasa Kitchen 64.1%→70.3%</li>
+                                <li>真实世界 62.0%→68.7%，长时程任务最高提升 12.0 个百分点；pi0.5 基线增益一致</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2608.23478</span>
+                        </div>
+                    </div>
+                    <!-- Right: Pointing-VLA -->
+                    <div class="border border-gray-200 p-5">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">类型化空间接地 · 8月24日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">Pointing-VLA：类型化<br>隐状态空间读出</h3>
+                        <div class="text-sm leading-[1.6] mb-4">
+                            <p class="mb-2">用几何专用预测头直接输出归一化点、目标功能接地（OFG）热力图与视觉轨迹，取代文本坐标接地——几何不再被序列化成缓慢且有损的文本。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>Bridge/WidowX 平均成功率 72.9%（SOTA，无需 Bridge 微调）</li>
+                                <li>引导 pi0.5 真实机器人成功率 52.7%→80.7%；迁移 NORA-1.5 控制器时间减少 20 倍以上</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 80</span>
+                            <span>arxiv: 2608.23138</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

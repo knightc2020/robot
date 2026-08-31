@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文2：CLAP 跨形态视频世界模型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-8 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 02</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用具身 · 世界模型</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[26pt] font-normal text-gray-900 leading-[1.2] mb-5">
+                            CLAP：跨形态视频<br>世界模型，零样本<br>的物理模拟器
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">在互联网规模异构视频（人类与多种机器人）上训练动作条件视频世界模型；用末端执行器位姿、语言指令、潜在动作三种表征统一互不兼容的动作空间；课程式跨形态学习——先在无标注视频上用潜在动作习得物理先验，再接地到末端执行器动作空间实现零样本部署。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>DROID 等挑战性环境中达到或超越单形态视频世界模型 SOTA</li>
+                                <li>少样本适应进一步放大跨形态优势</li>
+                                <li>覆盖 DROID、Bridge、双臂 YAM 与 G1 人形，为迄今最全面的动作条件视频世界模型套件</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>把无标注互联网视频当作一等训练资源，一个世界模型可同时充当规划用物理模拟器、策略预训练平台与合成数据生成器；全部代码与模型开源。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">CLAP: Cross-Embodiment Video World Models as Zero-Shot Physics Simulators</p>
+                            <p class="text-sm text-gray-600">2026-08-27 · 重要性评分: 86</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2608.27406" class="text-[#002FA7] underline" target="_blank">2608.27406</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">3种</div>
+                                <div class="text-xs mt-1">动作条件空间</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">4类</div>
+                                <div class="text-xs mt-1">机器人形态覆盖</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">全开源</div>
+                                <div class="text-xs mt-1">代码与模型发布</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                时空动力学受普适物理定律支配——先学物理，再把先验接地到具体形态，是跨形态视频建模的新范式。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
