@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文14-15：行为编排系统与非抓取抛掷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 14-15</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">行为编排系统与动态操作技能</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: Humanoid loco-manip behavior system -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">人形移动操作 · 运行时行为架构 · 9月1日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">行为编排系统：<br>小时级创建新技能</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">以物体为中心的 Affordance Templates 加树状行为结构组织移动操作；行为场景与原始场景动作让感知可运行时编辑；操作员界面与机器人持续同步，支持现场编写、监控与修复；动作原语由全身控制器执行。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>Unitree H1-2 与 Alex 上完成六种移动操作任务变体</li>
+                                <li>推门穿越 34 秒；人为干扰下按颜色分拣六个球 45 秒</li>
+                                <li>新行为可在数小时内从零创建，远快于重新训练策略</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 80</span>
+                            <span>arxiv: 2609.01518</span>
+                        </div>
+                    </div>
+                    <!-- Right: Non-prehensile throwing -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">非抓取操作 · 动态抛掷 · 9月1日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">非抓取抛掷：让 RL<br>自己学会利用接触</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">把无抓取抛掷建模为强化学习：策略显式利用滑移与滚动接触模式、直接优化关节空间轨迹，无需解析接触模型或自定义参数化；两段式执行兼顾离线规划质量与高速率执行的平滑性。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>仿真数千构型成功率 99%，可泛化到未见过的物体</li>
+                                <li>零样本部署 UR5e（末端速度 5 m/s）：790 g 重物与 20×20×28 cm 大物体</li>
+                                <li>抛至最远 350 cm、最高 180 cm 的目标，真实成功率 97%（无真机微调）</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 78</span>
+                            <span>arxiv: 2609.00771</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

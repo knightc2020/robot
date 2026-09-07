@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文1：Facet-0 接触丰富精密操作基础模型</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 01</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">工业精密装配 · 本周最高评分</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            Facet-0：<br>预测并评估接触后果的<br>装配基础模型
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">围绕“动作-腕力”联合提议组织模型：流匹配同时生成动作块与预期诱发的腕部力/力矩曲线，让模型带着接触后果做决策；分布式 Action-Wrench Critic 分辨“进展相似但接触结果不同”的动作，接触选择性信用分配把改进集中到决定性交互。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>1,000 小时力同步语料 ManuFacet-1K，覆盖三种机体与多个制造单元</li>
+                                <li>五项亚毫米计算机装配任务平均成功率 82%，最强基线仅 15%</li>
+                                <li>放置精度 0.5 mm、指令延迟 50 ms，具备实时产线部署条件</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>把亚毫米装配从“基本不可用”推到“可上产线”；“力同步语料 + 基础模型 + 轻量适配”组合有望重新定义精密装配自动化的成本结构。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation</p>
+                            <p class="text-sm text-gray-600">2026-09-01 · 重要性评分: 92</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2609.01596" class="text-[#002FA7] underline" target="_blank">2609.01596</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">82%</div>
+                                <div class="text-xs mt-1">平均成功率（基线 15%）</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">0.5mm</div>
+                                <div class="text-xs mt-1">放置精度</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">50ms</div>
+                                <div class="text-xs mt-1">指令延迟</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                真正可用的装配基础模型必须学会预测每一次接触的后果——不仅知道“手往哪去”，还知道“力有多大、成不成功”。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

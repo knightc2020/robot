@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文4：Driving on Memory 驾驶评测方法论</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 04</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">自动驾驶 · 评测方法论</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            Driving on Memory：<br>仅凭“地点记忆”<br>完成驾驶评测
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">简洁而犀利的评测探针：移除驾驶模型的摄像头输入，替换为同一地点先前驾驶的记忆——保留道路布局等持久场景信息，但剔除全部当前交通状态；并检验该效应是否跨基准成立。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>NAVSIM：不观察被测场景，仅凭记忆即达到甚至超越领先端到端方法</li>
+                                <li>Bench2Drive 与 RealEngine：记忆驾驶性能显著下降，确实要求对场景作出反应</li>
+                                <li>高 NAVSIM 分数应谨慎解读；代码已开源（github.com/boschresearch/MemoryDrivoR）</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>对以榜单衡量端到端驾驶模型的团队是直接警示：NAVSIM 排名可被地点记忆“灌水”，应辅以对场景敏感度更高的基准并同时报告多个指标。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Driving on Memory</p>
+                            <p class="text-sm text-gray-600">2026-08-31 · 重要性评分: 86</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2608.31029" class="text-[#002FA7] underline" target="_blank">2608.31029</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-xl font-bold leading-snug">追平 SOTA</div>
+                                <div class="text-xs mt-1">NAVSIM·仅凭记忆</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-xl font-bold leading-snug">明显下滑</div>
+                                <div class="text-xs mt-1">Bench2Drive / RealEngine</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-xl font-bold leading-snug">已开源</div>
+                                <div class="text-xs mt-1">MemoryDrivoR 代码</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                榜单分数要拆开看：有多少来自对当前场景的反应，有多少只是“记住了这条路”。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

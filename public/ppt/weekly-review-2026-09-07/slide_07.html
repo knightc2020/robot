@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文5：GIFT 中间特征训练</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 05</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">机器人学习 · 表征训练原则</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            GIFT：弥合表征的<br>“动作充分性缺口”<br>（跨 VLA / WAM 通用）
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">指出视觉预训练“丰富但不够动作充分”；对中间特征施加三类控制相关结构监督——决定运动可行性的几何、编码指令实体的可供性、把指令 grounding 到任务区域的目标；全部实现为训练损失，架构无关、不改动动作表达。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>LIBERO-Plus 零样本：VLA/WAM-Fast/WAM-IDM 变体达 79.6% / 72.6% / 87.8%（较基线 +4.6 / +12.6 / +5.2 分）</li>
+                                <li>RoboCasa：61.4% / 83.6% / 82.3%（较基线 +12.6 / +9.0 / +8.4 分）</li>
+                                <li>关节物体任务与受未见视觉/空间扰动的高精度真机操作增益最大</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>纯训练期配方：无需重设计动作头、不损失预训练先验，即可提升零样本迁移与鲁棒性；增益集中在真实部署中最棘手的关节物体与高精度任务。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation</p>
+                            <p class="text-sm text-gray-600">2026-09-03 · 重要性评分: 86</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2609.04193" class="text-[#002FA7] underline" target="_blank">2609.04193</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">87.8%</div>
+                                <div class="text-xs mt-1">LIBERO-Plus·WAM-IDM</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">+12.6分</div>
+                                <div class="text-xs mt-1">RoboCasa·VLA 增益</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">3类</div>
+                                <div class="text-xs mt-1">模型家族实例化（VLA / WAM / IDM）</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                视觉基础模型不缺“看得懂”，缺的是与控制真正相关的结构——把它监督进中间特征即可弥合缺口。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-7 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">接触与几何：基础模型开始“感受”物理后果</h3>
+                        <p class="text-sm leading-[1.6]">Facet-0 以“动作-腕力”联合提议预测并评估每一次接触的后果；SA-WAM 在单一扩散骨干中联合预测动作、RGB 与深度，不微调即引入几何；GIFT 把几何、可供性与目标监督写进中间特征；非抓取抛掷让 RL 直接利用滑移-滚动接触。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">语言与语义直达控制与学习信号</h3>
+                        <p class="text-sm leading-[1.6]">SUN 把语言任务语义编译为 MPC 代价与 RL 奖励，无需示范与稠密奖励；LightNav-0 用统一 token 接口把 VLM 的空间先验对齐为导航轨迹；LaPla 把“离散思维”投影到连续物理轨迹并单次前向解码，弥合高层语义与精确执行之间的鸿沟。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">数据、平台与评测走向“求真”</h3>
+                        <p class="text-sm leading-[1.6]">XR-2 用 1500 小时双臂示教与 DAgger 纠正验证可预测的扩展；BRIDGE 以人类运动数据协同设计形态并把平台开源；Driving on Memory 证明 NAVSIM 可被地点记忆“破解”，MINERVA 揭示 LIBERO 近乎记忆化——榜单证据需要更严格的解读。</p>
+                    </div>
+                </div>
+                <div class="mt-7 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">15 篇论文呈现“接触与几何感知进入基础模型、语言语义直达控制与学习信号、数据规模化与评测纪律支撑求真”三条主线：从预测接触后果（Facet-0）、注入几何（SA-WAM）到语言即程序（SUN）、再到以受控评测戳破榜单幻觉（Driving on Memory、MINERVA），机器人学习正从“能看、能做”走向“可感受、可验证、可规模化”。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文6-7：LaPla + SA-WAM 潜在空间与几何感知</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 06-07</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">潜在空间：动作对齐与几何感知</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: LaPla -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">端到端驾驶 · 潜在对齐规划 · 9月3日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">LaPla：离散思维到<br>连续动作的单次前向</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">把残差 VQ-VAE 动作分词器当作连续物理先验而非离散码本：并发动作查询单次前向因果融合多模态上下文，隐状态直接投影到预训练潜在空间，由冻结解码器转译为动作——无量化误差、无自回归。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>nuScenes 长时域 L2 误差较 SOTA VLA 降低 15.52%</li>
+                                <li>NVIDIA AlpaSim 闭环成功率提升 33.34 个百分点</li>
+                                <li>推理延迟显著降低、行驶进程更平滑</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 84</span>
+                            <span>arxiv: 2609.04070</span>
+                        </div>
+                    </div>
+                    <!-- Right: SA-WAM -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">世界动作模型 · 空间感知 · 9月2日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">SA-WAM：扩散骨干里<br>动作、RGB 与深度同生</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">把预训练视频扩散模型改造成空间感知的世界动作模型：单一扩散骨干同时预测动作、RGB 与深度；非线性编码把无界深度信号映射到冻结 VAE tokenizer 的有界输入域，无需三维微调即引入几何信息。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>RoboCasa 与 LIBERO-Plus 上取得 SOTA，未来状态预测同步改善</li>
+                                <li>真实 UR5 机械臂优于强基线，随机化环境增益最大</li>
+                                <li>消融：世界模型预测越好，下游任务成功率越高</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 83</span>
+                            <span>arxiv: 2609.02531</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
