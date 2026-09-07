@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文10-11：XR-2 + AdaRoboVLG 数据规模化与自适应抓取</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 10-11</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">双臂数据规模化与自适应抓取</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: XR-2 -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">双臂家务操作 · 数据开源 · 9月3日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">XR-2：1500 小时示教<br>与在策略纠正的扩展律</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">开源 1500 小时多样化双臂家务示教数据（配专用高通量采集管线），在其上训练视觉-语言-动作模型 XR-2；系统考察两条规模化轴线——专家示教数据量，与基于实时人工干预的 DAgger 在策略纠正后训练。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>任务成功率随示教数据量增加稳步提升</li>
+                                <li>DAgger 在策略纠正后训练同样呈现一致、清晰的扩展趋势</li>
+                                <li>数据集开源发布，支持双臂操作学习的可复现研究</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2609.03591</span>
+                        </div>
+                    </div>
+                    <!-- Right: AdaRoboVLG -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">视觉-语言抓取 · 解耦范式 · 9月3日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">AdaRoboVLG：抓取核心<br>永不需要重训</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">把任务理解与物理抓取合成解耦：基础策略以显式运动学映射与力闭合稳定性估计生成并评估物理可行的抓取候选；空间、认知、时间三类可组合基础模型先验按需融入，实现上下文自适应抓取。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>基础策略学习高效、跨机器人手泛化能力强</li>
+                                <li>三类先验分别应对代表性抓取挑战，不损害相较 SOTA 的合成性能</li>
+                                <li>先验联合运作，可在杂乱动态环境中实现功能性抓取</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2609.04096</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

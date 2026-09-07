@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文2：SUN 语义统一程序</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 02</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">语言接地控制 · 控制到学习</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            SUN：语义统一程序<br>让语言直达<br>控制·学习·实机
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">Kuafu 提出类型化可执行程序：几何与接触关系只定义一次，即编译为相互对齐的 MPC 代价、满足谓词、RL 奖励、转移守卫与诊断信号；大型视觉语言系统自动合成程序，MPC 先做可行性筛查，策略只学习已被控制认证过的行为。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>九任务宏观成功率 82.03%（稀疏奖励基线 35.67%、Stage-BC 基线 24.75%）</li>
+                                <li>8192 路并行规模下每小时遥操作有效轨迹为传统方式的 10.57 倍</li>
+                                <li>每任务仅 500 条轨迹训出的 DP3 策略：仿真 46.0%、真实 Franka/Kinova 34.7%</li>
+                            </ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>语言描述的任务被直接编译为训练信号，免除示范数据采集与专家奖励工程；MPC 可行性筛查同时为训练与部署提供安全过滤器。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">SUN: Persistent Programs For Language-Grounded Control-to-Learning-to-Real Policies</p>
+                            <p class="text-sm text-gray-600">2026-08-31 · 重要性评分: 89</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2608.31167" class="text-[#002FA7] underline" target="_blank">2608.31167</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">
+                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">82.03%</div>
+                                <div class="text-xs mt-1">九任务宏观成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">10.57×</div>
+                                <div class="text-xs mt-1">每小时有效数据提升</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">34.7%</div>
+                                <div class="text-xs mt-1">真机成功率（500 轨迹/任务）</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">●</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">
+                                控制器、学习器与验证器第一次优化同一份源码定义的同一套成功标准——无需示范、无需稠密奖励。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

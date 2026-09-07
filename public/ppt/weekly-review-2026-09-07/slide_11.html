@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文12-13：MINERVA + ZETA VLA 的受控审视</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 12-13</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">VLA 容量与跨本体的受控审视</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Left: MINERVA -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">模型效率 · 容量下限 · 9月3日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">MINERVA：0.54M 参数<br>征服 LIBERO</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">逆向提问——LIBERO 真正需要多少容量？用刻意压缩的视觉运动策略测量任务专属容量下限，并以诊断探针审视基准究竟在测什么。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>0.54M 参数、2000 次 rollout 平均 95.1%（较 LeRobot pi0.5 低 2.4pp、少 7700 倍参数）</li>
+                                <li>笔记本 CPU 每控制步重规划 5-9ms（较 SmolVLA 快 113×、pi0.5 快 1400×）</li>
+                                <li>任务 ID 置换探针显示：标准 LIBERO 指令条件化近乎在记忆任务间做选择</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 82</span>
+                            <span>arxiv: 2609.03715</span>
+                        </div>
+                    </div>
+                    <!-- Right: ZETA -->
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">跨本体迁移 · 受控评测 · 9月2日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">ZETA：零样本迁移的<br>严格定义与测量</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">首个 VLA 跨本体零样本受控研究：区分“严格零样本”与“预训练暴露式零样本”，构建覆盖仿真与真机、含 14 个留出目标本体的基准，把本体变化从任务、场景与协议等混淆因素中隔离出来。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>局部 EEF 表征 +15pp、源本体多样性 +18pp、辅助共训练 +7pp</li>
+                                <li>预训练仅加入 5% 目标本体数据，目标本体进度即提升 13.4pp</li>
+                                <li>两类“零样本”行为迥异，论文主张必须分别报告</li>
+                            </ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">★ 80</span>
+                            <span>arxiv: 2609.02546</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
