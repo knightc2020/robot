@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 04：Rehearse in a World, Learn in Context</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 04</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 上下文学习 · 11月9日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            WICL：在仿真里排练<br>把反馈写进上下文<br>而不是权重
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">冻结基础模型、不动一个权重：先从一条演示出发在仿真世界里排练任务，再把环境反馈写进上下文并固化为 Task Memory，让操作能力随记忆增长而不必重新训练。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>RoboTwin 2.0 全部 50 个任务，每任务仅一条演示</li>
+                                <li>清洁与随机化设置平均成功率 83.4%</li>
+                                <li>比最强训练型动作策略高 20 多个百分点</li>
+                                <li>跨本体记忆适配已迁移到真实双臂机器人</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>若一条演示加一轮排练就能上新任务，扩张任务清单的瓶颈会从采集团队换成仿真资产与记忆管理。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Rehearse in a World, Learn in Context: Manipulation Without Weight Updates</p>
+                            <p class="text-sm text-gray-600">2026-11-09 · 重要性评分: 91</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.12885" class="text-[#002FA7] underline" target="_blank">2611.12885</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">83.4%</div>
+                                <div class="text-xs mt-1">平均成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">50</div>
+                                <div class="text-xs mt-1">覆盖任务数</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">1</div>
+                                <div class="text-xs mt-1">每任务演示条数</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">真机迁移只作可行性展示，未给成功率；排练与反思的推理开销也未计量。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

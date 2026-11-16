@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-7 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">能力不再必须写进权重</h3>
+                        <p class="text-sm leading-[1.6]">WICL 冻结全部权重、单条演示零梯度达 83.4%，比最强训练型策略高 20 多分；A2-MEAS 把纠错写成代码接口，滤纸步骤失败后完成率 14% 提到 94%；AMP1 用通用模型直接驱动硬件，零样本 85.6%、真机 104/108。三篇的共同动作，是把「学习」从训练阶段挪到执行阶段。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">世界动作模型开始研究配方</h3>
+                        <p class="text-sm leading-[1.6]">SWAM 用 47000 小时把监督配比、标注质量变成实验问题，Clean-only 后训练得 Easy 88.10%、Hard 61.56%；LaST0.5 指出全局物理表征会淡化局部交互，插入交互隐空间专家后 LIBERO 99.5%、十个 RLBench 任务领先。堆算力不自动带来精细操作，配方与表征容量才是变量。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">失败模式成为可测量对象</h3>
+                        <p class="text-sm leading-[1.6]">记忆型 VLA 把时间当进度，一段无意义停顿就让 47 次成功跌到 16 次；LEASH 把五类危害放进 92 个仿真加 13 个真机的闭环基准，六个前沿模型普遍高危；TPS-A* 用可证距离消掉保守余量，而 hybrid A* 有 45% 路径压着障碍。安全与可靠性正在被拆成指标。</p>
+                    </div>
+                </div>
+                <div class="mt-7 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">12 篇论文的共同点是能力的位置在移动：从权重移到上下文、代码与记忆，从模型内部移到接口、闸门与规划器这些外围结构。证据等级同样分化——AMP1 的 104/108 次真机试验、ACE-CaP-0 的 240 次试验 221 次成功、UAV-Flow++ 的 273 个留出回合都有分母；而 LingBot-Touch、FORGE 与 LaST0.5 摘要未给绝对值，SWAM 的真机只有三个任务，引用时需要区别对待。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

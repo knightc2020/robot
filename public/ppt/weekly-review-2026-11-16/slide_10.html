@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 13-14</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 13-14</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 数据配方 / 自主移动 · 规划</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 世界动作模型配方 · 11月9日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">SWAM：四万七千小时<br>之后的监督配方</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">世界动作模型多在架构上下功夫，语言-视频对齐被当成预训练自然带来的既成事实；它用约 47000 小时第一视角视频、UMI 与机器人演示，把用什么监督、按什么比例混合变成可复现的实验问题。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>仅在 RoboTwin Clean 演示上后训练</li>
+                                <li>Easy 88.10%、Hard 61.56% 成功率</li>
+                                <li>三个真实任务 40.00% 对基线 23.33%</li>
+                                <li>开源数据、训练代码与模型权重</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 84</span>
+                            <span>arxiv: 2611.12870</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">自主移动 · 外形感知规划 · 11月6日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">TPS-A*：任意形状车体<br>的毫秒级可证检测</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">精确外形碰撞检测一直是移动机器人规划中最昂贵的一环；它用一张按车体外形预计算的栅格，遍历一次局部障碍就给出每条候选轨迹的可证自由距离，代价不再随外形复杂度增长。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>300 个杂乱场景全部解出，中位数 3 毫秒</li>
+                                <li>比状态栅格规划器快约 60 倍且目标无碰撞</li>
+                                <li>与 hybrid A* 同速，后者 45% 路径压障碍</li>
+                                <li>非凸叉车外形对接与真实校园行驶</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 82</span>
+                            <span>arxiv: 2611.09210</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

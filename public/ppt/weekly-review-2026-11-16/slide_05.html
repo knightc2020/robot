@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 05：Your Robot's Memory Is Just a Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 05</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">软件与系统 · 记忆机制评测 · 11月10日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            机器人的记忆<br>不该是一只钟
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">记忆增强的 VLA 把「经过的时间」当成「完成的工作」：机器人只是短暂停顿或空转手腕，策略就把这段空转计入进度并提前收工，作者称之为幻影进展。根因是按时间均匀采样并打时间戳的记忆索引。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>注入无意义停顿后，一个计数任务 50 次中成功数从 47 跌到 16</li>
+                                <li>另一任务从 44 跌到 10，扰动本身不携带任务信息</li>
+                                <li>撤除相应帧后成功率回升，构成排除性证据</li>
+                                <li>改为按事件索引，可在不重训的情况下挽回一半以上损失</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>在回归测试里加入无事件的停顿与空转成本极低，却能暴露常规成功率完全看不出的静默失败。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Your Robot's Memory Is Just a Clock: Temporal Shortcuts in Memory-Augmented VLA Policies</p>
+                            <p class="text-sm text-gray-600">2026-11-10 · 重要性评分: 88</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.14488" class="text-[#002FA7] underline" target="_blank">2611.14488</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">47→16</div>
+                                <div class="text-xs mt-1">停顿后成功次数</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">44→10</div>
+                                <div class="text-xs mt-1">第二任务成功次数</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">0</div>
+                                <div class="text-xs mt-1">需要的重训次数</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">事件边界如何判定未说明；证据全在仿真基准，缺真机长程验证。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

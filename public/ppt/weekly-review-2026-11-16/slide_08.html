@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 09-10</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 09-10</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">触觉与零部件 · 跨硬件表示 / 人形机器人 · 力感知遥操作</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">触觉与零部件 · 统一触觉基础模型 · 11月9日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">LingBot-Touch：让触觉<br>摆脱传感器物理</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">触觉数据一直被压阻、磁性、视触觉各自的信号语义割裂，难以跨设备规模化；它用统一表示把三类传感器打通并可直接扩展新类型，生成的触觉 token 即插即用。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>打通压阻、磁性与视触觉三类传感器</li>
+                                <li>token 可接入 π0.5、LingBot-VLA 等主干</li>
+                                <li>仿真与多平台真机均稳定提升灵巧性</li>
+                                <li>摘要未披露数据规模与增益数值</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 86</span>
+                            <span>arxiv: 2611.12806</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">人形机器人 · 力感知遥操作 · 11月12日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">FORGE：让机器人靠<br>手上的力学会全身操作</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">全身操作示范难采集，因为操作者要同时兼顾精度、平衡与接触感知；它把接口压成从速度、落脚点到腕部位姿与可选腕力的由粗到细指令空间，部署时用本体感知反推腕端等效力。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>训练不需要全身人体轨迹或关节角参考</li>
+                                <li>无需腕部力/力矩传感器即可恢复接触力</li>
+                                <li>持续接触挤压与跨负载搬箱完成验证</li>
+                                <li>力估计被限定在低频与准静态范围</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 86</span>
+                            <span>arxiv: 2611.17142</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

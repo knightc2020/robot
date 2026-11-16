@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 11-12</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 11-12</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 智能体安全 / 代码接口</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 智能体安全 · 11月10日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">LEASH：给智能体<br>机器人套上安全绳</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">用基础模型直接控制机器人的风险，现有评测最多只覆盖两类；作者提出 RoboRisk，把五类风险放进同一个闭环基准，再用任务、动作与不可逆操作三层闸门做缓解。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>RoboRisk：92 个仿真 + 13 个真机任务</li>
+                                <li>五类含拒答、计划修复、执行期危险、注入、序列记忆</li>
+                                <li>六个前沿模型普遍呈现高危害率</li>
+                                <li>闸门降低危害且基本保住任务完成率</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 85</span>
+                            <span>arxiv: 2611.14115</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 代码作为扩展接口 · 11月6日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">A2-MEAS：把纠错<br>写成可复用的代码</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">它把学到的纠错代码当作监督智能体与 VLA 策略之间的扩展接口，让现场失败沉淀为可复用经验；同一套设计同时跑家庭长程任务、双臂基准与失败恢复。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>BEHAVIOR 2026 百任务 Q-score 0.6411</li>
+                                <li>RoboTwin 2.0 平均 93.98%，全系统 95.05%</li>
+                                <li>十二个真实任务 57.92% 对 pi0.5 的 26.67%</li>
+                                <li>滤纸步骤失败后完成率从 14% 提到 94%</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 84</span>
+                            <span>arxiv: 2611.09124</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
