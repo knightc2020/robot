@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 08-09</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 08-09</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 表征设计 / 工业机械臂 · 数据增广</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 场景结构表征 · 11月18日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">Phoenix：缺的是<br>场景结构，不是<br>更清晰的画面</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">世界-动作模型普遍把预算压在画面质量上；它用双教师蒸馏把几何与时空语义注入 DINOv3，再由因果聚合的 CS-VAE 压成保留空间布局的潜变量，与外观、动作联合预测。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>LIBERO-Plus 94.8%、RoboTwin 2.0 C2R 72.4%</li>
+                                <li>约 3.9 万小时第一视角与操作数据预训练</li>
+                                <li>单臂、双臂、灵巧手三类本体仿真与真机最好</li>
+                                <li>数据增加时增益斜率大于只用视频 VAE 的基线</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 89</span>
+                            <span>arxiv: 2611.24938</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">工业机械臂 · 单目视频到动作 · 11月17日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">TCP4D：单目视频<br>同时还原与生成<br>末端轨迹</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">用一个共享的 4D 场景表示同时承担两件事：从单目视频和初始 2D 查询里恢复毫米级 TCP 位姿与夹爪状态，并在同一表示上生成未来轨迹——跟踪与生成不再各建一套模型。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>DROID / RoboLab 绝对轨迹误差 7.60 / 16.07 毫米</li>
+                                <li>RoboTwin 生成平均成功率 69.19%</li>
+                                <li>仅十条示范即可适配新本体</li>
+                                <li>源数据加增广联合训练再提 41.5%</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 86</span>
+                            <span>arxiv: 2611.23143</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

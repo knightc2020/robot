@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 16-17</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 16-17</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">触觉与零部件 · 磁悬浮 / 工业机械臂 · 硬件闭环</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">触觉与零部件 · 可微物理 · 11月17日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">Magflow：可微仿真<br>训出 6 自由度<br>磁悬浮控制器</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">一个完全可微、GPU 并行的 6 自由度磁悬浮仿真器，直接计算电磁物理而不靠手工近似；训练出的神经控制器零样本落到真实硬件，在 4 kHz 硬实时约束下运行。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>零样本迁移，真机上不做微调</li>
+                                <li>4 kHz 硬实时约束下运行</li>
+                                <li>首个工业级 6D 磁悬浮神经控制器</li>
+                                <li>悬浮了没有手工解法的动子拓扑</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 86</span>
+                            <span>arxiv: 2611.23050</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">工业机械臂 · 闭环硬件设计 · 11月19日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">JARVIS：智能体<br>自己设计、打样<br>并测一块电路板</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">机械臂、PCB 打印机、贴片机、3D 扫描仪与实时仿真器串成一条闭环：先在可执行数字孪生里排练动作与电路行为，再实际打印、贴装、测量、诊断并自动改版。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>2 小时 39 分钟无人干预完成首轮实验</li>
+                                <li>60 Hz 陷波滤波器在 60 Hz 处衰减 50.6 dB</li>
+                                <li>排练阶段在耗材消耗前识别出五个问题</li>
+                                <li>执行中自主处理遇到的设备故障</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 86</span>
+                            <span>arxiv: 2611.26503</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

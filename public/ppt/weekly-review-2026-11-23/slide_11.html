@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 14-15</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 14-15</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 相机鲁棒性 / 软件与系统 · 智能体</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 观测适配 · 11月18日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">Homeward：<br>把画面搬回<br>训练视角</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">免训练、即插即用的观测适配器：从当前帧与一张训练视角参考图估计未知相机参数与静态深度，再用运动学直接渲染已知机械臂，把部署画面规范化回训练视角。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>OpenVLA-OFT 62.5% → 77.6%，π0.5 76.5% → 95.1%</li>
+                                <li>π0 68.0% → 91.2%，OpenVLA 3.6% → 26.4%</li>
+                                <li>1,599 种相机变体、约 30 万条闭环回合</li>
+                                <li>四个策略中三个达到或超过标定后的视角合成基线</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 84</span>
+                            <span>arxiv: 2611.24455</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">软件与系统 · 智能体后训练 · 11月13日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">ESI：让 LLM 与 VLA<br>互相教会对方</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">把「LLM 加 VLA」的模块化智能体整体当作后训练单元，用自身交互反复改进规划器提示词、共享技能接口与策略参数，然后一起重新部署——后训练对象是智能体，不是某个 checkpoint。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>RoboDojo 十任务 62.03 分、49.41% 成功率</li>
+                                <li>超过 GO-3 Nano Preview 的 47.27 分、36.60%</li>
+                                <li>不生成任何任务专用控制代码</li>
+                                <li>对比对象为已发表数字，非重跑基线</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 79</span>
+                            <span>arxiv: 2611.18176</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
