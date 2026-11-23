@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 03：A 27B Open Model Learns to Use Real Robots by Reasoning in Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 03</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">软件与系统 · 后训练 / 推理控制 · 11月13日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            PEAR：27B 开源模型<br>在仿真里学会用机器人<br>零示范直上真机
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">把「计算机使用智能体」的接口换成末端位姿，用机器人使用强化学习在仿真里做后训练：奖励取代遥操作，思维链留在回路里，模型学的是如何拆解刚被告知的任务，而不是回放一条轨迹。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>真机双臂任务成功率 60%，基座模型为 0%</li>
+                                <li>LIBERO 从 1.6% 提升到 74.4%</li>
+                                <li>LIBERO-Pro 换任务保持 57.4%，π0.5 仅 0.75%</li>
+                                <li>九项推理、编程与视觉基准无可测退化</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>机器人学习最贵的一环从采示范转向仿真保真度与奖励设计，而这两者都能跨本体复用；数据护城河比想象中浅。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">A 27B Open Model Learns to Use Real Robots by Reasoning in Simulation</p>
+                            <p class="text-sm text-gray-600">2026-11-13 · 重要性评分: 94</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.18562" class="text-[#002FA7] underline" target="_blank">2611.18562</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">60%</div>
+                                <div class="text-xs mt-1">真机零示范成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">74.4%</div>
+                                <div class="text-xs mt-1">LIBERO 成功率</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">57.4%</div>
+                                <div class="text-xs mt-1">换任务仍保持</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">五次里两次失败没有刻画失效形态；位姿接口不含灵巧操作与力控；未报推理延迟与控制频率。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

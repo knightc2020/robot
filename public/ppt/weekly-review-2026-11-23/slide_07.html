@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 07：Awaken-HI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 07</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">人形机器人 · 数据引擎 · 11月19日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            Awaken-HI：五万小时<br>人类全身动作<br>直接监督机器人动作
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">约五万小时第一人称立体视频配上同步采集的全身人体运动，覆盖 100 多项技能；人类轨迹不是预训练阶段的辅助任务，而是直接监督与机器人共用的同一个动作专家。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>八项真机任务平均成功率 93.75%</li>
+                                <li>单项与长程评测均优于 GR00T N1.7 和 π0.5</li>
+                                <li>可处理未见物体与新的「物体—目的地」组合</li>
+                                <li>人类数据增加时动作预测误差单调下降</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>值得抄的是数据配方而不是模型：人类本身就是最大的动作采集源，把重定向放进训练目标，省掉一整套预处理与二次蒸馏。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Awaken-HI: Scaling Humanoid Intelligence with Whole-Body Human Experience</p>
+                            <p class="text-sm text-gray-600">2026-11-19 · 重要性评分: 88</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.26420" class="text-[#002FA7] underline" target="_blank">2611.26420</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">5万h</div>
+                                <div class="text-xs mt-1">第一人称视频</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">93.75%</div>
+                                <div class="text-xs mt-1">八任务平均</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">100+</div>
+                                <div class="text-xs mt-1">覆盖技能数</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">只有八任务均值，无逐任务分布；T800 适配用了多少真机数据、是全量微调还是部分解冻未交代。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

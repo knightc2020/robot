@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>趋势总结</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">TRENDS</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">趋势总结</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <h2 class="font-serif text-[36px] font-normal text-gray-900 mb-7 leading-[1.2]">本周三大技术趋势</h2>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">01</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">规模、结构与先验抢同一份预算</h3>
+                        <p class="text-sm leading-[1.6]">ScaleVLA 用 552B 骨干、10 条示范做到 87.8%，压过 2B 用 50 条的 85.6%，LIBERO-PRO 45.1% 对小骨干 31.3%；Body Schema Policy 少 75 倍参数追平 Ψ0；Phoenix 用 3.9 万小时证明结构化表征的增益斜率更陡。三条路都成立，代价各不相同：延迟、本体假设、表征设计。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">02</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">冻结模型加外壳成为默认交付形态</h3>
+                        <p class="text-sm leading-[1.6]">ForceHarness 不动权重，把 GPT-6 Astra 的零样本成功率从 3.3% 提到 90.0%；Homeward 免训练把 π0.5 从 76.5% 抬到 95.1%、OpenVLA 从 3.6% 到 26.4%；Z-sight 把前瞻压回 token 空间。能力的位置从权重移到接口、记忆与编排。</p>
+                    </div>
+                    <div class="border border-gray-200 p-6">
+                        <div class="text-[#002FA7] text-3xl font-serif mb-3">03</div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-3">物理从默认成立变成必须测</h3>
+                        <p class="text-sm leading-[1.6]">PhyDEX 让 GR00T N1.7、DynamicVLA、ForceVLA 在抛掷任务上全部低于 3%，给出真值物理参数才翻倍；Magflow 用可微仿真在 4 kHz 下零样本控制磁悬浮；五吨装载机在 Science Robotics 上把控制器推到执行器包线边缘。仿真保真度正与模型规模并列。</p>
+                    </div>
+                </div>
+                <div class="mt-7 bg-gray-50 border border-gray-200 p-5">
+                    <div class="font-semibold text-sm text-gray-500 mb-2">本周总结</div>
+                    <p class="text-sm leading-[1.6]">15 篇里真正带分母的证据集中在这几处：93.75%（八任务真机）、90.0%（零样本力控）、60%（双臂零示范）、49.41%（十任务闭环）、50.6 dB（单块电路板）、7.60 毫米（轨迹误差）。Phoenix、Z-sight、Body Schema Policy 的增益都是对基线的相对值，基线的参数量与数据对齐情况摘要没有交代；反倒是 PhyDEX 的「低于 3%」这种绝对失败数字最可信。引用时需要区别对待能力声明与可核对的测量。</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 05：Z-sight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 05</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">人形机器人 · 统一世界模型 · 11月18日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            Z-sight：在视觉 token<br>空间里预演未来<br>与动作一起去噪
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">混合 Transformer 把 VLM 主干、前瞻专家与连续动作专家拼在一起：推理时联合去噪未来的空间 token 与动作块，动作生成因此能直接读到「我这样做之后画面会变成什么样」。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>SIMPLE 成功率 81.9%，较最强基线高 9.6 点</li>
+                                <li>Unitree G1 六任务平均 73.3%，高 20.0 点</li>
+                                <li>每个动作块耗时 110 毫秒</li>
+                                <li>桌面操作基准保持竞争力，未牺牲成熟场景</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>世界模型不必等于一个独立视频生成器；把预测压回 token 空间后，模型规模、显存与延迟都可控，感知预测控制共用一套表征。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">Z-sight: Unifying Vision-Language-Action and Latent World Modeling</p>
+                            <p class="text-sm text-gray-600">2026-11-18 · 重要性评分: 90</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.24940" class="text-[#002FA7] underline" target="_blank">2611.24940</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">81.9%</div>
+                                <div class="text-xs mt-1">SIMPLE 成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">+20.0</div>
+                                <div class="text-xs mt-1">G1 六任务增益</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">110ms</div>
+                                <div class="text-xs mt-1">每块动作耗时</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">未给 G1 逐任务分布与失败模式；110 毫秒对高动态任务仍偏慢；token 级前瞻能否支撑毫米级装配未知。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 12-13</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 12-13</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">通用与具身智能 · 力控 / 人形机器人 · 物理基准</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="grid grid-cols-2 gap-8">                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">通用与具身智能 · 接触力接口 · 11月16日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">ForceHarness：<br>冻结模型<br>也能有手感</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">自终止力原语在模型之下以控制频率闭环，物理翻译层把力曲线变成带不确定度的物理量而不是原始传感器读数；模型权重与 API 上的完全一致，不做任何微调。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>真机零样本成功率从 3.3% 提升到 90.0%</li>
+                                <li>ForceBench 提升 17.5 点、HiddenPhys 提升 34.3 点</li>
+                                <li>无腕部力传感器，力从关节力矩估计</li>
+                                <li>输入物理量时较小模型的决策反而更好</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 88</span>
+                            <span>arxiv: 2611.21099</span>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-5 flex flex-col">
+                        <div class="text-[#002FA7] text-sm font-semibold mb-3">人形机器人 · 物理理解基准 · 11月19日</div>
+                        <h3 class="font-serif text-[21pt] font-normal text-gray-900 mb-3 leading-[1.2]">PhyDEX：扔一次<br>就知道它<br>懂不懂物理</h3>
+                        <div class="text-sm leading-[1.6] mb-4 flex-1">
+                            <p class="mb-2">抛掷任务强制机器人推断质量、质心与摩擦，把物体送到运动学工作空间之外；数据集 3.5 万条轨迹、143 小时、9 项任务、100 个场景全部由自动流水线生成。</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>GR00T N1.7、DynamicVLA、ForceVLA 成功率均低于 3%</li>
+                                <li>提供真值物理参数后成功率约翻倍</li>
+                                <li>多数失败发生在出手之前，属鲁棒性不足</li>
+                                <li>人形机器人与真实世界实验复现同样失败模式</li></ul>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500">
+                            <span class="font-semibold text-[#002FA7]">&#9679; 85</span>
+                            <span>arxiv: 2611.26565</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

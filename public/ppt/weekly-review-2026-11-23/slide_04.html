@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, initial-scale=1.0" name="viewport" />
+    <title>重点论文 04：ScaleVLA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="slide-container w-[1280px] h-[720px] overflow-hidden relative aspect-[16/9] flex flex-col bg-white text-gray-600">
+        <div class="relative z-10 flex flex-col w-full h-full p-[30px]">
+            <header class="flex justify-between items-center pb-2 mb-7 border-b border-black">
+                <div class="font-sans text-lg font-semibold text-gray-900 uppercase">KEY RESEARCH 04</div>
+                <div id="header" class="text-sm font-semibold text-gray-900 font-sans">软件与系统 · 模型规模化 · 11月16日</div>
+            </header>
+            <main class="flex-1 flex flex-col justify-center">
+                <div class="flex gap-8">
+                    <div class="w-[428px] flex-shrink-0">
+                        <h2 class="font-serif text-[25pt] font-normal text-gray-900 leading-[1.2] mb-4">
+                            ScaleVLA：5520 亿参数<br>骨干接进<br>机器人控制回路
+                        </h2>
+                        <div class="font-sans text-sm font-normal leading-[1.55]">
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">核心创新点</h3>
+                            <p class="mb-3">把 2B 到 552B 的视觉语言骨干塞进同一条流水线：同样的机器人数据、动作头与训练日程，规模差异因此能归因于表征本身；评测围绕少样本学习、分布外泛化与真机接触作业三项能力。</p>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2">实验结果</h3>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>10 条示范达 87.8%，超过 2B 用 50 条的 85.6%</li>
+                                <li>LIBERO-PRO 45.1%，同扫描小骨干最高 31.3%</li>
+                                <li>真机充电枪插入从 4/10 提升到 9/10</li>
+                                <li>动作块中位延迟 216 毫秒</li></ul>
+                            <h3 class="font-semibold text-base text-[#002FA7] mb-2 mt-3">行业价值</h3>
+                            <p>示范量与算力更接近替代关系：拿几千条轨迹微调 2B 只算及格线，差异化转到能否在控制回路里服务前沿规模骨干。</p>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-50 border border-gray-200 p-6 mb-5">
+                            <div class="font-semibold text-sm text-gray-500 mb-2">论文信息</div>
+                            <p class="text-base font-medium mb-2">ScaleVLA: Pushing Vision-Language-Action Policies to 552 Billion Parameters</p>
+                            <p class="text-sm text-gray-600">2026-11-16 · 重要性评分: 92</p>
+                            <p class="text-sm text-gray-600">arXiv: <a href="https://arxiv.org/abs/2611.21607" class="text-[#002FA7] underline" target="_blank">2611.21607</a></p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-5">                            <div class="bg-[#002FA7] text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">87.8%</div>
+                                <div class="text-xs mt-1">10 条示范成功率</div>
+                            </div>
+                            <div class="bg-black text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">45.1%</div>
+                                <div class="text-xs mt-1">LIBERO-PRO</div>
+                            </div>
+                            <div class="bg-gray-600 text-white p-4 text-center rounded">
+                                <div class="text-2xl font-bold">216ms</div>
+                                <div class="text-xs mt-1">动作块中位延迟</div>
+                            </div>
+</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[#002FA7] text-base leading-[1.5] flex-shrink-0">&#9679;</span>
+                            <p class="font-sans text-[13pt] font-normal text-gray-500 leading-[1.5] m-0">只扫了单一骨干家族与单一真机任务，跨架构是否同曲线未知；训练与推理成本未报告。</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
